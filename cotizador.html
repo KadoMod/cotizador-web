@@ -1,0 +1,1554 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cotiza merchandising corporativo personalizado de forma automática, rápida y simple. Tazones, poleras, kits corporativos y más. Atención personalizada y producción inmediata."
+    />
+    <meta
+      name="keywords"
+      content="merchandising corporativo, cotización merchandising, cotización automática, regalos empresariales, productos personalizados, merchandising Chile"
+    />
+
+    <title>Cotizador de Merchandising Corporativo | KadoMod</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+   
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      body.fade-out {
+        opacity: 0;
+      }
+
+      /* ---------- CABECERA --------- */
+
+      .main-header {
+        background-color: #001f3f;
+        display: flex;
+        align-items: center;
+        color: #ffa500;
+        padding: 0 25px 0;
+        text-align: left;
+        font-weight: lighter;
+        width: 100vw;
+        height: 50px;
+        box-sizing: border-box;
+      }
+
+      .main-header p {
+        width: 32vw;
+        font-size: 18px;
+        margin-left: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      .main-header h1 {
+        text-align: center;
+        width: 38vw;
+        font-size: 22px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      .kadomo-button-white {
+        text-align: end;
+        width: 32vw;
+        margin-right: 10px;
+      }
+
+      .fade-link {
+        background-color: #eaeaea;
+        padding: 5px 12px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        align-items: center;
+      }
+
+      .kadomo-button-white img {
+        width: 78px;
+      }
+
+      .kadomo-button-white:hover {
+        opacity: 0.5;
+      }
+
+      /* ---------- CONTENEDOR PRINCIPAL --------- */
+
+      .sections-container {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .section {
+        width: 32vw;
+        height: 100%;
+        box-sizing: border-box;
+        overflow-y: auto;
+        padding: 7px;
+      }
+
+      #left {
+        background-color: #d8d8d8;
+        padding: 15px;
+      }
+
+      #center {
+        background-color: #eaeaea;
+        width: 36vw;
+      }
+
+      #right {
+        background-color: #d8d8d8;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      /* ======= SECCIONES DEL MÓDULO "PRODUCTOS" ======= */
+
+      /* ------- SECCIÓN IZQUIERDA ------- */
+
+      .title-productos {
+        text-align: center;
+        font-size: 24px;
+        margin: 0 auto;
+      }
+
+      .image-presenter {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0 15px;
+        position: relative;
+      }
+
+      #product-preview {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .quantity-input {
+        width: 42px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 40px;
+        margin-right: 10px;
+      }
+
+      .product-select {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 40px;
+        background-color: #fff;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095.1c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.9z%22%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.7em top 50%;
+        background-size: 0.65em auto;
+        margin-right: 10px;
+      }
+
+      .colors {
+        display: flex;
+        align-items: center;
+      }
+
+      .color-radio {
+        display: none;
+      }
+
+      .color-label {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-left: 5px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+      }
+
+      .color-radio:checked + .color-label {
+        border: 2px solid #000;
+      }
+
+      .color-yellow {
+        background-color: #ffff00;
+      }
+      .color-blue {
+        background-color: #0d0080;
+      }
+      .color-red {
+        background-color: #ff0000;
+      }
+      .color-white {
+        background-color: #ffffff;
+      }
+      .color-black {
+        background-color: #000000;
+      }
+      .color-green {
+        background-color: #008000;
+      }
+
+      .add-button {
+        background-color: #1c3552;
+        color: #fff;
+        border: none;
+        padding: 6px 20px;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 8px;
+      }
+
+      .info-title {
+        font-size: 18px;
+        margin: 15px 0 8px;
+      }
+
+      .info-paragraph {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #333;
+        margin-top: 8px;
+      }
+
+      /* ------- SECCIÓN CENTRAL ------- */
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+      }
+
+      .nav-bar {
+        background-color: #eaeaea;
+        border-bottom: 1px solid black;
+        display: flex;
+        align-items: center;
+        padding: 2px 5px;
+      }
+
+      .tabs {
+        flex: 1;
+        display: flex;
+      }
+
+      .tab-title {
+        display: block;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .tab {
+        padding: 0px 4px;
+        text-decoration: none;
+        color: #000;
+        position: relative;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .tab.selected {
+        font-size: 15px;
+        color: #ffa500;
+        font-weight: bold;
+      }
+
+      .tab.selected::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: #ffa500;
+      }
+
+      .kadomo-button {
+        background-color: #001f3f;
+        padding: 5px 12px;
+        border: none;
+        border-radius: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .kadomo-button img {
+        width: 78px;
+      }
+
+      .table-container {
+        position: relative;
+        height: 240px;
+        overflow-y: auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        margin: 7px 0;
+      }
+
+      .table-container img {
+        height: 100px;
+      }
+
+      .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.2;
+        font-size: 100px;
+        color: #000;
+        font-weight: bold;
+        pointer-events: none;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th {
+        background-color: #eaeaea;
+        padding: 8px;
+        text-align: left;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      td {
+        text-align: center;
+        padding: 8px;
+        border-right: 1px solid #ddd;
+      }
+
+      .delete-btn {
+        background-color: #ff0000;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .send-button {
+        background-color: #1c3552;
+        color: #fff;
+        border: none;
+        padding: 5px 20px;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 16px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .send-button span {
+        color: #25d366; /* WhatsApp green */
+        font-weight: bolder;
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background-color: #001f3f;
+        margin-top: 4px;
+      }
+
+      .center-info-title {
+        margin-top: 10px;
+        font-size: 16px;
+        margin-bottom: 0px;
+      }
+
+      .center-info-paragraph {
+        font-size: 12px;
+        color: #666;
+        line-height: 1.4;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      .observations {
+        width: 95%;
+        height: 60px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        resize: vertical;
+        margin-top: 5px;
+      }
+
+      /* ------- SECCIÓN DERECHA ------- */
+
+      .upload-box {
+        position: relative;
+        width: 80%;
+        background-color: #fff;
+        opacity: 0.8;
+        border: 2px dashed #ccc;
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .upload-box .logo {
+        opacity: 0.5;
+      }
+
+      .upload-box .logo img {
+        width: 250px;
+        margin-bottom: 10%;
+      }
+
+      .upload-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .upload-icon {
+        font-size: 100px;
+        color: #1c3552;
+        margin-bottom: 45px;
+      }
+
+      .upload-text {
+        font-size: 16px;
+        font-weight: bold;
+        color: #5a5a5a;
+      }
+
+      .or-text {
+        font-size: 28px;
+        font-weight: bolder;
+        color: #1c3552;
+        margin-bottom: 40px;
+      }
+
+      .browse-button {
+        background-color: #1c3552;
+        color: #ffffff;
+        border: 1px solid #ccc;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bolder;
+        margin-bottom: 20px;
+      }
+
+      .file-status {
+        display: none;
+        width: 80%;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        padding: 10px;
+        text-align: left;
+      }
+
+      .file-info {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .file-name {
+        margin-right: 15px;
+        margin-left: 20px;
+      }
+
+      .file-size {
+        margin-right: 50px;
+        color: #666;
+      }
+
+      .status {
+        color: #28a745;
+        font-weight: bold;
+      }
+
+      .status::after {
+        content: " ✔";
+        color: #28a745;
+      }
+
+      .tab-panels {
+        height: calc(100% - 40px);
+      }
+
+      .tab-panel {
+        display: none;
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      .tab-panel.active {
+        display: block;
+      }
+
+      .bg-productos {
+        background: url("assets/img/km4.jpeg") center / cover no-repeat;
+      }
+
+      /* ======= SECCIONES DEL MÓDULO "DATOS" ======= */
+
+      /* ------- SECCIÓN CENTRAL ------- */
+
+      /* ------- FORMULARIO ------- */
+
+      .cotizacion-form {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        padding: 8px 7px 7px;
+        font-size: 15px;
+      }
+
+      .cotizacion-form input,
+      .cotizacion-form select,
+      .cotizacion-form textarea {
+        padding: 7px 12px;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+      }
+
+      .row {
+        display: flex;
+        gap: 3px;
+      }
+
+      .row > div {
+        flex: 1;
+      }
+
+      .extra span {
+        color: #ffa500;
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+
+      .extra p {
+        margin: 8px 0;
+      }
+
+      .side-title span {
+        color: #ffffff;
+      }
+
+      .side-title .dos {
+        color: #001f3f;
+      }
+      /* ------- SECCIONES LATERALES ------- */
+
+      /* ======= CAMBIO ENTRE LATERALES SEGÚN ELECCIÓN EN MODULO CENTRAL =======  */
+
+      .side-mode {
+        height: 100%;
+        width: 100%;
+      }
+
+      .mode-datos {
+        display: none;
+      }
+
+      .mode-productos {
+        display: block;
+      }
+
+      /* Fondo informativo / LATERALES */
+      .side-bg {
+        height: 100%;
+        padding: 3px 7px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .side-bg-left {
+        background: url("assets/img/km1.jpeg") center / cover no-repeat;
+      }
+
+      .side-bg-right {
+        background: url("assets/img/km3.jpeg") center / cover no-repeat;
+      }
+
+      .side-title {
+        text-align: center;
+        font-size: 52px;
+        margin-bottom: 15px;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .side-title span {
+        font-size: 58px;
+        color: #ffa500;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      .side-text {
+        background-color: rgba(0, 0, 0, 0.7);
+        max-width: 90%;
+      }
+
+      .side-text P {
+        text-align: center;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #ffffff;
+        border-radius: 10px;
+        opacity: 1;
+      }
+      .side-text P strong span {
+        color: #ffa500;
+        font-size: 18px;
+      }
+
+      /* ======= BOTONES DESHABILITADOS ( ADD, BROWSE, ENVIAR, ZONA DRAG AND DROP) =======  */
+      /* ------- Estos botones se habilitan solo cuando el usuraio ya posee su ID USER, creado 
+una vez que se llenen los campos bligatorios del formulario "Datos de Cotización" ------- */
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .upload-box .disabled {
+        pointer-events: none;
+        opacity: 0.3;
+        filter: grayscale(1);
+      }
+
+      #upload-box.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <p>Cotizador de Productos</p>
+      <h1 class="titular">“ Merchandising Corporativo On Demand ”</h1>
+      <div class="kadomo-button-white">
+        <a
+          href="index.html"
+          class="kadomo-button-white fade-link"
+          aria-label="Volver a inicio"
+        >
+          <img
+            class="logotipo"
+            src="assets/img/KadoMod_Yellow_BlueVersion.png"
+            alt="Logo corporativo KadoMod aplicado a merchandising - Volver a inicio"
+          />
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== SECCIONES DE MÓDULOS ===== -->
+    <main class="sections-container">
+      <!-- MÓDULO LEFT -->
+      <section id="left" class="section" aria-labelledby="productos-title">
+        <!-- ===== MODO DATOS / LEFT ===== -->
+        <div class="side-mode mode-datos">
+          <div class="side-bg side-bg-left">
+            <h2 class="side-title">
+              <span>C</span>otizar nunca fue tan <span>Fácil</span> !
+            </h2>
+            <div class="side-text">
+              <p>
+                <strong>Completa tus datos en simples pasos,</strong><br />
+                elige tus productos, cantidades y sube tu logo.<br />
+                Recibe automáticamente por correo tu
+                <strong>cotización personalizada</strong>.<br />
+                Al enviar tu solicitud, se iniciará un contacto por
+                <strong>WhatsApp</strong>, donde quedará tu registro de pedido y
+                mantendremos una comunicación directa y continua sobre el avance
+                de tu producción.<br />
+                “Así de fácil es cotizar con
+                <strong><span>K</span>ado<span>M</span>od</strong>.”
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== MODO PRODUCTOS / LEFT ===== -->
+        <div class="side-mode mode-productos">
+          <h2 id="productos-title" class="title-productos">
+            Pre-visualiza tus Productos
+          </h2>
+          <div class="image-presenter">
+            <img id="product-preview" src="" alt="Presentador de Imagenes" />
+          </div>
+          <form id="add-product-form">
+            <div class="controls">
+              <input
+                type="number"
+                class="quantity-input"
+                name="cantidad"
+                min="1"
+                value="1"
+                placeholder="Cant."
+              />
+              <select class="product-select" name="producto">
+                <option value="tazon-magico">Tazón Mágico</option>
+                <option value="tazon-ceramico">Tazón Cerámico</option>
+                <option value="mantel-corporativo">Mantel Corporativo</option>
+                <option value="jockey">Jockey</option>
+                <option value="polera-unisex">Polera Unisex</option>
+                <option value="poleron-kanguro-unisex">
+                  Polerón Kanguro Unisex
+                </option>
+                <option value="kit-corporativo-1">Kit Corporativo #1</option>
+                <option value="kit-corporativo-2">Kit Corporativo #2</option>
+              </select>
+              <div class="colors">
+                <input
+                  type="radio"
+                  id="color-yellow"
+                  name="color"
+                  class="color-radio"
+                  value="Amarillo"
+                />
+                <label
+                  for="color-yellow"
+                  class="color-label color-yellow"
+                ></label>
+                <input
+                  type="radio"
+                  id="color-blue"
+                  name="color"
+                  class="color-radio"
+                  value="Azul"
+                />
+                <label for="color-blue" class="color-label color-blue"></label>
+                <input
+                  type="radio"
+                  id="color-red"
+                  name="color"
+                  class="color-radio"
+                  value="Rojo"
+                  checked
+                />
+                <label for="color-red" class="color-label color-red"></label>
+                <input
+                  type="radio"
+                  id="color-white"
+                  name="color"
+                  class="color-radio"
+                  value="Blanco"
+                />
+                <label
+                  for="color-white"
+                  class="color-label color-white"
+                ></label>
+                <input
+                  type="radio"
+                  id="color-black"
+                  name="color"
+                  class="color-radio"
+                  value="Negro"
+                />
+                <label
+                  for="color-black"
+                  class="color-label color-black"
+                ></label>
+                <input
+                  type="radio"
+                  id="color-green"
+                  name="color"
+                  class="color-radio"
+                  value="Verde"
+                />
+                <label
+                  for="color-green"
+                  class="color-label color-green"
+                ></label>
+              </div>
+            </div>
+            <button type="submit" class="add-button" disabled>Add</button>
+          </form>
+          <h3 class="info-title">Información Importante del Producto</h3>
+          <p class="info-paragraph">
+            Trabajamos con pedido mínimo, según el producto selecionado. Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy
+            nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+            consequat.
+          </p>
+        </div>
+      </section>
+
+      <!-- MÓDULO CENTRO -->
+      <section id="center" class="section" aria-labelledby="cotizacion-title">
+        <h2 id="cotizacion-title" class="sr-only">Formulario de cotización</h2>
+        <!--ESTE H2 ES PARA MANTENER EL CODIGO SEO, PERO ESTA OCULTO VISUALMENTE MEDIANTE CSS-->
+        <!-- NAV -->
+        <nav class="nav-bar">
+          <div class="tabs">
+            <a href="#" class="tab selected" data-tab="datos"
+              ><span class="tab-title">Datos de Cotización</span></a
+            >
+            <a href="#" class="tab" data-tab="productos"
+              ><span class="tab-title">Productos Seleccionados</span></a
+            >
+          </div>
+          <button class="kadomo-button">
+            <img
+              class="logotipo"
+              src="assets/img/KadoMod_Yellow_WhiteVersion.png"
+              alt="Logo corporativo KadoMod aplicado a merchandising"
+            />
+          </button>
+        </nav>
+
+        <!-- CONTENEDOR DE TABS -->
+        <div class="tab-panels">
+          <!-- ================= DATOS DE COTIZACIÓN ================= -->
+          <div class="tab-panel active" id="datos">
+            <!-- FORMULARIO -->
+            <form class="cotizacion-form">
+              <label for="nombreApellido">Nombre y Apellido *</label>
+              <input
+                id="nombreApellido"
+                type="text"
+                name="nombreApellido"
+                placeholder="Tu Nombre"
+                required
+              />
+              <label for="empresa">Tu Empresa*</label>
+              <input
+                id="empresa"
+                type="text"
+                name="empresa"
+                placeholder="Nombre de tu empresa"
+                required
+              />
+              <div class="row">
+                <div>
+                  <label for="email">Dirección de Correo *</label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Contacto@tuempresa.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="phone">Whatsapp de contacto *</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    placeholder="+56 9 1234 5678"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <label for="despacho">Domicilio o Retiro en Taller *</label>
+                  <select id="despacho" required>
+                    <option value="">¿Dónde recibes tus productos?</option>
+                    <option>Domicilio</option>
+                    <option>Retiro en Taller</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="entrega">Fecha de entrega deseada *</label>
+                  <input id="entrega" type="date" name="entrega" required />
+                </div>
+              </div>
+
+              <div class="extra">
+                <span>Información Extra</span>
+                <p>
+                  ( Para una atención Personalizada, Exclusiva y Digna de tu
+                  Marca )
+                </p>
+              </div>
+              <label for="tipoEmpresa">Tipo de Empresa</label>
+              <input
+                id="tipoEmpresa"
+                type="text"
+                name="tipoEmpresa"
+                placeholder="¿A qué se dedica tu empresa?"
+              />
+              <label for="tuEvento">¿Cuál es tu ocasión?</label>
+              <input
+                id="tuEvento"
+                type="text"
+                name="tuEvento"
+                placeholder="Evento / Activación / Uso Interno / Regalo"
+              />
+              <label for="comentarios">Comentarios Adicionales</label>
+              <textarea id="comentarios"></textarea>
+
+              <button type="button" class="send-button" id="btnGuardar">
+                Guardar
+              </button>
+            </form>
+          </div>
+
+          <!-- ================= PRODUCTOS SELECCIONADOS ================= -->
+          <div class="tab-panel" id="productos">
+            <div class="table-container">
+              <div class="logo">
+                <img
+                  class="imagotipo"
+                  src="assets/img/KadoMod.png"
+                  alt="Logo corporativo KadoMod aplicado a merchandising"
+                />
+              </div>
+              <table id="products-table">
+                <thead>
+                  <tr>
+                    <th>Item ID</th>
+                    <th>Descripción</th>
+                    <th>Cant.</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <button class="send-button" id="btnEnviarWSP" disabled>
+              Enviar - <span>WSP</span>
+            </button>
+
+            <hr />
+
+            <h3 class="center-info-title">Información Importante.</h3>
+            <p class="center-info-paragraph">
+              Para restaurar todo el formulario (incluidos los datos de
+              contacto), pulsa el botón <strong>KadoMod</strong> azul ubicado en
+              la parte superior del módulo. <br />Deja en el recuadro cualquier
+              observación adicional que tengas para tu pedido (tiempos de
+              producción, entregas, etc.). Si deseas consultar por algún
+              producto no incluido entre las opciones disponibles, indícanos los
+              detalles y te brindaremos la mejor solución. <br />Recibirás
+              atención inmediata y respuesta a través de los datos de contacto
+              suministrados.
+            </p>
+
+            <textarea
+              class="observations"
+              placeholder="Ingrese observaciones adicionales aquí..."
+            ></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- MÓDULO RIGHT -->
+      <section id="right" class="section">
+        <!-- ===== MODO DATOS ===== -->
+        <div class="side-mode mode-datos">
+          <div class="side-bg side-bg-right">
+            <h2 class="side-title">
+              <span>T</span>u <span>Identidad Visual</span> importa.
+            </h2>
+            <div class="side-text">
+              <p>
+                <span class="dos">*</span> Una vez que completas y envías tu
+                solicitud, evaluamos tu requerimiento y aplicamos descuentos
+                según tu perfil.
+                <br />
+                <span class="dos">*</span> Recibirás una cotización con valores
+                detallados y los datos para realizar la transferencia.
+                <br />
+                <span class="dos">*</span> Tras confirmar el pago, tu solicitud
+                pasa inmediatamente a producción.
+                <br />
+                <span class="dos">*</span> Desde ese momento, recibirás
+                notificaciones constantes del proceso y un acompañamiento
+                personalizado hasta que el producto llegue a tus manos.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== MODO PRODUCTOS (ACTUAL) ===== -->
+        <div class="side-mode mode-productos">
+          <div class="side-bg bg-productos">
+            <div class="upload-box disabled" id="upload-box">
+              <div class="logo">
+                <img
+                  src="assets/img/KadoMod_Yellow_BlueVersion.png"
+                  alt="Logo corporativo KadoMod aplicado a merchandising"
+                />
+              </div>
+              <h2 class="upload-title">Drag and Drop</h2>
+              <div class="upload-icon">↑</div>
+              <p class="upload-text">Drag the file here to upload</p>
+            </div>
+            <p class="or-text">or</p>
+            <button class="browse-button" id="browse-button" disabled>
+              Browse File
+            </button>
+            <input type="file" id="file-input" accept="image/*" hidden />
+            <div class="file-status" id="file-status">
+              <div class="file-info">
+                <span class="file-name"></span>
+                <span class="file-size"></span>
+                <span class="status">Uploaded</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        emailjs.init("xe_W_JPjOIKzrWt5e"); // Reemplaza con tu User ID de EmailJS
+      })();
+
+      const form = document.getElementById("add-product-form");
+      const tableBody = document.querySelector("#products-table tbody");
+      const productSelect = form.querySelector(".product-select");
+      const productPreview = document.getElementById("product-preview");
+      const sendButton = document.getElementById("btnEnviarWSP");
+      const observations = document.querySelector(".observations");
+
+      // Mapa simple para generar Item ID basado en producto
+      const productIds = {
+        "tazon-magico": "TM",
+        "tazon-ceramico": "TC",
+        "mantel-corporativo": "MC",
+        "jockey": "JK",
+        "polera-unisex": "PU",
+        "poleron-kanguro-unisex": "PKU",
+        "kit-corporativo-1": "KC1",
+        "kit-corporativo-2": "KC2",
+      };
+
+      // Mapa para imágenes predeterminadas de productos (reemplaza con paths reales en la carpeta de imágenes)
+      const productImages = {
+        "tazon-magico": "assets/img/Tazon_magico_1.png",
+        "tazon-ceramico": "assets/img/Tazon_ceramica.png",
+        "mantel-corporativo": "assets/img/Manteles_3_modelos.png",
+        "jockey": "assets/img/Gorra_hebilla.png",
+        "polera-unisex": "assets/img/Polera_blanca.png",
+        "poleron-kanguro-unisex": "assets/img/Poleron_kanguro_blanca.png",
+        "kit-corporativo-1": "assets/img/Kit_corporativo_1.png",
+        "kit-corporativo-2": "assets/img/Kit_corporativo_2.png",
+      };
+
+      // Contador para sub-IDs
+      let itemCounter = 1;
+
+      // Evento al cambiar el producto
+      productSelect.addEventListener("change", function () {
+        const productoValue = this.value;
+        productPreview.src =
+          productImages[productoValue] ||
+          "https://via.placeholder.com/300x200?text=No+Imagen";
+        productPreview.alt = productoValue;
+      });
+
+      // Inicializar con el producto por defecto
+      productSelect.dispatchEvent(new Event("change"));
+
+      // Evento para agregar producto
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Obtener valores
+        const cantidad = form.querySelector(".quantity-input").value;
+        const productoValue = form.querySelector(".product-select").value;
+        const productoText = form.querySelector(
+          ".product-select option:checked",
+        ).textContent;
+        const color = form.querySelector('input[name="color"]:checked').value;
+
+        // Generar Item ID
+        const baseId = productIds[productoValue] || "GEN";
+        const itemId = `${baseId}_${String(itemCounter).padStart(2, "0")}`;
+        itemCounter++;
+
+        // Generar descripción
+        const descripcion = `${productoText} ${color}_Personalizado`;
+
+        // Crear nueva fila
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+                <td>${itemId}</td>
+                <td>${descripcion}</td>
+                <td>${cantidad}</td>
+                <td><button class="delete-btn">Eliminar</button></td>
+            `;
+
+        // Agregar a la tabla
+        tableBody.appendChild(newRow);
+
+        // Limpiar formulario si es necesario
+        form.querySelector(".quantity-input").value = 1;
+        // Se pdes resetear selección si se quieres
+      });
+
+      // Evento para eliminar filas
+      tableBody.addEventListener("click", function (event) {
+        if (event.target.classList.contains("delete-btn")) {
+          event.target.closest("tr").remove();
+        }
+      });
+
+      // JS para la sección derecha (upload)
+      const uploadBox = document.getElementById("upload-box");
+      const browseButton = document.getElementById("browse-button");
+      const fileInput = document.getElementById("file-input");
+      const fileStatus = document.getElementById("file-status");
+      const fileNameSpan = document.querySelector(".file-name");
+      const fileSizeSpan = document.querySelector(".file-size");
+      const statusSpan = document.querySelector(".status");
+
+      // Manejar click en Browse
+      browseButton.addEventListener("click", () => {
+        fileInput.click();
+      });
+
+      // Manejar selección de archivo
+      fileInput.addEventListener("change", handleFile);
+
+      // ====== Drag & Drop REALMENTE FUNCIONAL ======
+
+      uploadBox.addEventListener("dragover", (e) => {
+        e.preventDefault(); // OBLIGATORIO para permitir drop
+
+        if (!hasUserId()) {
+          uploadBox.style.borderColor = "#ccc";
+          return;
+        }
+
+        uploadBox.style.borderColor = "#ffa500";
+      });
+
+      uploadBox.addEventListener("dragleave", () => {
+        uploadBox.style.borderColor = "#ccc";
+      });
+
+      uploadBox.addEventListener("drop", (e) => {
+        e.preventDefault();
+        uploadBox.style.borderColor = "#ccc";
+
+        if (!hasUserId()) {
+          alert("Completa el formulario para habilitar la carga de tu logo.");
+          return;
+        }
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          fileInput.files = files;
+          handleFile();
+        }
+      });
+
+      function handleFile() {
+        if (!hasUserId()) {
+          alert("Completa el formulario para habilitar la carga de archivos.");
+          return;
+        }
+        const file = fileInput.files[0];
+        if (file && file.type.startsWith("image/")) {
+          const sizeKB = Math.round(file.size / 1024);
+          fileNameSpan.textContent = file.name;
+          fileSizeSpan.textContent = `${sizeKB} KB`;
+          statusSpan.textContent = "Uploaded";
+          fileStatus.style.display = "block";
+
+          // Mostrar preview del logo como fondo con opacidad media, reemplazando el logo KaDoMo
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            uploadBox.innerHTML =
+              '<h2 class="upload-title">Drag and Drop</h2><div class="upload-icon">↑</div><p class="upload-text">Drag the file here to upload</p>'; // Restaurar título, icono y texto
+            uploadBox.style.backgroundImage = `url(${e.target.result})`;
+            uploadBox.style.opacity = "0.5"; // Opacidad media (medio transparente)
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert("Por favor, sube un archivo de imagen válido.");
+        }
+      }
+
+      // ====== ENVÍO DE COTIZACIÓN (WSP + EMAIL) ======
+      sendButton.addEventListener("click", function () {
+        const rows = tableBody.querySelectorAll("tr");
+
+        // --- VALIDACIÓN: debe haber al menos 1 producto ---
+        if (rows.length === 0) {
+          alert(
+            "Debes agregar al menos un producto antes de enviar la cotización.",
+          );
+          return;
+        }
+
+        // --- Generar número de cotización ---
+        const now = new Date();
+        const cotizacionId = `COT-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}-${String(now.getHours()).padStart(2, "0")}${String(now.getMinutes()).padStart(2, "0")}${String(now.getSeconds()).padStart(2, "0")}`;
+
+        let productsMessage = "";
+
+        rows.forEach((row) => {
+          const cells = row.querySelectorAll("td");
+          if (cells.length >= 3) {
+            const itemId = cells[0].textContent;
+            const descripcion = cells[1].textContent;
+            const cantidad = cells[2].textContent;
+            productsMessage += `• ${itemId} | ${descripcion} | Cantidad: ${cantidad}\n`;
+          }
+        });
+
+        const obsText = observations.value.trim();
+        const noteSection = obsText ? `\n*Nota:* ${obsText}` : "";
+
+        // --- MENSAJE WHATSAPP ---
+        const whatsappMessage =
+          `*Solicitud de Cotización generada:* ${cotizacionId}\n\n` +
+          `${productsMessage}` +
+          `${noteSection}`;
+
+        const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
+        const whatsappUrl = `https://wa.me/56941411387?text=${encodedWhatsappMessage}`;
+        window.open(whatsappUrl, "_blank");
+
+        // --- EMAIL ---
+        const emailParams = {
+          from_email: "kadosublim@gmail.com",
+          to_email: "ledrom2022@gmail.com",
+          message:
+            `Número de Cotización: ${cotizacionId}\n\n` +
+            `Se ha generado automáticamente una solicitud de cotización para los productos detallados en el listado siguiente. Según sus cantidades, por código de producto. Los valores individuales y totales serán enviados a la brevedad, considerando descuentos según perfil del solicitante. Asi mismo ira toda la información bancaria necesaria , los detalles de producción y tiempo de entrega, a fin de dar el visto bueno que autorizaría la producción del pedido. Gracias por su solicitud. Atte. KadoMod.\n\n` +
+            `${productsMessage}`,
+        };
+
+        emailjs.send("service_s8wlzzm", "template_jeu11pj", emailParams).then(
+          function (response) {
+            console.log(
+              "Email enviado exitosamente!",
+              response.status,
+              response.text,
+            );
+          },
+          function (error) {
+            console.log("Error al enviar email:", error);
+            alert("Error al enviar email: " + error.text);
+          },
+        );
+      });
+
+      const tabs = document.querySelectorAll(".tab");
+      const panels = document.querySelectorAll(".tab-panel");
+
+      // ===== MODOS LATERALES =====
+      const leftDatos = document.querySelector("#left .mode-datos");
+      const leftProductos = document.querySelector("#left .mode-productos");
+      const rightDatos = document.querySelector("#right .mode-datos");
+      const rightProductos = document.querySelector("#right .mode-productos");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const target = tab.dataset.tab;
+
+          // Tabs
+          tabs.forEach((t) => t.classList.remove("selected"));
+          tab.classList.add("selected");
+
+          // Panels
+          panels.forEach((panel) => {
+            panel.classList.toggle("active", panel.id === target);
+          });
+
+          // ===== LÓGICA LATERALES  =====
+
+          if (target === "datos") {
+            leftDatos.style.display = "block";
+            rightDatos.style.display = "block";
+            leftProductos.style.display = "none";
+            rightProductos.style.display = "none";
+          } else {
+            leftDatos.style.display = "none";
+            rightDatos.style.display = "none";
+            leftProductos.style.display = "block";
+            rightProductos.style.display = "block";
+          }
+        });
+      });
+
+      // ===== SINCRONIZAR LATERALES AL CARGAR =====
+      window.addEventListener("DOMContentLoaded", () => {
+        const activeTab = document.querySelector(".tab.selected");
+        const target = activeTab?.dataset.tab;
+
+        if (target === "datos") {
+          leftDatos.style.display = "block";
+          rightDatos.style.display = "block";
+          leftProductos.style.display = "none";
+          rightProductos.style.display = "none";
+        } else {
+          leftDatos.style.display = "none";
+          rightDatos.style.display = "none";
+          leftProductos.style.display = "block";
+          rightProductos.style.display = "block";
+        }
+      });
+
+      // ====== GENERACIÓN DE ID ÚNICO DE USUARIO ======
+
+      const btnGuardar = document.getElementById("btnGuardar");
+
+      if (btnGuardar) {
+        btnGuardar.addEventListener("click", () => {
+          if (!canCreateUser()) {
+            alert("Debes completar todos los campos obligatorios.");
+            return;
+          }
+
+          const nombre = document.getElementById("nombreApellido").value.trim();
+          const email = document
+            .getElementById("email")
+            .value.trim()
+            .toLowerCase();
+
+          const normalizedKey = normalizeText(nombre) + "|" + email;
+          const userId = generateHashId(normalizedKey);
+
+          localStorage.setItem("kado_user_id", userId);
+
+          enableActions(); // 🔓 habilita todo
+
+          alert(`Usuario identificado correctamente.\nBienvenido ${nombre}`);
+        });
+      }
+
+      /* ===== HELPERS ===== */
+
+      // Normaliza texto (quita tildes, espacios, mayúsculas)
+      function normalizeText(text) {
+        return text
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/\s+/g, "");
+      }
+
+      // Hash simple, estable y suficiente para IDs de usuario
+      function generateHashId(input) {
+        let hash = 0;
+        for (let i = 0; i < input.length; i++) {
+          hash = (hash << 5) - hash + input.charCodeAt(i);
+          hash |= 0;
+        }
+        return "USR-" + Math.abs(hash).toString(16).toUpperCase();
+      }
+
+      function hasUserId() {
+        return !!localStorage.getItem("kado_user_id");
+      }
+
+      function updateUploadState() {
+        if (!hasUserId()) {
+          uploadBox.classList.add("disabled");
+          uploadBox.style.pointerEvents = "auto"; // capturamos eventos
+        } else {
+          uploadBox.classList.remove("disabled");
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        disableActions();
+      });
+
+      uploadBox.addEventListener("click", (e) => {
+        if (!hasUserId()) {
+          e.preventDefault();
+          alert("Completa el formulario para habilitar la carga de tu logo.");
+        }
+      });
+
+      /* ===== ACCIONES UI ===== */
+
+      function enableActions() {
+        document.querySelector(".add-button").disabled = false;
+        document.getElementById("btnEnviarWSP").disabled = false;
+        document.getElementById("browse-button").disabled = false;
+
+        const uploadBox = document.getElementById("upload-box");
+        uploadBox.classList.remove("disabled");
+      }
+
+      function disableActions() {
+        document.querySelector(".add-button").disabled = true;
+        document.getElementById("btnEnviarWSP").disabled = true;
+        document.getElementById("browse-button").disabled = true;
+
+        const uploadBox = document.getElementById("upload-box");
+        uploadBox.classList.add("disabled");
+      }
+
+      // ====== RESET TOTAL DE LA COTIZACIÓN ======
+
+      const resetButton = document.querySelector("#center .kadomo-button");
+
+      if (resetButton) {
+        resetButton.addEventListener("click", () => {
+          const confirmReset = confirm(
+            "Esto borrará todos los datos ingresados y los productos seleccionados.\n¿Deseas continuar?",
+          );
+
+          if (!confirmReset) return;
+
+          // ----- 1. Reset formulario Datos de Cotización -----
+          const cotizacionForm = document.querySelector(".cotizacion-form");
+          if (cotizacionForm) {
+            cotizacionForm.reset();
+          }
+
+          // ----- 2. Vaciar tabla de productos -----
+          if (tableBody) {
+            tableBody.innerHTML = "";
+          }
+
+          // ----- 3. Reset contador de items -----
+          itemCounter = 1;
+
+          // ----- 4. Limpiar observaciones -----
+          if (observations) {
+            observations.value = "";
+          }
+
+          // ----- 5. Limpiar identidad del usuario -----
+          localStorage.removeItem("kado_user_id");
+          localStorage.removeItem("kado_user_name");
+          localStorage.removeItem("kado_user_email");
+
+          // ----- 6. Reset preview de producto -----
+          productSelect.dispatchEvent(new Event("change"));
+
+          // ----- 7. Reset upload -----
+          if (uploadBox) {
+            uploadBox.style.backgroundImage = "";
+            uploadBox.style.opacity = "1";
+            uploadBox.innerHTML = `
+                <div class="logo">
+                    <img src="assets/img/KadoMod_Yellow_BlueVersion.png" alt="">
+                </div>
+                <h2 class="upload-title">Drag and Drop</h2>
+                <div class="upload-icon">↑</div>
+                <p class="upload-text">Drag the file here to upload</p>
+            `;
+          }
+
+          if (fileInput) fileInput.value = "";
+          if (fileStatus) fileStatus.style.display = "none";
+
+          console.log("Cotización reiniciada completamente");
+        });
+      }
+
+      // ====== FADE-OUT GLOBAL ======
+      document.querySelectorAll(".fade-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const url = this.getAttribute("href");
+
+          document.body.classList.add("fade-out");
+
+          setTimeout(() => {
+            window.location.href = url;
+          }, 350);
+        });
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        requestAnimationFrame(() => {
+          document.body.style.opacity = "1";
+        });
+      });
+
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+
+      // ====== Para habilitar botones y uso de las funciones de la pagina / verificación de existencia de  ID Usuario ======
+
+      //-- Crear ID solo si los campos obligatorios están OK --
+      function canCreateUser() {
+        const required = [
+          "nombreApellido",
+          "empresa",
+          "email",
+          "phone",
+          "despacho",
+          "entrega",
+        ];
+
+        return required.every((id) => {
+          const field = document.getElementById(id);
+          return field && field.value.trim() !== "";
+        });
+      }
+    </script>
+  </body>
+</html>
