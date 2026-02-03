@@ -85,8 +85,12 @@
         align-items: center;
       }
 
-      .kadomo-button-white img {
+      .kado-home {
         width: 78px;
+      }
+
+      .home {
+        display: none;
       }
 
       .kadomo-button-white:hover {
@@ -136,6 +140,8 @@
 
       .title-productos {
         text-align: center;
+        color: #333333;
+        text-shadow: 1px 1px 4px #FFFFFF;
         font-size: 24px;
         margin: 0 auto;
       }
@@ -307,7 +313,7 @@
 
       .kadomo-button {
         background-color: #001f3f;
-        padding: 4px 12px;
+        padding: 5px 12px;
         border: none;
         border-radius: 40px;
         font-weight: bold;
@@ -315,7 +321,7 @@
       }
 
       .kadomo-button img {
-        width: 75px;
+        width: 78px;
       }
 
       .table-container {
@@ -422,6 +428,10 @@
       }
 
       /* ------- SECCIÓN DERECHA ------- */
+
+      .upload-section-title {
+        color: #333333;
+      }
 
       .upload-box {
         position: relative;
@@ -540,9 +550,7 @@
         display: block;
       }
 
-      .bg-productos {
-        background: url("assets/img/km4.jpeg") center / cover no-repeat;
-      }
+    
 
       /* ======= SECCIONES DEL MÓDULO "DATOS" ======= */
 
@@ -620,6 +628,11 @@
         align-items: center;
       }
 
+        .bg-productos-upl {
+        background: url("assets/img/km4.jpeg") center / cover no-repeat;
+        height: 96%;
+      }
+
       .side-bg-left {
         background: url("assets/img/km1.jpeg") center / cover no-repeat;
       }
@@ -678,12 +691,295 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         opacity: 0.4;
         cursor: not-allowed;
       }
+
+/* ================= HEADER ANIMADO SOLO MOBILE ================= */
+
+@media (max-width: 768px) {
+  .main-header {
+    position: relative;
+    height: 10%;
+    overflow: hidden;
+    justify-content: center;
+    
+  }
+
+  /* Zona animada */
+  .main-header p,
+  .main-header h1 {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-120%);
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    margin: 0;
+  }
+
+  .main-header p {
+    font-size: 15px;
+    animation: headerTextP 8s infinite;
+  }
+
+  .main-header h1 {
+    font-size: 16px;
+    animation: headerTextH1 8s infinite;
+  }
+
+  .kadomo-button-white {
+    background-color: transparent;
+    text-align: center;
+    position: absolute;
+    margin-right: 45%;
+    
+  }
+
+  /* Logo fijo */
+  .kado-home {
+    display: none;
+  }
+
+  .home {
+    display: inline-flex;
+    width: 15%;
+  }
+
+  
+ }
+
+/* ================= ANIMACIONES ================= */
+
+@keyframes headerTextP {
+  0% {
+    transform: translateX(-50%) translateY(-120%);
+    opacity: 0;
+  }
+
+  10% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  35% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  40% {
+    transform: translateX(-50%) translateY(120%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(120%);
+    opacity: 0;
+  }
+
+}
+
+@keyframes headerTextH1 {
+  0%,
+  40% {
+    transform: translateX(-50%) translateY(-120%);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  95% {
+    transform: translateX(-50%) translateY(120%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(120%);
+    opacity: 0;
+  }
+}
+
+.main-header p,
+.main-header h1 {
+  animation-timing-function: cubic-bezier(0.25, 1, 0.4, 1);
+}
+
+
+
+/* =========================
+   MOBILE FIRST BASE
+========================= */
+
+@media (max-width: 1023px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .sections-container {
+    position: relative;
+    display: block; /* ya no columnas */
+    width: 100%;
+    height: calc(100vh - var(--header-height, 70px));
+  }
+
+  .section {
+    width: 100% !important;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+  }
+
+}
+ /*HEADER SIEMPRE VISIBLE*/
+ @media (max-width: 1023px) {
+  .main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+}
+
+
+@media (max-width: 1023px) {
+
+  #center {
+    z-index: 1;
+  }
+
+}
+
+
+@media (max-width: 1023px) {
+
+/* Paneles SOLO en modo datos */
+  .mode-datos .mobile-panel {
+    width: 66%;
+    max-width: 400px;
+    z-index: 10;
+  }
+
+  .mode-datos .panel--peek {
+    transform: translateX(0);
+  }
+
+}
+@media (max-width: 1023px) {
+ .panel-overlay {
+  position: fixed;
+  inset: 0; background: rgba(0,0,0,0.3);
+  z-index: 5;
+  display: none;
+} 
+
+.panel-overlay.active {
+  display: block;
+  }
+}
+
+@media (max-width: 1023px) {
+
+ /* En modo productos, paneles NO existen */
+ 
+.mode-productos .mobile-panel {
+  display: none;
+}
+
+ /* En modo productos, paneles NO existen */ 
+ 
+.mode-productos .mobile-screen {
+ width: 100%;
+ transform: translateX(100%);
+ transition: transform 0.35s ease;
+ z-index: 2;
+}
+
+.mode-productos .screen--active {
+ transform: translateX(0);
+ z-index: 3;
+}
+
+.mode-productos .screen--left {
+ transform: translateX(-100%);
+ }
+}
+
+@media (max-width: 1023px) {
+ .mobile-view {
+  z-index: 1;
+  transform: translateX(0);
+} 
+  
+.mobile-view--active {
+ z-index: 2;
+ }
+}
+
+
+@media (max-width: 1023px) {
+
+  #mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 15;
+  }
+
+  #mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Panel base */
+  #left, #right {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 66%;
+    max-width: 400px;
+    background: #fff;
+    z-index: 20;
+    transform: translateX(-100%) scale(1);
+    opacity: 0;
+    transition: 
+      transform 0.35s ease,
+      opacity 0.25s ease;
+  }
+
+   /* Panel activo (entra) */
+  body.panel-left-open #left,
+  body.panel-right-open #right {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 30;
+  }
+
+  /* Panel saliente (fade hacia atrás) */
+  .panel-fade-out {
+    transform: translateX(0) scale(0.96);
+    opacity: 0;
+    z-index: 10;
+  }
+}
+
     </style>
   </head>
   <body>
     <header class="main-header">
-      <p>Cotizador de Productos</p>
-      <h1 class="titular">“ Merchandising Corporativo On Demand ”</h1>
+      <p class="header-p">Cotizador de Productos</p>
+      <h1 class="titular">“Merchandising Corporativo On Demand”</h1>
       <div class="kadomo-button-white">
         <a
           href="index.html"
@@ -691,10 +987,11 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           aria-label="Volver a inicio"
         >
           <img
-            class="logotipo"
+            class="logotipo kado-home"
             src="assets/img/KadoMod_Yellow_BlueVersion.png"
             alt="Logo corporativo KadoMod aplicado a merchandising - Volver a inicio"
           />
+          <img class="home" src="assets/img/icono_home_bicolor.png" alt="">
         </a>
       </div>
     </header>
@@ -704,7 +1001,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       <!-- MÓDULO LEFT -->
       <section id="left" class="section" aria-labelledby="productos-title">
         <!-- ===== MODO DATOS / LEFT ===== -->
-        <div class="side-mode mode-datos">
+        <div class="side-mode mode-datos .panel-cotizacion">
           <div class="side-bg side-bg-left">
             <h2 class="side-title">
               <span>C</span>otizar nunca fue tan <span>Fácil</span> !
@@ -727,9 +1024,9 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         </div>
 
         <!-- ===== MODO PRODUCTOS / LEFT ===== -->
-        <div class="side-mode mode-productos">
+        <div class="side-mode mode-productos .panel-producto">
           <h2 id="productos-title" class="title-productos">
-            Pre-visualiza tus Productos
+            Selecciona tus Productos
           </h2>
           <div class="image-presenter">
             <img id="product-preview" src="" alt="Presentador de Imagenes" />
@@ -999,7 +1296,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       <!-- MÓDULO RIGHT -->
       <section id="right" class="section">
         <!-- ===== MODO DATOS ===== -->
-        <div class="side-mode mode-datos">
+        <div class="side-mode mode-datos .panel-cotizacion">
           <div class="side-bg side-bg-right">
             <h2 class="side-title">
               <span>T</span>u <span>Identidad Visual</span> importa.
@@ -1025,8 +1322,11 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         </div>
 
         <!-- ===== MODO PRODUCTOS (ACTUAL) ===== -->
-        <div class="side-mode mode-productos">
-          <div class="side-bg bg-productos">
+        <div class="side-mode mode-productos .panel-producto">
+          <h2 id="productos-title" class="title-productos upload-section-title">
+            Sube tu Logo
+          </h2>
+          <div class="side-bg bg-productos bg-productos-upl">
             <div class="upload-box disabled" id="upload-box">
               <div class="logo">
                 <img
@@ -1055,7 +1355,18 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       </section>
     </main>
 
+     <!-- OVERLAY MOBILE -->
+  <div id="mobile-overlay"></div>
+
     <script>
+
+    let activeSection = "cotizacion"; 
+    let currentIndex = 0;
+
+    function isMobile() {
+    return window.innerWidth <= 768;
+}
+
       (function () {
         emailjs.init("xe_W_JPjOIKzrWt5e"); // Reemplaza con tu User ID de EmailJS
       })();
@@ -1308,6 +1619,10 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
           const target = tab.dataset.tab;
 
+             // 🔁 sincroniza el sistema de paneles mobile
+    activeSection = target === "datos" ? "cotizacion" : "productos";
+    resetPanels();
+
           // Tabs
           tabs.forEach((t) => t.classList.remove("selected"));
           tab.classList.add("selected");
@@ -1350,6 +1665,27 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           rightProductos.style.display = "block";
         }
       });
+
+
+      function openPanel(index) {
+  const { panels, overlay, mode } = getPanelsContext();
+
+  panels.forEach((panel, i) => {
+    if (i === index) {
+      panel.classList.add("active");
+      panel.style.opacity = "1";
+      panel.style.transform = "translateX(0)";
+    } else {
+      panel.classList.remove("active");
+      panel.style.opacity = "0";
+    }
+  });
+
+  if (mode === "overlay" && overlay) {
+    overlay.classList.add("active");
+  }
+}
+
 
       // ====== GENERACIÓN DE ID ÚNICO DE USUARIO ======
 
@@ -1549,7 +1885,85 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           return field && field.value.trim() !== "";
         });
       }
+
+
+const leftPanel = document.getElementById("left");
+const rightPanel = document.getElementById("right");
+const overlay = document.getElementById("mobile-overlay");
+
+function openLeftPanel() {
+  switchPanel(leftPanel, "panel-left-open");
+}
+
+function openRightPanel() {
+  switchPanel(rightPanel, "panel-right-open");
+}
+
+function switchPanel(panelToOpen, bodyClass) {
+  const currentPanel =
+    document.body.classList.contains("panel-left-open") ? leftPanel :
+    document.body.classList.contains("panel-right-open") ? rightPanel :
+    null;
+
+  if (currentPanel && currentPanel !== panelToOpen) {
+    currentPanel.classList.add("panel-fade-out");
+
+    setTimeout(() => {
+      currentPanel.classList.remove("panel-fade-out");
+      document.body.classList.remove("panel-left-open", "panel-right-open");
+
+      document.body.classList.add(bodyClass);
+      overlay.classList.add("active");
+    }, 200);
+  } else {
+    document.body.classList.add(bodyClass);
+    overlay.classList.add("active");
+  }
+}
+
+function closePanels() {
+  document.body.classList.remove("panel-left-open", "panel-right-open");
+  overlay.classList.remove("active");
+}
+
+
+  overlay.addEventListener("click", closePanels);
+
+function getPanelsContext() {
+  if (activeSection === "cotizacion") {
+    return {
+      panels: document.querySelectorAll(".panel-cotizacion"),
+      overlay: document.querySelector(".overlay"),
+      mode: "overlay"
+    };
+  }
+
+  if (activeSection === "productos") {
+    return {
+      panels: document.querySelectorAll(".panel-producto"),
+      overlay: null,
+      mode: "full"
+    };
+  }
+}
+
+function resetPanels() {
+  const allPanels = document.querySelectorAll(
+    ".panel-cotizacion, .panel-producto"
+  );
+
+  allPanels.forEach(panel => {
+    panel.classList.remove("active", "enter", "exit");
+    panel.style.transform = "";
+    panel.style.opacity = "";
+  });
+
+  currentIndex = 0;
+
+  const overlay = document.querySelector(".overlay");
+  if (overlay) overlay.classList.remove("active");
+}
+
     </script>
   </body>
 </html>
-
