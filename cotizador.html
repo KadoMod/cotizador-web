@@ -974,6 +974,20 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
   }
 }
 
+@media (max-width: 1023px) {
+
+  body.mode-productos-galeria .sections-container {
+    overflow: hidden;
+  }
+
+  body.mode-productos-galeria .section {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.35s ease;
+  }
+
+}
+      
     </style>
   </head>
   <body>
@@ -2047,11 +2061,74 @@ function resetPanels() {
   if (overlay) overlay.classList.remove("active");
 }
 
-      
-      
+ 
+//* Estado y utilizdades *//
+
+const screens = ["left", "center", "right"];
+let currentScreenIndex = 1; // center
+
+function showScreen(index) {
+  currentScreenIndex = (index + screens.length) % screens.length;
+
+  document.querySelectorAll(".section").forEach(sec => {
+    sec.classList.remove("screen--active", "screen--left");
+  });
+
+  screens.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    if (i === currentScreenIndex) {
+      el.classList.add("screen--active");
+    } else if (i < currentScreenIndex) {
+      el.classList.add("screen--left");
+    }
+  });
+}
+
+
+//*  Detector de Swipe *//
+
+let startX = 0;
+
+function enableGallerySwipe(container) {
+  container.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  container.addEventListener("touchend", e => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = endX - startX;
+
+    if (Math.abs(diff) < 50) return;
+
+    if (diff < 0) {
+      showScreen(currentScreenIndex + 1); // swipe izquierda
+    } else {
+      showScreen(currentScreenIndex - 1); // swipe derecha
+    }
+  });
+}
+
+//* Activación solo cuando tab:  "Productos Seleccionados" *//
+
+const productosTab = document.querySelector('[data-tab="productos"]');
+const datosTab = document.querySelector('[data-tab="datos"]');
+
+productosTab.addEventListener("click", () => {
+  document.body.classList.add("mode-productos");
+  showScreen(1); // center
+  enableGallerySwipe(document.querySelector(".sections-container"));
+});
+
+datosTab.addEventListener("click", () => {
+  document.body.classList.remove("mode-productos");
+});
+          
     </script>
   </body>
 </html>
+
 
 
 
