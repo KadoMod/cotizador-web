@@ -1974,7 +1974,7 @@ function initPanelSwipe() {
   if (!container) return;
 
   container.addEventListener("touchstart", (e) => {
-    if (activeSection !== "productos") return;
+    if (activeSection !== "cotizacion") return;
 
     const t = e.touches[0];
     startX = t.clientX;
@@ -2052,6 +2052,7 @@ function resetPanels() {
     </script>
   </body>
 </html>
+
 
 
 
