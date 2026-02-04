@@ -17,7 +17,7 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
-   
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
@@ -550,7 +550,7 @@
         display: block;
       }
 
-    
+
 
       /* ======= SECCIONES DEL MÓDULO "DATOS" ======= */
 
@@ -700,7 +700,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
     height: 10%;
     overflow: hidden;
     justify-content: center;
-    
+
   }
 
   /* Zona animada */
@@ -731,7 +731,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
     text-align: center;
     position: absolute;
     margin-right: 45%;
-    
+
   }
 
   /* Logo fijo */
@@ -744,7 +744,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
     width: 15%;
   }
 
-  
+
  }
 
 /* ================= ANIMACIONES ================= */
@@ -817,6 +817,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 ========================= */
 
 @media (max-width: 1023px) {
+
   body {
     overflow-x: hidden;
   }
@@ -828,7 +829,15 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
     height: calc(100vh - var(--header-height, 70px));
   }
 
-  
+  .section {
+    width: 100% !important;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+  }
+
 }
  /*HEADER SIEMPRE VISIBLE*/
  @media (max-width: 1023px) {
@@ -879,13 +888,13 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 @media (max-width: 1023px) {
 
  /* En modo productos, paneles NO existen */
- 
+
 .mode-productos .mobile-panel {
   display: none;
 }
 
  /* En modo productos, paneles NO existen */ 
- 
+
 .mode-productos .mobile-screen {
  width: 100%;
  transform: translateX(100%);
@@ -908,7 +917,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
   z-index: 1;
   transform: translateX(0);
 } 
-  
+
 .mobile-view--active {
  z-index: 2;
  }
@@ -965,38 +974,6 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
   }
 }
 
-@media (max-width: 1023px) {
-
-  body.mode-productos-galeria .sections-container {
-    overflow: hidden;
-  }
-
-  body.mode-productos-galeria .section {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.35s ease;
-  }
-
-}
-@media (max-width: 1023px) {
-
-  body.mode-productos-galeria .sections-container {
-    display: flex;
-    flex-direction: row;
-    width: 300vw;
-    height: calc(100vh - 70px);
-    transition: transform 0.35s ease;
-  }
-
-  body.mode-productos-galeria .section {
-    position: relative;
-    width: 100vw;
-    height: 100%;
-    flex-shrink: 0;
-  }
-
-}
-      
     </style>
   </head>
   <body>
@@ -1024,7 +1001,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       <!-- MÓDULO LEFT -->
       <section id="left" class="section" aria-labelledby="productos-title">
         <!-- ===== MODO DATOS / LEFT ===== -->
-        <div class="side-mode mode-datos panel-cotizacion">
+        <div class="side-mode mode-datos .panel-cotizacion">
           <div class="side-bg side-bg-left">
             <h2 class="side-title">
               <span>C</span>otizar nunca fue tan <span>Fácil</span> !
@@ -1047,7 +1024,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         </div>
 
         <!-- ===== MODO PRODUCTOS / LEFT ===== -->
-        <div class="side-mode mode-productos panel-producto">
+        <div class="side-mode mode-productos .panel-producto">
           <h2 id="productos-title" class="title-productos">
             Selecciona tus Productos
           </h2>
@@ -1319,7 +1296,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       <!-- MÓDULO RIGHT -->
       <section id="right" class="section">
         <!-- ===== MODO DATOS ===== -->
-        <div class="side-mode mode-datos panel-cotizacion">
+        <div class="side-mode mode-datos .panel-cotizacion">
           <div class="side-bg side-bg-right">
             <h2 class="side-title">
               <span>T</span>u <span>Identidad Visual</span> importa.
@@ -1345,7 +1322,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         </div>
 
         <!-- ===== MODO PRODUCTOS (ACTUAL) ===== -->
-        <div class="side-mode mode-productos panel-producto">
+        <div class="side-mode mode-productos .panel-producto">
           <h2 id="productos-title" class="title-productos upload-section-title">
             Sube tu Logo
           </h2>
@@ -1382,7 +1359,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
   <div id="mobile-overlay"></div>
 
     <script>
-    
+
     let activeSection = "cotizacion"; 
     let currentIndex = 0;
 
@@ -1997,6 +1974,7 @@ function initPanelSwipe() {
   if (!container) return;
 
   container.addEventListener("touchstart", (e) => {
+    if (activeSection !== "productos") return;
     if (activeSection !== "cotizacion") return;
 
     const t = e.touches[0];
@@ -2070,76 +2048,8 @@ function resetPanels() {
   if (overlay) overlay.classList.remove("active");
 }
 
- 
-//* Estado y utilizdades *//
-
-const screens = ["left", "center", "right"];
-let currentScreenIndex = 1; // center
-
-function showScreen(index) {
-  currentScreenIndex = (index + screens.length) % screens.length;
-
-  document.querySelectorAll(".section").forEach(sec => {
-    sec.classList.remove("screen--active", "screen--left");
-  });
-
-  screens.forEach((id, i) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    if (i === currentScreenIndex) {
-      el.classList.add("screen--active");
-    } else if (i < currentScreenIndex) {
-      el.classList.add("screen--left");
-    }
-  });
-}
 
 
-//*  Detector de Swipe *//
-
-let startX = 0;
-
-function enableGallerySwipe(container) {
-  container.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  });
-
-  container.addEventListener("touchend", e => {
-    const endX = e.changedTouches[0].clientX;
-    const diff = endX - startX;
-
-    if (Math.abs(diff) < 50) return;
-
-    if (diff < 0) {
-      showScreen(currentScreenIndex + 1); // swipe izquierda
-    } else {
-      showScreen(currentScreenIndex - 1); // swipe derecha
-    }
-  });
-}
-
-//* Activación solo cuando tab:  "Productos Seleccionados" *//
-
-const productosTab = document.querySelector('[data-tab="productos"]');
-const datosTab = document.querySelector('[data-tab="datos"]');
-
-productosTab.addEventListener("click", () => {
-  document.body.classList.add("mode-productos");
-  showScreen(1); // center
-  enableGallerySwipe(document.querySelector(".sections-container"));
-});
-
-datosTab.addEventListener("click", () => {
-  document.body.classList.remove("mode-productos");
-});
-          
     </script>
   </body>
 </html>
-
-
-
-
-
-
