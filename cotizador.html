@@ -1962,7 +1962,7 @@ function handlePanelSwipe(direction) {
   // PANEL DERECHO ABIERTO
   if (rightOpen) {
     if (direction === "left") {
-      closePanels();
+        closePanels();
     }
   }
 }
@@ -1974,7 +1974,6 @@ function initPanelSwipe() {
   if (!container) return;
 
   container.addEventListener("touchstart", (e) => {
-    if (activeSection !== "productos") return;
     if (activeSection !== "cotizacion") return;
 
     const t = e.touches[0];
@@ -2011,6 +2010,9 @@ function initPanelSwipe() {
 
 document.addEventListener("DOMContentLoaded", initPanelSwipe);
 
+
+
+
   overlay.addEventListener("click", closePanels);
 
 function getPanelsContext() {
@@ -2022,7 +2024,7 @@ function getPanelsContext() {
     };
   }
 
-  if (activeSection === "productos") {
+  if (activeSection === "cotizacion") {
     return {
       panels: document.querySelectorAll(".panel-producto"),
       overlay: null,
