@@ -817,7 +817,6 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 ========================= */
 
 @media (max-width: 1023px) {
-
   body {
     overflow-x: hidden;
   }
@@ -829,15 +828,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
     height: calc(100vh - var(--header-height, 70px));
   }
 
-  .section {
-    width: 100% !important;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #fff;
-  }
-
+  
 }
  /*HEADER SIEMPRE VISIBLE*/
  @media (max-width: 1023px) {
@@ -987,6 +978,24 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
   }
 
 }
+@media (max-width: 1023px) {
+
+  body.mode-productos-galeria .sections-container {
+    display: flex;
+    flex-direction: row;
+    width: 300vw;
+    height: calc(100vh - 70px);
+    transition: transform 0.35s ease;
+  }
+
+  body.mode-productos-galeria .section {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    flex-shrink: 0;
+  }
+
+}
       
     </style>
   </head>
@@ -1015,7 +1024,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       <!-- MÓDULO LEFT -->
       <section id="left" class="section" aria-labelledby="productos-title">
         <!-- ===== MODO DATOS / LEFT ===== -->
-        <div class="side-mode mode-datos .panel-cotizacion">
+        <div class="side-mode mode-datos panel-cotizacion">
           <div class="side-bg side-bg-left">
             <h2 class="side-title">
               <span>C</span>otizar nunca fue tan <span>Fácil</span> !
@@ -1038,7 +1047,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         </div>
 
         <!-- ===== MODO PRODUCTOS / LEFT ===== -->
-        <div class="side-mode mode-productos .panel-producto">
+        <div class="side-mode mode-productos panel-producto">
           <h2 id="productos-title" class="title-productos">
             Selecciona tus Productos
           </h2>
@@ -1310,7 +1319,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       <!-- MÓDULO RIGHT -->
       <section id="right" class="section">
         <!-- ===== MODO DATOS ===== -->
-        <div class="side-mode mode-datos .panel-cotizacion">
+        <div class="side-mode mode-datos panel-cotizacion">
           <div class="side-bg side-bg-right">
             <h2 class="side-title">
               <span>T</span>u <span>Identidad Visual</span> importa.
@@ -1336,7 +1345,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         </div>
 
         <!-- ===== MODO PRODUCTOS (ACTUAL) ===== -->
-        <div class="side-mode mode-productos .panel-producto">
+        <div class="side-mode mode-productos panel-producto">
           <h2 id="productos-title" class="title-productos upload-section-title">
             Sube tu Logo
           </h2>
@@ -2128,6 +2137,7 @@ datosTab.addEventListener("click", () => {
     </script>
   </body>
 </html>
+
 
 
 
