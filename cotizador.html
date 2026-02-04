@@ -2052,8 +2052,68 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductSwipe();
   updateProductScreens(1); // empieza en el centro
 });
-    
+
+      // ====== SWIPE MOBILE SOBRE PANEL CENTRAL ======
+
+(function enableCenterSwipe() {
+  const center = document.getElementById("center");
+  if (!center) return;
+
+  let startX = 0;
+  let startY = 0;
+  let isSwiping = false;
+
+  center.addEventListener("touchstart", (e) => {
+    if (!isMobile()) return;
+
+    const touch = e.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    isSwiping = true;
+  }, { passive: true });
+
+  center.addEventListener("touchmove", (e) => {
+    if (!isMobile() || !isSwiping) return;
+
+    const touch = e.touches[0];
+    const diffX = touch.clientX - startX;
+    const diffY = touch.clientY - startY;
+
+    // si es más vertical que horizontal → dejamos scroll normal
+    if (Math.abs(diffY) > Math.abs(diffX)) {
+      isSwiping = false;
+    }
+  }, { passive: true });
+
+  center.addEventListener("touchend", (e) => {
+    if (!isMobile() || !isSwiping) return;
+
+    const touch = e.changedTouches[0];
+    const diffX = touch.clientX - startX;
+
+    const SWIPE_THRESHOLD = 50; // px
+
+    if (diffX > SWIPE_THRESHOLD) {
+      // 👉 swipe derecha
+      if (activeSection === "cotizacion") {
+        openLeftPanel();
+      }
+    }
+
+    if (diffX < -SWIPE_THRESHOLD) {
+      // 👈 swipe izquierda
+      if (activeSection === "cotizacion") {
+        openRightPanel();
+      }
+    }
+
+    isSwiping = false;
+  }, { passive: true });
+})();
+
+      
     </script>
   </body>
 </html>
+
 
