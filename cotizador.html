@@ -1360,6 +1360,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
     <script>
 
+      
     let activeSection = "cotizacion"; 
     let currentIndex = 0;
 
@@ -1964,6 +1965,95 @@ function resetPanels() {
   if (overlay) overlay.classList.remove("active");
 }
 
+
+/* ===============================
+   SWIPE REAL – MODO PRODUCTOS
+================================ */
+
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let isSwiping = false;
+const SWIPE_THRESHOLD = 60; // px mínimos
+
+function getProductScreens() {
+  return [
+    document.querySelector('#left .mode-productos'),
+    document.querySelector('#center'),
+    document.querySelector('#right .mode-productos')
+  ];
+}
+
+function updateProductScreens(index) {
+  const screens = getProductScreens();
+
+  screens.forEach((screen, i) => {
+    screen.classList.remove('screen--active', 'screen--left');
+
+    if (i === index) {
+      screen.classList.add('screen--active');
+    } else if (i < index) {
+      screen.classList.add('screen--left');
+    }
+  });
+
+  currentIndex = index;
+}
+
+function handleSwipe(deltaX) {
+  if (deltaX < -SWIPE_THRESHOLD && currentIndex < 2) {
+    updateProductScreens(currentIndex + 1);
+  } else if (deltaX > SWIPE_THRESHOLD && currentIndex > 0) {
+    updateProductScreens(currentIndex - 1);
+  }
+}
+
+function initProductSwipe() {
+  if (!isMobile()) return;
+
+  const container = document.querySelector('.sections-container');
+  if (!container) return;
+
+  container.addEventListener('touchstart', (e) => {
+    if (activeSection !== 'productos') return;
+
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    isSwiping = true;
+  }, { passive: true });
+
+  container.addEventListener('touchmove', (e) => {
+    if (!isSwiping) return;
+
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+
+    // Si es más vertical que horizontal → cancelar swipe
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      isSwiping = false;
+    }
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    if (!isSwiping) return;
+
+    touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchEndX - touchStartX;
+
+    handleSwipe(deltaX);
+    isSwiping = false;
+  });
+}
+
+/* Inicial */
+document.addEventListener('DOMContentLoaded', () => {
+  initProductSwipe();
+  updateProductScreens(1); // empieza en el centro
+});
+    
     </script>
   </body>
 </html>
+
