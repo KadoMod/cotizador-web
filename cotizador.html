@@ -885,32 +885,8 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
   }
 }
 
-@media (max-width: 1023px) {
 
- /* En modo productos, paneles NO existen */
 
-.mode-productos .mobile-panel {
-  display: none;
-}
-
- /* En modo productos, paneles NO existen */ 
-
-.mode-productos .mobile-screen {
- width: 100%;
- transform: translateX(100%);
- transition: transform 0.35s ease;
- z-index: 2;
-}
-
-.mode-productos .screen--active {
- transform: translateX(0);
- z-index: 3;
-}
-
-.mode-productos .screen--left {
- transform: translateX(-100%);
- }
-}
 
 @media (max-width: 1023px) {
  .mobile-view {
@@ -973,6 +949,44 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
     z-index: 10;
   }
 }
+
+@media (max-width: 1023px) {
+
+  body.productos-mode {
+    overflow-x: hidden;
+  }
+
+  body.productos-mode .sections-container {
+    display: flex;
+    flex-direction: row;
+    width: 300vw; /* 3 pantallas */
+    height: calc(100vh - 50px);
+    transform: translateX(0);
+    transition: transform 0.35s ease;
+  }
+
+  body.productos-mode .section {
+    position: relative;
+    width: 100vw !important;
+    height: 100%;
+    flex-shrink: 0;
+  }
+
+  /* Posiciones */
+
+    body.productos-mode[data-index="0"] .sections-container {
+    transform: translateX(0); /* LEFT */
+  }
+    body.productos-mode[data-index="1"] .sections-container {
+    transform: translateX(-100vw); /* CENTER */
+  }
+
+  body.productos-mode[data-index="2"] .sections-container {
+    transform: translateX(-200vw); /* RIGHT */
+  }
+
+}
+
 
     </style>
   </head>
@@ -1360,8 +1374,9 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
     <script>
 
-    let activeSection = "cotizacion"; 
-    let currentIndex = 0;
+   let activeSection = "datos";
+  let currentIndex = 0; // 0 = center, 1 = left, 2 = right
+
 
     function isMobile() {
     return window.innerWidth <= 768;
@@ -2050,6 +2065,81 @@ function resetPanels() {
   if (overlay) overlay.classList.remove("active");
 }
 
+
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", e => {
+    e.preventDefault();
+
+    tabs.forEach(t => t.classList.remove("selected"));
+    tab.classList.add("selected");
+
+    const target = tab.dataset.tab;
+
+    if (target === "productos" && isMobile()) {
+      document.body.classList.add("productos-mode");
+      document.body.dataset.index = "1"; // CENTER visible
+      currentIndex = 1;
+    } else {
+      document.body.classList.remove("productos-mode");
+      document.body.removeAttribute("data-index");
+    }
+  });
+});
+
+function initProductosSwipe() {
+  if (!isMobile()) return;
+
+  const container = document.querySelector(".sections-container");
+  if (!container) return;
+
+  let startX = 0;
+  let startY = 0;
+  let isHorizontal = true;
+  const threshold = 50;
+
+  container.addEventListener("touchstart", (e) => {
+    if (activeSection !== "productos") return;
+
+    const t = e.touches[0];
+    startX = t.clientX;
+    startY = t.clientY;
+    isHorizontal = true;
+  }, { passive: true });
+
+  container.addEventListener("touchmove", (e) => {
+    if (!isHorizontal) return;
+
+    const t = e.touches[0];
+    const dx = Math.abs(t.clientX - startX);
+    const dy = Math.abs(t.clientY - startY);
+
+    if (dy > dx) {
+      isHorizontal = false;
+    }
+  }, { passive: true });
+
+  container.addEventListener("touchend", (e) => {
+    if (!isHorizontal || activeSection !== "productos") return;
+
+    const endX = e.changedTouches[0].clientX;
+    const delta = startX - endX; // positive: swipe left (finger to left)
+
+    if (Math.abs(delta) < threshold) return;
+
+    let newIndex;
+    if (delta > 0) { // swipe left, go forward (next)
+      newIndex = (currentIndex + 1) % 3;
+    } else { // swipe right, go backward (prev)
+      newIndex = (currentIndex - 1 + 3) % 3;
+    }
+
+    document.body.dataset.index = newIndex;
+    currentIndex = newIndex;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initProductosSwipe);
 
 
     </script>
