@@ -23,959 +23,963 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-
-  
-
   </head>
 
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
 
- body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        overflow: hidden;
-        opacity: 0;
-        transition: opacity 0.35s ease;
-      }
+    body.fade-out {
+      opacity: 0;
+    }
 
-      body.fade-out {
-        opacity: 0;
-      }
+    /* ---------- CABECERA (HEADER)--------- */
 
-      /* ---------- CABECERA (HEADER)--------- */
+    .main-header {
+      background-color: #001f3f;
+      display: flex;
+      position: sticky;
+      align-items: center;
+      color: #ffa500;
+      padding: 0 25px 0;
+      text-align: left;
+      font-weight: lighter;
+      width: 100vw;
+      height: 50px;
+      box-sizing: border-box;
+    }
 
+    .main-header p {
+      width: 32vw;
+      font-size: 18px;
+      margin-left: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .main-header h1 {
+      text-align: center;
+      width: 38vw;
+      font-size: 22px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .kadomo-button-white {
+      text-align: end;
+      width: 32vw;
+      margin-right: 10px;
+    }
+
+    .fade-link {
+      background-color: #eaeaea;
+      padding: 5px 12px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      align-items: center;
+    }
+
+    .kado-home {
+      width: 78px;
+    }
+
+    .home {
+      display: none;
+    }
+
+    .kadomo-button-white:hover {
+      opacity: 0.5;
+    }
+
+    /* ---------- CONTENEDOR PRINCIPAL (MAIN)--------- */
+
+    .sections-container {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .section {
+      flex: 1;
+      width: 32vw;
+      height: 100%;
+      box-sizing: border-box;
+      overflow-y: auto;
+      padding: 7px;
+    }
+
+    #left {
+      background-color: #d8d8d8;
+      padding: 15px;
+    }
+
+    #center {
+      background-color: #eaeaea;
+      width: 36vw;
+    }
+
+    #right {
+      background-color: #d8d8d8;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* ======= SECCIONES DEL MÓDULO "PRODUCTOS" ======= */
+
+    /* ------- SECCIÓN IZQUIERDA ------- */
+
+    .title-productos {
+      text-align: center;
+      color: #333333;
+      text-shadow: 1px 1px 4px #ffffff;
+      font-size: 24px;
+      margin: 0 auto;
+    }
+
+    .image-presenter {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0 15px;
+      position: relative;
+    }
+
+    #product-preview {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .quantity-input {
+      width: 42px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 40px;
+      margin-right: 10px;
+    }
+
+    .product-select {
+      flex-grow: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 40px;
+      background-color: #fff;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095.1c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.9z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.7em top 50%;
+      background-size: 0.65em auto;
+      margin-right: 10px;
+    }
+
+    .colors {
+      display: flex;
+      align-items: center;
+    }
+
+    .color-radio {
+      display: none;
+    }
+
+    .color-label {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-left: 5px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+
+    .color-radio:checked + .color-label {
+      border: 2px solid #000;
+    }
+
+    .color-yellow {
+      background-color: #ffff00;
+    }
+    .color-blue {
+      background-color: #0d0080;
+    }
+    .color-red {
+      background-color: #ff0000;
+    }
+    .color-white {
+      background-color: #ffffff;
+    }
+    .color-black {
+      background-color: #000000;
+    }
+    .color-green {
+      background-color: #008000;
+    }
+
+    .add-button {
+      background-color: #1c3552;
+      color: #fff;
+      border: none;
+      padding: 6px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .info-title {
+      font-size: 18px;
+      margin: 15px 0 8px;
+    }
+
+    .info-paragraph {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+      margin-top: 8px;
+    }
+
+    /* ------- SECCIÓN CENTRAL ------- */
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .nav-bar {
+      background-color: #eaeaea;
+      border-bottom: 1px solid black;
+      display: flex;
+      align-items: center;
+      padding: 2px 5px;
+    }
+
+    .tabs {
+      flex: 1;
+      display: flex;
+    }
+
+    .tab-title {
+      display: block;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .tab {
+      padding: 0px 4px;
+      text-decoration: none;
+      color: #000;
+      position: relative;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .tab.selected {
+      font-size: 15px;
+      color: #ffa500;
+      font-weight: bold;
+    }
+
+    .tab.selected::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #ffa500;
+    }
+
+    .kadomo-button {
+      background-color: #001f3f;
+      padding: 5px 12px;
+      border: none;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .kadomo-button img {
+      width: 78px;
+    }
+
+    .table-container {
+      position: relative;
+      height: 240px;
+      overflow-y: auto;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      margin: 7px 0;
+    }
+
+    .table-container img {
+      height: 100px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.2;
+      font-size: 100px;
+      color: #000;
+      font-weight: bold;
+      pointer-events: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background-color: #eaeaea;
+      padding: 8px;
+      text-align: left;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    td {
+      text-align: center;
+      padding: 8px;
+      border-right: 1px solid #ddd;
+    }
+
+    .delete-btn {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .send-button {
+      background-color: #1c3552;
+      color: #fff;
+      border: none;
+      padding: 5px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .send-button span {
+      color: #25d366; /* WhatsApp green */
+      font-weight: bolder;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background-color: #001f3f;
+      margin-top: 4px;
+    }
+
+    .center-info-title {
+      margin-top: 10px;
+      font-size: 16px;
+      margin-bottom: 0px;
+    }
+
+    .center-info-paragraph {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .observations {
+      width: 95%;
+      height: 60px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      resize: vertical;
+      margin-top: 5px;
+    }
+
+    /* ------- SECCIÓN DERECHA ------- */
+
+    .upload-section-title {
+      color: #333333;
+    }
+
+    .upload-box {
+      position: relative;
+      width: 80%;
+      background-color: #fff;
+      opacity: 0.8;
+      border: 2px dashed #ccc;
+      border-radius: 20px;
+      padding: 17px;
+      text-align: center;
+      margin-bottom: 5px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .upload-box .logo {
+      opacity: 0.5;
+    }
+
+    .upload-box .logo img {
+      width: 250px;
+      margin-bottom: 7%;
+    }
+
+    .upload-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .upload-icon {
+      font-size: 100px;
+      color: #1c3552;
+      margin-bottom: 45px;
+    }
+
+    .upload-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #5a5a5a;
+    }
+
+    .or-text {
+      font-size: 20px;
+      font-weight: bolder;
+      color: #1c3552;
+      margin-bottom: 25px;
+    }
+
+    .browse-button {
+      background-color: #1c3552;
+      color: #ffffff;
+      border: 1px solid #ccc;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bolder;
+      margin-bottom: 20px;
+    }
+
+    .file-status {
+      display: none;
+      width: 80%;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .file-info {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .file-name {
+      margin-right: 15px;
+      margin-left: 20px;
+    }
+
+    .file-size {
+      margin-right: 50px;
+      color: #666;
+    }
+
+    .status {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .status::after {
+      content: " ✔";
+      color: #28a745;
+    }
+
+    .tab-panels {
+      height: calc(100% - 40px);
+    }
+
+    .tab-panel {
+      display: none;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* ======= SECCIONES DEL MÓDULO "DATOS" ======= */
+
+    /* ------- SECCIÓN CENTRAL ------- */
+
+    /* ------- FORMULARIO ------- */
+
+    .cotizacion-form {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 8px 7px 7px;
+      font-size: 15px;
+    }
+
+    .cotizacion-form input,
+    .cotizacion-form select,
+    .cotizacion-form textarea {
+      padding: 7px 12px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+    }
+
+    .row {
+      display: flex;
+      gap: 3px;
+    }
+
+    .row > div {
+      flex: 1;
+    }
+
+    .extra span {
+      color: #ffa500;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .extra p {
+      margin: 8px 0;
+    }
+
+    .side-title span {
+      color: #ffffff;
+    }
+
+    .side-title .dos {
+      color: #001f3f;
+    }
+    /* ------- SECCIONES LATERALES ------- */
+
+    /* ======= CAMBIO ENTRE LATERALES SEGÚN ELECCIÓN EN MODULO CENTRAL =======  */
+
+    .side-mode {
+      height: 100%;
+      width: 100%;
+    }
+
+    .mode-datos {
+      display: none;
+    }
+
+    .mode-productos {
+      display: block;
+    }
+
+    /* Fondo informativo / LATERALES */
+    .side-bg {
+      height: 100%;
+      padding: 3px 7px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bg-productos-upl {
+      background: url("assets/img/km4.jpeg") center / cover no-repeat;
+      height: 96%;
+    }
+
+    .side-bg-left {
+      background: url("assets/img/km1.jpeg") center / cover no-repeat;
+    }
+
+    .side-bg-right {
+      background: url("assets/img/km3.jpeg") center / cover no-repeat;
+    }
+
+    .side-title {
+      text-align: center;
+      font-size: 52px;
+      margin-bottom: 15px;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .side-title span {
+      font-size: 58px;
+      color: #ffa500;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .side-text {
+      background-color: rgba(0, 0, 0, 0.7);
+      max-width: 90%;
+    }
+
+    .side-text P {
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #ffffff;
+      border-radius: 10px;
+      opacity: 1;
+    }
+    .side-text P strong span {
+      color: #ffa500;
+      font-size: 18px;
+    }
+
+    /* ======= BOTONES DESHABILITADOS ( ADD, BROWSE, ENVIAR, ZONA DRAG AND DROP) =======  */
+    /* ------- Estos botones se habilitan solo cuando el usuraio ya posee su ID USER, creado 
+una vez que se llenen los campos bligatorios del formulario "Datos de Cotización" ------- */
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .upload-box .disabled {
+      pointer-events: none;
+      opacity: 0.3;
+      filter: grayscale(1);
+    }
+
+    #upload-box.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ================= HEADER ANIMADO SOLO MOBILE ================= */
+
+    @media (max-width: 768px) {
       .main-header {
-        background-color: #001f3f;
-        display: flex;
-        position: sticky;
-        align-items: center;
-        color: #ffa500;
-        padding: 0 25px 0;
-        text-align: left;
-        font-weight: lighter;
-        width: 100vw;
-        height: 50px;
-        box-sizing: border-box;
+        position: relative;
+        height: 7%;
+        overflow: hidden;
+        justify-content: center;
+      }
+
+      /* Zona animada */
+      .main-header p,
+      .main-header h1 {
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-120%);
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        margin: 0;
       }
 
       .main-header p {
-        width: 32vw;
-        font-size: 18px;
-        margin-left: 10px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 15px;
+        animation: headerTextP 8s infinite;
       }
 
       .main-header h1 {
-        text-align: center;
-        width: 38vw;
-        font-size: 22px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-size: 16px;
+        animation: headerTextH1 8s infinite;
       }
 
       .kadomo-button-white {
-        text-align: end;
-        width: 32vw;
-        margin-right: 10px;
+        background-color: transparent;
+        text-align: center;
+        position: absolute;
+        margin-right: 45%;
       }
 
-      .fade-link {
-        background-color: #eaeaea;
-        padding: 5px 12px;
-        border: none;
-        border-radius: 40px;
-        cursor: pointer;
-        align-items: center;
-      }
-
+      /* Logo fijo */
       .kado-home {
-        width: 78px;
+        display: none;
       }
 
       .home {
-        display: none;
+        display: inline-flex;
+        width: 15%;
       }
+    }
 
-      .kadomo-button-white:hover {
-        opacity: 0.5;
-      }
-
-      /* ---------- CONTENEDOR PRINCIPAL (MAIN)--------- */
-
-      .sections-container {
-        display: flex;
-       overflow: hidden;
-      }
-
-      .section {
-        flex: 1;
-        width: 32vw;
-        height: 100%;
-        box-sizing: border-box;
-        overflow-y: auto;
-        padding: 7px;
-      }
-
-      #left {
-        background-color: #d8d8d8;
-        padding: 15px;
-      }
-
-      #center {
-        background-color: #eaeaea;
-        width: 36vw;
-      }
-
-      #right {
-        background-color: #d8d8d8;
-        background-position: center;
-        background-repeat: no-repeat;
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-      }
-
-      /* ======= SECCIONES DEL MÓDULO "PRODUCTOS" ======= */
-
-      /* ------- SECCIÓN IZQUIERDA ------- */
-
-      .title-productos {
-        text-align: center;
-        color: #333333;
-        text-shadow: 1px 1px 4px #FFFFFF;
-        font-size: 24px;
-        margin: 0 auto;
-      }
-
-      .image-presenter {
-        background-color: #f0f0f0;
-        border: 1px solid #ccc;
-        height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 20px 0 15px;
-        position: relative;
-      }
-
-      #product-preview {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-      }
-
-      .controls {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-      }
-
-      .quantity-input {
-        width: 42px;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 40px;
-        margin-right: 10px;
-      }
-
-      .product-select {
-        flex-grow: 1;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 40px;
-        background-color: #fff;
-        appearance: none;
-        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095.1c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.9z%22%2F%3E%3C%2Fsvg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.7em top 50%;
-        background-size: 0.65em auto;
-        margin-right: 10px;
-      }
-
-      .colors {
-        display: flex;
-        align-items: center;
-      }
-
-      .color-radio {
-        display: none;
-      }
-
-      .color-label {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        margin-left: 5px;
-        cursor: pointer;
-        border: 1px solid #ccc;
-      }
-
-      .color-radio:checked + .color-label {
-        border: 2px solid #000;
-      }
-
-      .color-yellow {
-        background-color: #ffff00;
-      }
-      .color-blue {
-        background-color: #0d0080;
-      }
-      .color-red {
-        background-color: #ff0000;
-      }
-      .color-white {
-        background-color: #ffffff;
-      }
-      .color-black {
-        background-color: #000000;
-      }
-      .color-green {
-        background-color: #008000;
-      }
-
-      .add-button {
-        background-color: #1c3552;
-        color: #fff;
-        border: none;
-        padding: 6px 20px;
-        border-radius: 40px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        margin-top: 8px;
-      }
-
-      .info-title {
-        font-size: 18px;
-        margin: 15px 0 8px;
-      }
-
-      .info-paragraph {
-        font-size: 14px;
-        line-height: 1.5;
-        color: #333;
-        margin-top: 8px;
-      }
-
-      /* ------- SECCIÓN CENTRAL ------- */
-
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-      }
-
-      .nav-bar {
-        background-color: #eaeaea;
-        border-bottom: 1px solid black;
-        display: flex;
-        align-items: center;
-        padding: 2px 5px;
-      }
-
-      .tabs {
-        flex: 1;
-        display: flex;
-      }
-
-      .tab-title {
-        display: block;
-        font-size: 15px;
-        font-weight: bold;
-      }
-
-      .tab {
-        padding: 0px 4px;
-        text-decoration: none;
-        color: #000;
-        position: relative;
-        font-size: 14px;
-        font-weight: bold;
-      }
-
-      .tab.selected {
-        font-size: 15px;
-        color: #ffa500;
-        font-weight: bold;
-      }
-
-      .tab.selected::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background-color: #ffa500;
-      }
-
-      .kadomo-button {
-        background-color: #001f3f;
-        padding: 5px 12px;
-        border: none;
-        border-radius: 40px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      .kadomo-button img {
-        width: 78px;
-      }
-
-      .table-container {
-        position: relative;
-        height: 240px;
-        overflow-y: auto;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        margin: 7px 0;
-      }
-
-      .table-container img {
-        height: 100px;
-      }
-
-      .logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.2;
-        font-size: 100px;
-        color: #000;
-        font-weight: bold;
-        pointer-events: none;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      th {
-        background-color: #eaeaea;
-        padding: 8px;
-        text-align: left;
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-
-      td {
-        text-align: center;
-        padding: 8px;
-        border-right: 1px solid #ddd;
-      }
-
-      .delete-btn {
-        background-color: #ff0000;
-        color: #fff;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 12px;
-      }
-
-      .send-button {
-        background-color: #1c3552;
-        color: #fff;
-        border: none;
-        padding: 5px 20px;
-        border-radius: 40px;
-        cursor: pointer;
-        font-size: 16px;
-        display: block;
-        margin: 0 auto;
-      }
-
-      .send-button span {
-        color: #25d366; /* WhatsApp green */
-        font-weight: bolder;
-      }
-
-      hr {
-        border: 0;
-        height: 1px;
-        background-color: #001f3f;
-        margin-top: 4px;
-      }
-
-      .center-info-title {
-        margin-top: 10px;
-        font-size: 16px;
-        margin-bottom: 0px;
-      }
-
-      .center-info-paragraph {
-        font-size: 12px;
-        color: #666;
-        line-height: 1.4;
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-
-      .observations {
-        width: 95%;
-        height: 60px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        resize: vertical;
-        margin-top: 5px;
-      }
-
-      /* ------- SECCIÓN DERECHA ------- */
-
-      .upload-section-title {
-        color: #333333;
-      }
-
-      .upload-box {
-        position: relative;
-        width: 80%;
-        background-color: #fff;
-        opacity: 0.8;
-        border: 2px dashed #ccc;
-        border-radius: 20px;
-        padding: 20px;
-        text-align: center;
-        margin-bottom: 10px;
-        min-height: 150px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-
-      .upload-box .logo {
-        opacity: 0.5;
-      }
-
-      .upload-box .logo img {
-        width: 250px;
-        margin-bottom: 10%;
-      }
-
-      .upload-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      .upload-icon {
-        font-size: 100px;
-        color: #1c3552;
-        margin-bottom: 45px;
-      }
-
-      .upload-text {
-        font-size: 16px;
-        font-weight: bold;
-        color: #5a5a5a;
-      }
-
-      .or-text {
-        font-size: 28px;
-        font-weight: bolder;
-        color: #1c3552;
-        margin-bottom: 40px;
-      }
-
-      .browse-button {
-        background-color: #1c3552;
-        color: #ffffff;
-        border: 1px solid #ccc;
-        padding: 10px 20px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: bolder;
-        margin-bottom: 20px;
-      }
-
-      .file-status {
-        display: none;
-        width: 80%;
-        background-color: #f0f0f0;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        padding: 10px;
-        text-align: left;
-      }
-
-      .file-info {
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-        color: #333;
-      }
-
-      .file-name {
-        margin-right: 15px;
-        margin-left: 20px;
-      }
-
-      .file-size {
-        margin-right: 50px;
-        color: #666;
-      }
-
-      .status {
-        color: #28a745;
-        font-weight: bold;
-      }
-
-      .status::after {
-        content: " ✔";
-        color: #28a745;
-      }
-
-      .tab-panels {
-        height: calc(100% - 40px);
-      }
-
-      .tab-panel {
-        display: none;
-        height: 100%;
-        overflow-y: auto;
-      }
-
-      .tab-panel.active {
-        display: block;
-      }
-
-      /* ======= SECCIONES DEL MÓDULO "DATOS" ======= */
-
-      /* ------- SECCIÓN CENTRAL ------- */
-
-      /* ------- FORMULARIO ------- */
-
-      .cotizacion-form {
-        display: flex;
-        flex-direction: column;
-        gap: 7px;
-        padding: 8px 7px 7px;
-        font-size: 15px;
-      }
-
-      .cotizacion-form input,
-      .cotizacion-form select,
-      .cotizacion-form textarea {
-        padding: 7px 12px;
-        border-radius: 12px;
-        border: 1px solid #ccc;
-      }
-
-      .row {
-        display: flex;
-        gap: 3px;
-      }
-
-      .row > div {
-        flex: 1;
-      }
-
-      .extra span {
-        color: #ffa500;
-        font-weight: bold;
-        margin-bottom: 2px;
-      }
-
-      .extra p {
-        margin: 8px 0;
-      }
-
-      .side-title span {
-        color: #ffffff;
-      }
-
-      .side-title .dos {
-        color: #001f3f;
-      }
-      /* ------- SECCIONES LATERALES ------- */
-
-      /* ======= CAMBIO ENTRE LATERALES SEGÚN ELECCIÓN EN MODULO CENTRAL =======  */
-
-      .side-mode {
-        height: 100%;
-        width: 100%;
-      }
-
-      .mode-datos {
-        display: none;
-      }
-
-      .mode-productos {
-        display: block;
-      }
-
-      /* Fondo informativo / LATERALES */
-      .side-bg {
-        height: 100%;
-        padding: 3px 7px;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-        .bg-productos-upl {
-        background: url("assets/img/km4.jpeg") center / cover no-repeat;
-        height: 96%;
-      }
-
-      .side-bg-left {
-        background: url("assets/img/km1.jpeg") center / cover no-repeat;
-      }
-
-      .side-bg-right {
-        background: url("assets/img/km3.jpeg") center / cover no-repeat;
-      }
-
-      .side-title {
-        text-align: center;
-        font-size: 52px;
-        margin-bottom: 15px;
-        color: #ffffff;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-
-      .side-title span {
-        font-size: 58px;
-        color: #ffa500;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      }
+    /* ================= ANIMACIONES ================= */
 
-      .side-text {
-        background-color: rgba(0, 0, 0, 0.7);
-        max-width: 90%;
+    @keyframes headerTextP {
+      0% {
+        transform: translateX(-50%) translateY(-120%);
+        opacity: 0;
       }
 
-      .side-text P {
-        text-align: center;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #ffffff;
-        border-radius: 10px;
+      10% {
+        transform: translateX(-50%) translateY(0);
         opacity: 1;
       }
-      .side-text P strong span {
-        color: #ffa500;
-        font-size: 18px;
+
+      35% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
       }
 
-      /* ======= BOTONES DESHABILITADOS ( ADD, BROWSE, ENVIAR, ZONA DRAG AND DROP) =======  */
-      /* ------- Estos botones se habilitan solo cuando el usuraio ya posee su ID USER, creado 
-una vez que se llenen los campos bligatorios del formulario "Datos de Cotización" ------- */
-      button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
+      40% {
+        transform: translateX(-50%) translateY(120%);
+        opacity: 0;
       }
 
-      .upload-box .disabled {
-        pointer-events: none;
-        opacity: 0.3;
-        filter: grayscale(1);
+      100% {
+        transform: translateX(-50%) translateY(120%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes headerTextH1 {
+      0%,
+      40% {
+        transform: translateX(-50%) translateY(-120%);
+        opacity: 0;
       }
 
-      #upload-box.disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
+      50% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
       }
 
-/* ================= HEADER ANIMADO SOLO MOBILE ================= */
+      70% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
 
-@media (max-width: 768px) {
-  .main-header {
-    position: relative;
-    height: 10%;
-    overflow: hidden;
-    justify-content: center;
+      95% {
+        transform: translateX(-50%) translateY(120%);
+        opacity: 0;
+      }
 
-  }
+      100% {
+        transform: translateX(-50%) translateY(120%);
+        opacity: 0;
+      }
+    }
 
-  /* Zona animada */
-  .main-header p,
-  .main-header h1 {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-120%);
-    width: 100%;
-    text-align: center;
-    opacity: 0;
-    margin: 0;
-  }
+    .main-header p,
+    .main-header h1 {
+      animation-timing-function: cubic-bezier(0.25, 1, 0.4, 1);
+    }
 
-  .main-header p {
-    font-size: 15px;
-    animation: headerTextP 8s infinite;
-  }
-
-  .main-header h1 {
-    font-size: 16px;
-    animation: headerTextH1 8s infinite;
-  }
-
-  .kadomo-button-white {
-    background-color: transparent;
-    text-align: center;
-    position: absolute;
-    margin-right: 45%;
-
-  }
-
-  /* Logo fijo */
-  .kado-home {
-    display: none;
-  }
-
-  .home {
-    display: inline-flex;
-    width: 15%;
-  }
- }
-
-/* ================= ANIMACIONES ================= */
-
-@keyframes headerTextP {
-  0% {
-    transform: translateX(-50%) translateY(-120%);
-    opacity: 0;
-  }
-
-  10% {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-
-  35% {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-
-  40% {
-    transform: translateX(-50%) translateY(120%);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(-50%) translateY(120%);
-    opacity: 0;
-  }
-}
-
-@keyframes headerTextH1 {
-  0%,
-  40% {
-    transform: translateX(-50%) translateY(-120%);
-    opacity: 0;
-  }
-
-  50% {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-
-  70% {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-
-  95% {
-    transform: translateX(-50%) translateY(120%);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(-50%) translateY(120%);
-    opacity: 0;
-  }
-}
-
-.main-header p,
-.main-header h1 {
-  animation-timing-function: cubic-bezier(0.25, 1, 0.4, 1);
-}
-
-
-/* =========================
+    /* =========================
    MOBILE FIRST BASE
 ========================= */
 
-@media (max-width: 1023px) {
+    @media (max-width: 1023px) {
+      body {
+        overflow-x: hidden;
+      }
 
-  body {
-    overflow-x: hidden;
-  }
+      .sections-container {
+        position: relative;
+        display: block; /* ya no columnas */
+        width: 100%;
+        height: calc(100vh - var(--header-height, 70px));
+      }
 
-  .sections-container {
-    position: relative;
-    display: block; /* ya no columnas */
-    width: 100%;
-    height: calc(100vh - var(--header-height, 70px));
-  }
+      .section {
+        width: 100% !important;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fff;
+      }
+    }
+    /*HEADER SIEMPRE VISIBLE*/
+    @media (max-width: 1023px) {
+      .main-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+    }
 
-  .section {
-    width: 100% !important;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #fff;
-  }
+    @media (max-width: 1023px) {
+      #center {
+        z-index: 1;
+      }
+    }
 
+    @media (max-width: 1023px) {
+      /* Paneles SOLO en modo datos */
+      .mode-datos .mobile-panel {
+        width: 66%;
+        max-width: 400px;
+        z-index: 10;
+      }
+
+      .mode-datos .panel--peek {
+        transform: translateX(0);
+      }
+    }
+    @media (max-width: 1023px) {
+      .panel-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 5;
+        display: none;
+      }
+
+      .panel-overlay.active {
+        display: block;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      /* En modo productos, paneles NO existen */
+
+      .mode-productos .mobile-panel {
+        display: none;
+      }
+
+      /* En modo productos, paneles NO existen */
+
+      .mode-productos .mobile-screen {
+        width: 100%;
+        transform: translateX(100%);
+        transition: transform 0.35s ease;
+        z-index: 2;
+      }
+
+      .mode-productos .screen--active {
+        transform: translateX(0);
+        z-index: 3;
+      }
+
+      .mode-productos .screen--left {
+        transform: translateX(-100%);
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .mobile-view {
+        z-index: 1;
+        transform: translateX(0);
+      }
+
+      .mobile-view--active {
+        z-index: 2;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      #mobile-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 15;
+      }
+
+      #mobile-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Panel base */
+      #left,
+      #right {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 66%;
+        max-width: 400px;
+        background: #fff;
+        z-index: 20;
+        transform: translateX(-100%) scale(1);
+        opacity: 0;
+        transition:
+          transform 0.35s ease,
+          opacity 0.25s ease;
+      }
+
+      /* Panel activo (entra) */
+      body.panel-left-open #left,
+      body.panel-right-open #right {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        z-index: 30;
+      }
+
+      /* Panel saliente (fade hacia atrás) */
+      .panel-fade-out {
+        transform: translateX(0) scale(0.96);
+        opacity: 0;
+        z-index: 10;
+      }
+    }
+
+    .section {
+  overflow: hidden; /* OK */
 }
- /*HEADER SIEMPRE VISIBLE*/
- @media (max-width: 1023px) {
-  .main-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
+
+.panel-inner {
+  position: relative;
+  height: 1s00%;
+  overflow-y: auto;   /* 👈 scroll aquí, no en el section */
+  padding-top: 37px;  /* espacio para el título */
 }
 
-
-@media (max-width: 1023px) {
-
-  #center {
-    z-index: 1;
-  }
-
-}
-
-
-@media (max-width: 1023px) {
-
-/* Paneles SOLO en modo datos */
-  .mode-datos .mobile-panel {
-    width: 66%;
-    max-width: 400px;
-    z-index: 10;
-  }
-
-  .mode-datos .panel--peek {
-    transform: translateX(0);
-  }
-
-}
-@media (max-width: 1023px) {
- .panel-overlay {
-  position: fixed;
-  inset: 0; background: rgba(0,0,0,0.3);
+.panel-title {
+  position: sticky;
+  top: 0;
   z-index: 5;
-  display: none;
-} 
-
-.panel-overlay.active {
-  display: block;
-  }
-}
-
-@media (max-width: 1023px) {
-
- /* En modo productos, paneles NO existen */
-
-.mode-productos .mobile-panel {
-  display: none;
-}
-
- /* En modo productos, paneles NO existen */ 
-
-.mode-productos .mobile-screen {
- width: 100%;
- transform: translateX(100%);
- transition: transform 0.35s ease;
- z-index: 2;
-}
-
-.mode-productos .screen--active {
- transform: translateX(0);
- z-index: 3;
-}
-
-.mode-productos .screen--left {
- transform: translateX(-100%);
- }
-}
-
-@media (max-width: 1023px) {
- .mobile-view {
-  z-index: 1;
-  transform: translateX(0);
-} 
-
-.mobile-view--active {
- z-index: 2;
- }
-}
-
-
-@media (max-width: 1023px) {
-
-  #mobile-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.15);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 15;
-  }
-
-  #mobile-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Panel base */
-  #left, #right {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 66%;
-    max-width: 400px;
-    background: #fff;
-    z-index: 20;
-    transform: translateX(-100%) scale(1);
-    opacity: 0;
-    transition: 
-      transform 0.35s ease,
-      opacity 0.25s ease;
-  }
-
-   /* Panel activo (entra) */
-  body.panel-left-open #left,
-  body.panel-right-open #right {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-    z-index: 30;
-  }
-
-  /* Panel saliente (fade hacia atrás) */
-  .panel-fade-out {
-    transform: translateX(0) scale(0.96);
-    opacity: 0;
-    z-index: 10;
-  }
+  background: #ffffff2c;
+  padding: 1  px 16px;
+  font-weight: bold;
+  
 }
 
   </style>
-
 
   <body>
     <header class="main-header">
@@ -992,7 +996,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
             src="assets/img/KadoMod_Yellow_BlueVersion.png"
             alt="Logo corporativo KadoMod aplicado a merchandising - Volver a inicio"
           />
-          <img class="home" src="assets/img/icono_home_bicolor.png" alt="">
+          <img class="home" src="assets/img/icono_home_bicolor.png" alt="" />
         </a>
       </div>
     </header>
@@ -1002,7 +1006,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       <!-- MÓDULO LEFT -->
       <section id="left" class="section" aria-labelledby="productos-title">
         <!-- ===== MODO DATOS / LEFT ===== -->
-        <div class="side-mode mode-datos .panel-cotizacion">
+        <div class="side-mode mode-datos panel-cotizacion">
           <div class="side-bg side-bg-left">
             <h2 class="side-title">
               <span>C</span>otizar nunca fue tan <span>Fácil</span> !
@@ -1025,8 +1029,8 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         </div>
 
         <!-- ===== MODO PRODUCTOS / LEFT ===== -->
-        <div class="side-mode mode-productos .panel-producto">
-          <h2 id="productos-title" class="title-productos">
+        <div class="side-mode mode-productos panel-producto panel-inner">
+          <h2 id="productos-title" class="title-productos panel-title">
             Selecciona tus Productos
           </h2>
           <div class="image-presenter">
@@ -1297,7 +1301,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       <!-- MÓDULO RIGHT -->
       <section id="right" class="section">
         <!-- ===== MODO DATOS ===== -->
-        <div class="side-mode mode-datos .panel-cotizacion">
+        <div class="side-mode mode-datos panel-cotizacion">
           <div class="side-bg side-bg-right">
             <h2 class="side-title">
               <span>T</span>u <span>Identidad Visual</span> importa.
@@ -1323,8 +1327,8 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         </div>
 
         <!-- ===== MODO PRODUCTOS (ACTUAL) ===== -->
-        <div class="side-mode mode-productos .panel-producto">
-          <h2 id="productos-title" class="title-productos upload-section-title">
+        <div class="side-mode mode-productos panel-producto panel-inner">
+          <h2 id="productos-title" class="title-productos upload-section-title panel-title">
             Sube tu Logo
           </h2>
           <div class="side-bg bg-productos bg-productos-upl">
@@ -1356,17 +1360,16 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       </section>
     </main>
 
-     <!-- OVERLAY MOBILE -->
-  <div id="mobile-overlay"></div>
+    <!-- OVERLAY MOBILE -->
+    <div id="mobile-overlay"></div>
 
     <script>
+      let activeSection = "cotizacion";
+      let currentIndex = 0;
 
-    let activeSection = "cotizacion"; 
-    let currentIndex = 0;
-
-    function isMobile() {
-    return window.innerWidth <= 768;
-}
+      function isMobile() {
+        return window.innerWidth <= 768;
+      }
 
       (function () {
         emailjs.init("xe_W_JPjOIKzrWt5e"); // Reemplaza con tu User ID de EmailJS
@@ -1378,13 +1381,15 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       const productPreview = document.getElementById("product-preview");
       const sendButton = document.getElementById("btnEnviarWSP");
       const observations = document.querySelector(".observations");
+      const infoTitle = document.querySelector(".info-title");
+      const infoParagraph = document.querySelector(".info-paragraph");
 
       // Mapa simple para generar Item ID basado en producto
       const productIds = {
         "tazon-magico": "TM",
         "tazon-ceramico": "TC",
         "mantel-corporativo": "MC",
-        "jockey": "JK",
+        jockey: "JK",
         "polera-unisex": "PU",
         "poleron-kanguro-unisex": "PKU",
         "kit-corporativo-1": "KC1",
@@ -1396,11 +1401,84 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         "tazon-magico": "assets/img/Tazon_magico_1.png",
         "tazon-ceramico": "assets/img/Tazon_ceramica.png",
         "mantel-corporativo": "assets/img/Manteles_3_modelos.png",
-        "jockey": "assets/img/Gorra_hebilla.png",
+        jockey: "assets/img/Gorra_hebilla.png",
         "polera-unisex": "assets/img/Polera_blanca.png",
         "poleron-kanguro-unisex": "assets/img/Poleron_kanguro_blanca.png",
         "kit-corporativo-1": "assets/img/Kit_corporativo_1.png",
         "kit-corporativo-2": "assets/img/Kit_corporativo_2.png",
+      };
+
+      const productInfo = {
+        "tazon-magico": {
+          title: "Tazón Mágico",
+          info: `
+      Capacidad: 325 ml<br>
+      Material: Cerámica termosensible<br>
+      Impresión: Sublimación full color<br>
+      Pedido mínimo: 10 unidades
+    `,
+        },
+        "tazon-ceramico": {
+          title: "Tazón Cerámico",
+          info: `
+      Capacidad: 325 ml<br>
+      Material: Cerámica blanca<br>
+      Impresión: Sublimación<br>
+      Pedido mínimo: 12 unidades
+    `,
+        },
+        "mantel-corporativo": {
+          title: "Mantel Corporativo",
+          info: `
+      Material: Tela poliéster<br>
+      Tamaños personalizables<br>
+      Impresión: Full color<br>
+      Pedido mínimo: 1 unidad
+    `,
+        },
+        jockey: {
+          title: "Jockey",
+          info: `
+      Material: Algodón / Poliéster<br>
+      Ajustable<br>
+      Impresión: Bordado o DTF<br>
+      Pedido mínimo: 12 unidades
+    `,
+        },
+        "polera-unisex": {
+          title: "Polera Unisex",
+          info: `
+      Material: Algodón<br>
+      Tallas: S a XXL<br>
+      Impresión: DTF / Sublimación<br>
+      Pedido mínimo: 12 unidades
+    `,
+        },
+        "poleron-kanguro-unisex": {
+          title: "Polerón Kanguro Unisex",
+          info: `
+      Material: Algodón frizado<br>
+      Bolsillo frontal<br>
+      Impresión: DTF<br>
+      Pedido mínimo: 6 unidades
+    `,
+        },
+        "kit-corporativo-1": {
+          title: "Kit Corporativo #1",
+          info: `
+      Incluye productos seleccionados<br>
+      Presentación corporativa<br>
+      Pedido mínimo: 5 kits
+    `,
+        },
+        "kit-corporativo-2": {
+          title: "Kit Corporativo #2",
+          info: `
+      Incluye productos premium<br>
+      Personalización completa<br>
+      Pedido mínimo: 3 kits
+    `,
+        },
       };
 
       // Contador para sub-IDs
@@ -1413,6 +1491,14 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           productImages[productoValue] ||
           "https://via.placeholder.com/300x200?text=No+Imagen";
         productPreview.alt = productoValue;
+
+        // 👉 NUEVO: info dinámica
+        if (productInfo[productoValue]) {
+          infoTitle.textContent =
+            "Información Importante — " + productInfo[productoValue].title;
+
+          infoParagraph.innerHTML = productInfo[productoValue].info;
+        }
       });
 
       // Inicializar con el producto por defecto
@@ -1620,9 +1706,9 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
           const target = tab.dataset.tab;
 
-             // 🔁 sincroniza el sistema de paneles mobile
-    activeSection = target === "datos" ? "cotizacion" : "productos";
-    resetPanels();
+          // 🔁 sincroniza el sistema de paneles mobile
+          activeSection = target === "datos" ? "cotizacion" : "productos";
+          resetPanels();
 
           // Tabs
           tabs.forEach((t) => t.classList.remove("selected"));
@@ -1667,25 +1753,24 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         }
       });
 
-
       function openPanel(index) {
-  const { panels, overlay, mode } = getPanelsContext();
+        const { panels, overlay, mode } = getPanelsContext();
 
-  panels.forEach((panel, i) => {
-    if (i === index) {
-      panel.classList.add("active");
-      panel.style.opacity = "1";
-      panel.style.transform = "translateX(0)";
-    } else {
-      panel.classList.remove("active");
-      panel.style.opacity = "0";
-    }
-  });
+        panels.forEach((panel, i) => {
+          if (i === index) {
+            panel.classList.add("active");
+            panel.style.opacity = "1";
+            panel.style.transform = "translateX(0)";
+          } else {
+            panel.classList.remove("active");
+            panel.style.opacity = "0";
+          }
+        });
 
-  if (mode === "overlay" && overlay) {
-    overlay.classList.add("active");
-  }
-}
+        if (mode === "overlay" && overlay) {
+          overlay.classList.add("active");
+        }
+      }
       // ====== GENERACIÓN DE ID ÚNICO DE USUARIO ======
 
       const btnGuardar = document.getElementById("btnGuardar");
@@ -1885,280 +1970,285 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         });
       }
 
-const leftPanel = document.getElementById("left");
-const rightPanel = document.getElementById("right");
-const overlay = document.getElementById("mobile-overlay");
+      const leftPanel = document.getElementById("left");
+      const rightPanel = document.getElementById("right");
+      const overlay = document.getElementById("mobile-overlay");
 
-function openLeftPanel() {
-  switchPanel(leftPanel, "panel-left-open");
-}
+      function openLeftPanel() {
+        switchPanel(leftPanel, "panel-left-open");
+      }
 
-function openRightPanel() {
-  switchPanel(rightPanel, "panel-right-open");
-}
+      function openRightPanel() {
+        switchPanel(rightPanel, "panel-right-open");
+      }
 
-function switchPanel(panelToOpen, bodyClass) {
-  const currentPanel =
-    document.body.classList.contains("panel-left-open") ? leftPanel :
-    document.body.classList.contains("panel-right-open") ? rightPanel :
-    null;
+      function switchPanel(panelToOpen, bodyClass) {
+        const currentPanel = document.body.classList.contains("panel-left-open")
+          ? leftPanel
+          : document.body.classList.contains("panel-right-open")
+            ? rightPanel
+            : null;
 
-  if (currentPanel && currentPanel !== panelToOpen) {
-    currentPanel.classList.add("panel-fade-out");
+        if (currentPanel && currentPanel !== panelToOpen) {
+          currentPanel.classList.add("panel-fade-out");
 
-    setTimeout(() => {
-      currentPanel.classList.remove("panel-fade-out");
-      document.body.classList.remove("panel-left-open", "panel-right-open");
+          setTimeout(() => {
+            currentPanel.classList.remove("panel-fade-out");
+            document.body.classList.remove(
+              "panel-left-open",
+              "panel-right-open",
+            );
 
-      document.body.classList.add(bodyClass);
-      overlay.classList.add("active");
-    }, 200);
-  } else {
-    document.body.classList.add(bodyClass);
-    overlay.classList.add("active");
-  }
-}
+            document.body.classList.add(bodyClass);
+            overlay.classList.add("active");
+          }, 200);
+        } else {
+          document.body.classList.add(bodyClass);
+          overlay.classList.add("active");
+        }
+      }
 
-function closePanels() {
-  document.body.classList.remove("panel-left-open", "panel-right-open");
-  overlay.classList.remove("active");
-}
+      function closePanels() {
+        document.body.classList.remove("panel-left-open", "panel-right-open");
+        overlay.classList.remove("active");
+      }
 
-/* ===============================
+      /* ===============================
    SWIPE MOBILE – PANELES LATERALES
 ================================ */
 
-let startX = 0;
-let startY = 0;
-let swiping = false;
-const SWIPE_MIN = 60;
- 
-function handlePanelSwipe(direction) {
+      let startX = 0;
+      let startY = 0;
+      let swiping = false;
+      const SWIPE_MIN = 60;
 
-  const leftOpen = document.body.classList.contains("panel-left-open");
-  const rightOpen = document.body.classList.contains("panel-right-open");
+      function handlePanelSwipe(direction) {
+        const leftOpen = document.body.classList.contains("panel-left-open");
+        const rightOpen = document.body.classList.contains("panel-right-open");
 
-  // SOLO CENTER
-  if (!leftOpen && !rightOpen) {
-    if (direction === "right") {
-      openLeftPanel();
-    }
-    return;
-  }
+        // SOLO CENTER
+        if (!leftOpen && !rightOpen) {
+          if (direction === "right") {
+            openLeftPanel();
+          }
+          return;
+        }
 
-  // PANEL IZQUIERDO ABIERTO
-  if (leftOpen && !rightOpen) {
-    if (direction === "left") {
-      closePanels();
-    }
-    if (direction === "right") {
-      openRightPanel();
-    }
-    return;
-  }
+        // PANEL IZQUIERDO ABIERTO
+        if (leftOpen && !rightOpen) {
+          if (direction === "left") {
+            closePanels();
+          }
+          if (direction === "right") {
+            openRightPanel();
+          }
+          return;
+        }
 
-  // PANEL DERECHO ABIERTO
-  if (rightOpen) {
-    if (direction === "left") {
-        closePanels();
-    }
-  }
-}
+        // PANEL DERECHO ABIERTO
+        if (rightOpen) {
+          if (direction === "left") {
+            closePanels();
+          }
+        }
+      }
 
-function initPanelSwipe() {
-  if (!isMobile()) return;
+      function initPanelSwipe() {
+        if (!isMobile()) return;
 
-  const container = document.querySelector(".sections-container");
-  if (!container) return;
+        const container = document.querySelector(".sections-container");
+        if (!container) return;
 
-  container.addEventListener("touchstart", (e) => {
-    if (activeSection !== "cotizacion") return;
+        container.addEventListener(
+          "touchstart",
+          (e) => {
+            if (activeSection !== "cotizacion") return;
 
-    const t = e.touches[0];
-    startX = t.clientX;
-    startY = t.clientY;
-    swiping = true;
-  }, { passive: true });
+            const t = e.touches[0];
+            startX = t.clientX;
+            startY = t.clientY;
+            swiping = true;
+          },
+          { passive: true },
+        );
 
-  container.addEventListener("touchmove", (e) => {
-    if (!swiping) return;
+        container.addEventListener(
+          "touchmove",
+          (e) => {
+            if (!swiping) return;
 
-    const t = e.touches[0];
-    const dx = t.clientX - startX;
-    const dy = t.clientY - startY;
+            const t = e.touches[0];
+            const dx = t.clientX - startX;
+            const dy = t.clientY - startY;
 
-    if (Math.abs(dy) > Math.abs(dx)) {
-      swiping = false;
-    }
-  }, { passive: true });
+            if (Math.abs(dy) > Math.abs(dx)) {
+              swiping = false;
+            }
+          },
+          { passive: true },
+        );
 
-  container.addEventListener("touchend", (e) => {
-    if (!swiping) return;
+        container.addEventListener("touchend", (e) => {
+          if (!swiping) return;
 
-    const endX = e.changedTouches[0].clientX;
-    const deltaX = endX - startX;
+          const endX = e.changedTouches[0].clientX;
+          const deltaX = endX - startX;
 
-    if (Math.abs(deltaX) > SWIPE_MIN) {
-      handlePanelSwipe(deltaX > 0 ? "right" : "left");
-    }
+          if (Math.abs(deltaX) > SWIPE_MIN) {
+            handlePanelSwipe(deltaX > 0 ? "right" : "left");
+          }
 
-    swiping = false;
-  });
-}
+          swiping = false;
+        });
+      }
 
-document.addEventListener("DOMContentLoaded", initPanelSwipe);
+      document.addEventListener("DOMContentLoaded", initPanelSwipe);
 
-  overlay.addEventListener("click", closePanels);
+      overlay.addEventListener("click", closePanels);
 
-function getPanelsContext() {
-  if (activeSection === "cotizacion") {
-    return {
-      panels: document.querySelectorAll(".panel-cotizacion"),
-      overlay: document.querySelector(".overlay"),
-      mode: "overlay"
-    };
-  }
+      function getPanelsContext() {
+        if (activeSection === "cotizacion") {
+          return {
+            panels: document.querySelectorAll(".panel-cotizacion"),
+            overlay: document.querySelector(".overlay"),
+            mode: "overlay",
+          };
+        }
 
-  if (activeSection === "cotizacion") {
-    return {
-      panels: document.querySelectorAll(".panel-producto"),
-      overlay: null,
-      mode: "full"
-    };
-  }
-}
+        if (activeSection === "cotizacion") {
+          return {
+            panels: document.querySelectorAll(".panel-producto"),
+            overlay: null,
+            mode: "full",
+          };
+        }
+      }
 
-function resetPanels() {
-  const allPanels = document.querySelectorAll(
-    ".panel-cotizacion, .panel-producto"
-  );
+      function resetPanels() {
+        const allPanels = document.querySelectorAll(
+          ".panel-cotizacion, .panel-producto",
+        );
 
-  allPanels.forEach(panel => {
-    panel.classList.remove("active", "enter", "exit");
-    panel.style.transform = "";
-    panel.style.opacity = "";
-  });
+        allPanels.forEach((panel) => {
+          panel.classList.remove("active", "enter", "exit");
+          panel.style.transform = "";
+          panel.style.opacity = "";
+        });
 
-  currentIndex = 0;
+        currentIndex = 0;
 
-  const overlay = document.querySelector(".overlay");
-  if (overlay) overlay.classList.remove("active");
-}
+        const overlay = document.querySelector(".overlay");
+        if (overlay) overlay.classList.remove("active");
+      }
 
-/* ===============================
+      /* ===============================
    DRAWER MOBILE – COTIZACIÓN
    =============================== */
 
-/*
+      /*
   drawerIndex:
   0 = CENTER
   1 = LEFT
   2 = RIGHT
 */
 
-let drawerIndex = 0;
+      let drawerIndex = 0;
 
-/* Aplica el estado visual */
-function updateDrawer() {
-  document.body.classList.remove("panel-left-open", "panel-right-open");
+      /* Aplica el estado visual */
+      function updateDrawer() {
+        document.body.classList.remove("panel-left-open", "panel-right-open");
 
-  if (drawerIndex === 1) {
-    document.body.classList.add("panel-left-open");
-  } else if (drawerIndex === 2) {
-    document.body.classList.add("panel-right-open");
-  }
+        if (drawerIndex === 1) {
+          document.body.classList.add("panel-left-open");
+        } else if (drawerIndex === 2) {
+          document.body.classList.add("panel-right-open");
+        }
 
-  if (overlay) {
-    overlay.classList.toggle("active", drawerIndex !== 0);
-  }
-}
+        if (overlay) {
+          overlay.classList.toggle("active", drawerIndex !== 0);
+        }
+      }
 
-/* Tap fuera → cerrar laterales */
-if (overlay) {
-  overlay.addEventListener("click", () => {
-    drawerIndex = 0;
-    updateDrawer();
-  });
-}
+      /* Tap fuera → cerrar laterales */
+      if (overlay) {
+        overlay.addEventListener("click", () => {
+          drawerIndex = 0;
+          updateDrawer();
+        });
+      }
 
-/* ===============================
+      /* ===============================
    SWIPE
    =============================== */
 
-document.addEventListener(
-  "touchstart",
-  e => {
-    if (!e.touches || e.touches.length === 0) return;
-    startX = e.touches[0].clientX;
-  },
-  { passive: true }
-);
+      document.addEventListener(
+        "touchstart",
+        (e) => {
+          if (!e.touches || e.touches.length === 0) return;
+          startX = e.touches[0].clientX;
+        },
+        { passive: true },
+      );
 
-document.addEventListener(
-  "touchend",
-  e => {
-    if (!e.changedTouches || e.changedTouches.length === 0) return;
+      document.addEventListener(
+        "touchend",
+        (e) => {
+          if (!e.changedTouches || e.changedTouches.length === 0) return;
 
-    const endX = e.changedTouches[0].clientX;
-    const diff = endX - startX;
+          const endX = e.changedTouches[0].clientX;
+          const diff = endX - startX;
 
-    if (Math.abs(diff) < 50) return;
+          if (Math.abs(diff) < 50) return;
 
-    // 👉 Swipe derecha = switch lateral
-    if (diff > 0) {
-      if (drawerIndex === 0) {
-        drawerIndex = 1; // CENTER → LEFT
-      } else if (drawerIndex === 1) {
-        drawerIndex = 2; // LEFT → RIGHT
-      } else if (drawerIndex === 2) {
-        drawerIndex = 1; // RIGHT → LEFT
-      }
-    }
+          // 👉 Swipe derecha = switch lateral
+          if (diff > 0) {
+            if (drawerIndex === 0) {
+              drawerIndex = 1; // CENTER → LEFT
+            } else if (drawerIndex === 1) {
+              drawerIndex = 2; // LEFT → RIGHT
+            } else if (drawerIndex === 2) {
+              drawerIndex = 1; // RIGHT → LEFT
+            }
+          }
 
-    // 👈 Swipe izquierda = cerrar todo
-    if (diff < 0) {
-      drawerIndex = 0;
-    }
+          // 👈 Swipe izquierda = cerrar todo
+          if (diff < 0) {
+            drawerIndex = 0;
+          }
 
-    updateDrawer();
-  },
-  { passive: true }
-);
+          updateDrawer();
+        },
+        { passive: true },
+      );
 
-/* ================================
+      /* ================================
    EDUCATIONAL DRAWER (FIRST VISIT)
 ================================ */
 
-/* -----------------------
+      /* -----------------------
    FIRST VISIT HINT
 ------------------------ */
-const HINT_KEYS = {
-  
-};
+      const HINT_KEYS = {};
 
+      function runDrawerHint(hintKey) {
+        const isMobile = window.matchMedia("(max-width: 1023px)").matches;
+        if (!isMobile) return;
+        if (localStorage.getItem(hintKey)) return;
 
+        setTimeout(() => {
+          drawerIndex = 1;
+          updateDrawer();
 
-function runDrawerHint(hintKey) {
-  const isMobile = window.matchMedia("(max-width: 1023px)").matches;
-  if (!isMobile) return;
-  if (localStorage.getItem(hintKey)) return;
+          setTimeout(() => {
+            drawerIndex = 0;
+            updateDrawer();
+            localStorage.setItem(hintKey, "true");
+          }, 1200);
+        }, 600);
+      }
 
-  setTimeout(() => {
-    drawerIndex = 1;
-    updateDrawer();
-
-    setTimeout(() => {
-      drawerIndex = 0;
-      updateDrawer();
-      localStorage.setItem(hintKey, "true");
-    }, 1200);
-  }, 600);
-}
-
-runDrawerHint(HINT_KEYS.cotizacion);
-runDrawerHint(HINT_KEYS.productos);
-
-
+      runDrawerHint(HINT_KEYS.cotizacion);
+      runDrawerHint(HINT_KEYS.productos);
     </script>
   </body>
 </html>
