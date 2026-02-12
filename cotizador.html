@@ -1651,6 +1651,10 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
       // ====== ENVÍO DE COTIZACIÓN (WSP + EMAIL) ======
       sendButton.addEventListener("click", function () {
+       
+        // 🔗 ENVÍO A N8N (ANTES de WhatsApp / Email)
+        sendToN8N(cotizacionId, productsMessage, obsText);
+
         const rows = tableBody.querySelectorAll("tr");
 
         // --- VALIDACIÓN: debe haber al menos 1 producto ---
@@ -1733,6 +1737,11 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           // 🔁 sincroniza el sistema de paneles mobile
           activeSection = target === "datos" ? "cotizacion" : "productos";
           resetPanels();  º
+
+           // 🎓 hint educativo al entrar a productos
+          if (target === "productos") {
+            runDrawerHint(HINT_PRODUCTOS);
+          }
 
           // Tabs
           tabs.forEach((t) => t.classList.remove("selected"));
@@ -2265,8 +2274,13 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         }, 600);
       }
 
-      runDrawerHint(HINT_KEYS.cotizacion);
-      runDrawerHint(HINT_KEYS.productos);
+      const HINT_COTIZACION = "drawerHintSeen_cotizacion";
+      const HINT_PRODUCTOS = "drawerHintSeen_productos";
+
+    // hint inicial al cargar página
+      runDrawerHint(HINT_COTIZACION);
+      
     </script>
   </body>
 </html>
+
