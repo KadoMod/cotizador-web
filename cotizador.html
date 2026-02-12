@@ -144,7 +144,7 @@
       text-align: center;
       color: #333333;
       text-shadow: 1px 1px 4px #ffffff;
-      font-size: 24px;
+      font-size: 20px;
       margin: 0 auto;
     }
 
@@ -421,7 +421,7 @@
 
     .observations {
       width: 95%;
-      height: 60px;
+      height: 50px;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 20px;
@@ -964,7 +964,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
 .panel-inner {
   position: relative;
-  height: 1s00%;
+  height: 100%;
   overflow-y: auto;   /* 👈 scroll aquí, no en el section */
   padding-top: 37px;  /* espacio para el título */
 }
@@ -1057,6 +1057,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
                 </option>
                 <option value="kit-corporativo-1">Kit Corporativo #1</option>
                 <option value="kit-corporativo-2">Kit Corporativo #2</option>
+                <option value="kit-corporativo-3">Kit Corporativo #3</option>
               </select>
               <div class="colors">
                 <input
@@ -1126,12 +1127,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           </form>
           <h3 class="info-title">Información Importante del Producto</h3>
           <p class="info-paragraph">
-            Trabajamos con pedido mínimo, según el producto selecionado. Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy
-            nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
+            Trabajamos con pedido mínimo, según el producto selecionado.  
           </p>
         </div>
       </section>
@@ -1272,22 +1268,21 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
             </div>
 
             <button class="send-button" id="btnEnviarWSP" disabled>
-              Enviar - <span>WSP</span>
+              Enviar: 📧 - <span>wsp</span>
             </button>
-
             <hr />
 
             <h3 class="center-info-title">Información Importante.</h3>
             <p class="center-info-paragraph">
-              Para restaurar todo el formulario (incluidos los datos de
-              contacto), pulsa el botón <strong>KadoMod</strong> azul ubicado en
-              la parte superior del módulo. <br />Deja en el recuadro cualquier
+              Déjanos cualquier
               observación adicional que tengas para tu pedido (tiempos de
               producción, entregas, etc.). Si deseas consultar por algún
               producto no incluido entre las opciones disponibles, indícanos los
               detalles y te brindaremos la mejor solución. <br />Recibirás
               atención inmediata y respuesta a través de los datos de contacto
-              suministrados.
+              suministrados.<br /> Para restaurar todo el formulario (incluidos los datos de
+              contacto), pulsa el botón <strong>KadoMod</strong> azul ubicado en
+              la parte superior del módulo.
             </p>
 
             <textarea
@@ -1372,7 +1367,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       }
 
       (function () {
-        emailjs.init("xe_W_JPjOIKzrWt5e"); // Reemplaza con tu User ID de EmailJS
+        emailjs.init("xe_W_JPjOIKzrWt5e"); // Reemplazar: User ID de EmailJS
       })();
 
       const form = document.getElementById("add-product-form");
@@ -1389,11 +1384,12 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         "tazon-magico": "TM",
         "tazon-ceramico": "TC",
         "mantel-corporativo": "MC",
-        jockey: "JK",
+        "jockey": "JK",
         "polera-unisex": "PU",
         "poleron-kanguro-unisex": "PKU",
         "kit-corporativo-1": "KC1",
         "kit-corporativo-2": "KC2",
+        "kit-corporativo-3": "KC3",
       };
 
       // Mapa para imágenes predeterminadas de productos (reemplaza con paths reales en la carpeta de imágenes)
@@ -1401,20 +1397,22 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         "tazon-magico": "assets/img/Tazon_magico_1.png",
         "tazon-ceramico": "assets/img/Tazon_ceramica.png",
         "mantel-corporativo": "assets/img/Manteles_3_modelos.png",
-        jockey: "assets/img/Gorra_hebilla.png",
+        "jockey": "assets/img/Gorra_hebilla.png",
         "polera-unisex": "assets/img/Polera_blanca.png",
         "poleron-kanguro-unisex": "assets/img/Poleron_kanguro_blanca.png",
         "kit-corporativo-1": "assets/img/Kit_corporativo_1.png",
         "kit-corporativo-2": "assets/img/Kit_corporativo_2.png",
+        "kit-corporativo-3": "assets/img/Kit_corporativo_3.png",
       };
 
       const productInfo = {
         "tazon-magico": {
           title: "Tazón Mágico",
           info: `
-      Capacidad: 325 ml<br>
+       Capacidad: 325 ml<br>
       Material: Cerámica termosensible<br>
       Impresión: Sublimación full color<br>
+      Colores: Negro; Azul o Rojo.<br>
       Pedido mínimo: 10 unidades
     `,
         },
@@ -1422,27 +1420,30 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           title: "Tazón Cerámico",
           info: `
       Capacidad: 325 ml<br>
-      Material: Cerámica blanca<br>
-      Impresión: Sublimación<br>
+      Material: Cerámica Blanca<br>
+      Impresión: Sublimación full color / DTF UV<br>
+      Variedad en colores<br>
       Pedido mínimo: 12 unidades
     `,
         },
         "mantel-corporativo": {
           title: "Mantel Corporativo",
           info: `
-      Material: Tela poliéster<br>
-      Tamaños personalizables<br>
+      Material: Tela Gabardina, Bistrech, Spandex<br>
+      Variedad de colores<br>
+      Tamaños personalizables: Full Size, Medium Size, Spandex-Mode<br>
       Impresión: Full color<br>
       Pedido mínimo: 1 unidad
     `,
         },
-        jockey: {
+        "jockey": {
           title: "Jockey",
           info: `
-      Material: Algodón / Poliéster<br>
+      Material: Algodón / Poliéster / Denim<br>
+      Variedad de colores<br>
       Ajustable<br>
       Impresión: Bordado o DTF<br>
-      Pedido mínimo: 12 unidades
+      Pedido mínimo: 15 unidades
     `,
         },
         "polera-unisex": {
@@ -1450,6 +1451,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           info: `
       Material: Algodón<br>
       Tallas: S a XXL<br>
+      Variedad de colores<br>
       Impresión: DTF / Sublimación<br>
       Pedido mínimo: 12 unidades
     `,
@@ -1459,23 +1461,45 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           info: `
       Material: Algodón frizado<br>
       Bolsillo frontal<br>
+      Variedad de colores<br>
       Impresión: DTF<br>
-      Pedido mínimo: 6 unidades
+      Pedido mínimo: 7 unidades
     `,
         },
         "kit-corporativo-1": {
-          title: "Kit Corporativo #1",
+          title: "Kit Corporativo #1 - PARATY",
           info: `
-      Incluye productos seleccionados<br>
-      Presentación corporativa<br>
+       Incluye productos seleccionados<br>
+      * Mug Blanco ( metálico/plástico 450cc )<br>
+      * Cuaderno con tapa de tela RPET<br>
+      * Bolígrafo metálico con grip textil a juego<br>
+      * Llavero con acabados cromados<br>
+      * Presentación corporativa<br>
       Pedido mínimo: 5 kits
     `,
         },
-        "kit-corporativo-2": {
+        "kit-corporativo-2 - BOSS": {
           title: "Kit Corporativo #2",
           info: `
+     Incluye productos premium<br>
+      * Mug Negro "BOSS" ( metálico/plástico 450cc )<br>
+      * Cuaderno "Eco-Cuero", tapa dura, 196 hojas.<br>
+      * Libreta Deluxe "Eco-Cuero"<br>
+      * Bolígrafo ejecutivo "DARK"<br>
+      * USB Pendrive 64GB Llavero de Eco-cuero<br>
+      * Presentación corporativa<br>
+      Pedido mínimo: 3 kits
+    `,
+        },
+                    "kit-corporativo-3": {
+          title: "Kit Corporativo #3 - EPIC",
+          info: `
       Incluye productos premium<br>
-      Personalización completa<br>
+      * Termo "Twist-off" 550 cc, tapa y asa encobrizadas<br>
+      * Cuaderno "Oxford" negro, tapa dura, <br>
+        det. metálico encobrizado, 80 hojas dotted color ivory.<br>
+      * Bolígrafo metálico encobrizado con grip textil a juego<br>
+      * Presentación corporativa<br>
       Pedido mínimo: 3 kits
     `,
         },
@@ -1492,7 +1516,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           "https://via.placeholder.com/300x200?text=No+Imagen";
         productPreview.alt = productoValue;
 
-        // 👉 NUEVO: info dinámica
+        // 👉 Info Dinámica
         if (productInfo[productoValue]) {
           infoTitle.textContent =
             "Información Importante — " + productInfo[productoValue].title;
@@ -1538,7 +1562,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
         // Limpiar formulario si es necesario
         form.querySelector(".quantity-input").value = 1;
-        // Se pdes resetear selección si se quieres
+        // Se puede resetear selección si se quieres
       });
 
       // Evento para eliminar filas
@@ -1565,7 +1589,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       // Manejar selección de archivo
       fileInput.addEventListener("change", handleFile);
 
-      // ====== Drag & Drop REALMENTE FUNCIONAL ======
+      // ====== Drag & Drop  ======
 
       uploadBox.addEventListener("dragover", (e) => {
         e.preventDefault(); // OBLIGATORIO para permitir drop
@@ -1617,7 +1641,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
             uploadBox.innerHTML =
               '<h2 class="upload-title">Drag and Drop</h2><div class="upload-icon">↑</div><p class="upload-text">Drag the file here to upload</p>'; // Restaurar título, icono y texto
             uploadBox.style.backgroundImage = `url(${e.target.result})`;
-            uploadBox.style.opacity = "0.5"; // Opacidad media (medio transparente)
+            uploadBox.style.opacity = "0.8"; // Opacidad media (medio transparente)
           };
           reader.readAsDataURL(file);
         } else {
@@ -1669,7 +1693,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         // --- EMAIL ---
         const emailParams = {
           from_email: "kadosublim@gmail.com",
-          to_email: "ledrom2022@gmail.com",
+          to_email: "kadomod@gmail.com",
           message:
             `Número de Cotización: ${cotizacionId}\n\n` +
             `Se ha generado automáticamente una solicitud de cotización para los productos detallados en el listado siguiente. Según sus cantidades, por código de producto. Los valores individuales y totales serán enviados a la brevedad, considerando descuentos según perfil del solicitante. Asi mismo ira toda la información bancaria necesaria , los detalles de producción y tiempo de entrega, a fin de dar el visto bueno que autorizaría la producción del pedido. Gracias por su solicitud. Atte. KadoMod.\n\n` +
@@ -1708,7 +1732,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
           // 🔁 sincroniza el sistema de paneles mobile
           activeSection = target === "datos" ? "cotizacion" : "productos";
-          resetPanels();
+          resetPanels();  º
 
           // Tabs
           tabs.forEach((t) => t.classList.remove("selected"));
@@ -2177,9 +2201,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         });
       }
 
-      /* ===============================
-   SWIPE
-   =============================== */
+      /* =====================   SWIPE   ======================= */
 
       document.addEventListener(
         "touchstart",
@@ -2221,13 +2243,9 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         { passive: true },
       );
 
-      /* ================================
-   EDUCATIONAL DRAWER (FIRST VISIT)
-================================ */
+      /* ======================== EDUCATIONAL DRAWER (FIRST VISIT) =========================== */
 
-      /* -----------------------
-   FIRST VISIT HINT
------------------------- */
+      /* --------------------  FIRST VISIT HINT  --------------------- */
       const HINT_KEYS = {};
 
       function runDrawerHint(hintKey) {
