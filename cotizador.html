@@ -1127,7 +1127,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           </form>
           <h3 class="info-title">Información Importante del Producto</h3>
           <p class="info-paragraph">
-            Trabajamos con pedido mínimo, según el producto selecionado.  
+            Trabajamos con pedido mínimo, según el producto selecionado. 
           </p>
         </div>
       </section>
@@ -1236,7 +1236,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
                 placeholder="Evento / Activación / Uso Interno / Regalo"
               />
               <label for="comentarios">Comentarios Adicionales</label>
-              <textarea id="comentarios"></textarea>
+              <textarea id="comentarios" name="comentarios"></textarea>
 
               <button type="button" class="send-button" id="btnGuardar">
                 Guardar
@@ -1268,7 +1268,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
             </div>
 
             <button class="send-button" id="btnEnviarWSP" disabled>
-              Enviar: 📧 - <span>wsp</span>
+              Enviar -<span>WSP</span>
             </button>
             <hr />
 
@@ -1366,9 +1366,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         return window.innerWidth <= 768;
       }
 
-      (function () {
-        emailjs.init("xe_W_JPjOIKzrWt5e"); // Reemplazar: User ID de EmailJS
-      })();
+      
 
       const form = document.getElementById("add-product-form");
       const tableBody = document.querySelector("#products-table tbody");
@@ -1409,7 +1407,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         "tazon-magico": {
           title: "Tazón Mágico",
           info: `
-       Capacidad: 325 ml<br>
+      Capacidad: 325 ml<br>
       Material: Cerámica termosensible<br>
       Impresión: Sublimación full color<br>
       Colores: Negro; Azul o Rojo.<br>
@@ -1440,8 +1438,8 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
           title: "Jockey",
           info: `
       Material: Algodón / Poliéster / Denim<br>
-      Variedad de colores<br>
       Ajustable<br>
+      Variedad de Colores<br>
       Impresión: Bordado o DTF<br>
       Pedido mínimo: 15 unidades
     `,
@@ -1469,8 +1467,8 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         "kit-corporativo-1": {
           title: "Kit Corporativo #1 - PARATY",
           info: `
-       Incluye productos seleccionados<br>
-      * Mug Blanco ( metálico/plástico 450cc )<br>
+      Incluye productos seleccionados<br>
+      * Mug Blanco "BOSS" ( metálico/plástico 450cc )<br>
       * Cuaderno con tapa de tela RPET<br>
       * Bolígrafo metálico con grip textil a juego<br>
       * Llavero con acabados cromados<br>
@@ -1478,10 +1476,10 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       Pedido mínimo: 5 kits
     `,
         },
-        "kit-corporativo-2 - BOSS": {
-          title: "Kit Corporativo #2",
+        "kit-corporativo-2": {
+          title: "Kit Corporativo #2 - BOSS",
           info: `
-     Incluye productos premium<br>
+      Incluye productos premium<br>
       * Mug Negro "BOSS" ( metálico/plástico 450cc )<br>
       * Cuaderno "Eco-Cuero", tapa dura, 196 hojas.<br>
       * Libreta Deluxe "Eco-Cuero"<br>
@@ -1491,7 +1489,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       Pedido mínimo: 3 kits
     `,
         },
-                    "kit-corporativo-3": {
+        "kit-corporativo-3": {
           title: "Kit Corporativo #3 - EPIC",
           info: `
       Incluye productos premium<br>
@@ -1500,7 +1498,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         det. metálico encobrizado, 80 hojas dotted color ivory.<br>
       * Bolígrafo metálico encobrizado con grip textil a juego<br>
       * Presentación corporativa<br>
-      Pedido mínimo: 3 kits
+      Pedido mínimo: 7 kits
     `,
         },
       };
@@ -1649,9 +1647,9 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         }
       }
 
-      // ====== ENVÍO DE COTIZACIÓN (WSP + EMAIL) ======
+      // ====== ENVÍO DE COTIZACIÓN (WSP) ======
       sendButton.addEventListener("click", function () {
-      const rows = tableBody.querySelectorAll("tr");
+        const rows = tableBody.querySelectorAll("tr");
 
         // --- VALIDACIÓN: debe haber al menos 1 producto ---
         if (rows.length === 0) {
@@ -1680,8 +1678,8 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         const obsText = observations.value.trim();
         const noteSection = obsText ? `\n*Nota:* ${obsText}` : "";
 
-         // 🔗 ENVÍO A N8N (ya con datos listos)
-         sendToN8N(cotizacionId, productsMessage, obsText);
+        // 🔗 ENVÍO A N8N (ya con datos listos)
+        sendToN8N(cotizacionId, productsMessage, obsText);
 
         // --- MENSAJE WHATSAPP ---
         const whatsappMessage =
@@ -1692,30 +1690,6 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
         const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
         const whatsappUrl = `https://wa.me/56941411387?text=${encodedWhatsappMessage}`;
         window.open(whatsappUrl, "_blank");
-
-        // --- EMAIL ---
-        const emailParams = {
-          from_email: "kadosublim@gmail.com",
-          to_email: "kadomod@gmail.com",
-          message:
-            `Número de Cotización: ${cotizacionId}\n\n` +
-            `Se ha generado automáticamente una solicitud de cotización para los productos detallados en el listado siguiente. Según sus cantidades, por código de producto. Los valores individuales y totales serán enviados a la brevedad, considerando descuentos según perfil del solicitante. Asi mismo ira toda la información bancaria necesaria , los detalles de producción y tiempo de entrega, a fin de dar el visto bueno que autorizaría la producción del pedido. Gracias por su solicitud. Atte. KadoMod.\n\n` +
-            `${productsMessage}`,
-        };
-
-        emailjs.send("service_s8wlzzm", "template_jeu11pj", emailParams).then(
-          function (response) {
-            console.log(
-              "Email enviado exitosamente!",
-              response.status,
-              response.text,
-            );
-          },
-          function (error) {
-            console.log("Error al enviar email:", error);
-            alert("Error al enviar email: " + error.text);
-          },
-        );
       });
 
       const tabs = document.querySelectorAll(".tab");
@@ -1735,9 +1709,9 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
           // 🔁 sincroniza el sistema de paneles mobile
           activeSection = target === "datos" ? "cotizacion" : "productos";
-          resetPanels();  º
+          resetPanels();
 
-           // 🎓 hint educativo al entrar a productos
+          // 🎓 hint educativo al entrar a productos
           if (target === "productos") {
             runDrawerHint(HINT_PRODUCTOS);
           }
@@ -2177,13 +2151,6 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
    DRAWER MOBILE – COTIZACIÓN
    =============================== */
 
-      /*
-  drawerIndex:
-  0 = CENTER
-  1 = LEFT
-  2 = RIGHT
-*/
-
       let drawerIndex = 0;
 
       /* Aplica el estado visual */
@@ -2278,9 +2245,46 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
     // hint inicial al cargar página
       runDrawerHint(HINT_COTIZACION);
-      
+
+
+      // COMUNICACION CON n8n
+
+    function sendToN8N(cotizacionId, productsMessage, obsText) {
+    const webhookUrl = "https://kadomod.app.n8n.cloud/webhook/cotizacion";
+
+            // recoger todos los campos del formulasrio "datos de cotización"
+    const form = document.querySelector(".cotizacion-form");
+    const formData = new FormData(form);
+
+          // obtener imagen/logo, cargada por usuario
+    const fileInput = document.getElementById("file-input");
+    const file = fileInput.files[0]; // puede ser undefined
+    if (file) {
+    formData.append("logo", file);
+  }
+
+    // datos adicionales
+    formData.append("cotizacion_id", cotizacionId);
+    formData.append("user_id", localStorage.getItem("kado_user_id"));
+    formData.append("productos", productsMessage);
+    formData.append("observaciones", obsText);
+    formData.append("fecha", new Date().toISOString());
+    formData.append("origen", "web-kadomod");
+
+    // envío a n8n
+    fetch(webhookUrl, {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("📡 Respuesta n8n:", data);
+  })
+  .catch(err => {
+    console.error("❌ Error:", err);
+  });
+}
+
     </script>
   </body>
 </html>
-
-
