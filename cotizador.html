@@ -1651,11 +1651,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
       // ====== ENVÍO DE COTIZACIÓN (WSP + EMAIL) ======
       sendButton.addEventListener("click", function () {
-       
-        // 🔗 ENVÍO A N8N (ANTES de WhatsApp / Email)
-        sendToN8N(cotizacionId, productsMessage, obsText);
-
-        const rows = tableBody.querySelectorAll("tr");
+      const rows = tableBody.querySelectorAll("tr");
 
         // --- VALIDACIÓN: debe haber al menos 1 producto ---
         if (rows.length === 0) {
@@ -1683,6 +1679,9 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
 
         const obsText = observations.value.trim();
         const noteSection = obsText ? `\n*Nota:* ${obsText}` : "";
+
+         // 🔗 ENVÍO A N8N (ya con datos listos)
+         sendToN8N(cotizacionId, productsMessage, obsText);
 
         // --- MENSAJE WHATSAPP ---
         const whatsappMessage =
@@ -2283,4 +2282,5 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
     </script>
   </body>
 </html>
+
 
