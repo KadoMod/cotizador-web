@@ -3,57 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <title>KadoMod | Merchandising Corporativo bajo demanda</title>
-  <meta name="description" content="Cotiza merchandising corporativo en 1 minuto con KadoMod. Precios detallados, descuentos por volumen y respuesta inmediata. Kits corporativos, manteles para eventos y productos personalizados bajo demanda.">
-  <meta name="keywords" content="merchandising corporativo, kits corporativos, productos personalizados, cotización rápida, manteles eventos, merchandising bajo demanda">
   <link rel="shortcut icon" href="assets/img/logo_mod.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    /* ==================== RESET Y BASE (MOBILE FIRST) ==================== */
+    /* ==================== RESET Y BASE ==================== */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family:onde-day, system-ui, -apple-system, sans-serif;
     }
+
     :root {
       --gallery-width: 38vw;
       --gallery-max: 520px;
       --primary: #f7941d;
       --dark: #1f2a44;
     }
+
     body {
       background-color: #f0eeee;
       color: var(--dark);
       opacity: 0;
       animation: pageFadeIn 0.4s ease forwards;
     }
+
     @keyframes pageFadeIn {
       to { opacity: 1; }
-    }
-
-    /* ==================== CARRUSEL BASE (CORREGIDO – ahora funciona en desktop Y mobile) ==================== */
-    .carousel {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #000;
-    }
-    .carousel-item {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 1.2s ease-in-out;
-    }
-    .carousel-item.active {
-      opacity: 1;
-      z-index: 2;
-    }
-    .carousel img,
-    .carousel video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     /* ==================== LAYOUT GENERAL ==================== */
@@ -61,122 +38,142 @@
       position: relative;
       z-index: 1;
       min-height: 100vh;
-    }
-    .hero-right {
-      display: none; /* oculto en mobile */
+      padding-bottom: 50vh; /* Aquí se genera el espacio para revelar el footer */
     }
 
-    /* ==================== CONTENEDOR FIJO MOBILE ==================== */
-    .mobile-fixed-container {
+    /* ==================== GALERÍA FIJA ==================== */
+    .hero-right {
       position: fixed;
       top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: rgba(240, 238, 238, 0.79);
-      backdrop-filter: blur(12px);
-      padding: 10px;
-      box-shadow: 0 4px 20px rgba(31, 42, 68, 0.12);
+      right: 0;
+      width: min(var(--gallery-width), var(--gallery-max));
+      height: 100vh;
+      z-index: 10;
     }
-    .hero-right-mobile {
-      width: 65%;
-      aspect-ratio: 1 / 1;
-      margin-bottom: 7px;
-      max-width: 280px;
-    }
-    .hero-right-mobile .carousel {
-      clip-path: circle(50% at 50% 50%);
-    }
-    .logo-mobile {
-      width: 70%;
-      max-width: 320px;
-      margin-bottom: 7px;
-    }
-    .logo-main-mobile {
-      width: 100%;
-      height: auto;
-    }
-    .cta-wrapper-mobile {
-      background-color: var(--primary);
-      width: fit-content;
-      padding: 7px 34px;
-      border-radius: 40px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    }
-    .cta-wrapper {
-        opacity: 1;
-      }
 
-    /* ==================== CONTENIDO PRINCIPAL ==================== */
+    .carousel {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      clip-path: ellipse(100% 75% at 100% 50%);
+      background: #000;
+    }
+
+    .carousel-item {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    .carousel-item.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .carousel img,
+    .carousel video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ==================== CONTENIDO IZQUIERDO ==================== */
     .hero-left {
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      text-align: center;
+      margin-left: 10px;
+      margin-right: 385px;
+      padding: 4rem;
+      min-height: 100vh;
       background: #f0eeee;
       position: relative;
       z-index: 2;
-      width: 100%;
     }
-    section.block,
-    .block-1 {
+
+    section.block, 
+    .block-1{
       text-align: center;
-      max-width: 100%;
-      margin: 0 auto 5rem;
+      max-width: 77%;
+      margin-bottom: 5rem;
     }
+
+   
 
     /* ==================== BLOQUE 1 (HERO) ==================== */
     .logo-main {
-      width: 100%;
-      max-width: 420px;
+      width: 560px;
       margin-bottom: 1.5rem;
     }
+
     .subtitle {
-      font-size: 22px;
+      font-size: 25px;
       margin-bottom: 1.2rem;
-      margin-top: 280px;
-      line-height: 1.3;
     }
+
     .highlight {
       display: inline-block;
       background-color: var(--primary);
       color: var(--dark);
       padding: 6px 28px;
-      font-size: 26px;
+      font-size: 30px;
       margin-bottom: 1.5rem;
     }
+
     .support-text {
-      font-size: 18px;
-      margin-top: 3rem;
+      font-size: 20px;
+      margin-top: 3.5rem;
       margin-bottom: 2rem;
-      line-height: 1.5;
     }
 
     /* ==================== CTA ==================== */
+ 
     .cta-icon {
       margin-bottom: 20px;
-      width: 70px;
+      width: 80px;
     }
+
     .cta-wrapper {
-      background-color: var(--primary);
+      background-color: #f7941d;
       width: 185px;
-      margin: 1rem ;
+      margin-top: 1rem;
+      margin-left: 220px;
+      margin-bottom: 1.5rem;
       border-radius: 40px;
+      position: absolute;
       transition: opacity 0.35s ease;
+      
+    }
+
+    .cta-wrapper.fixed {
+      background-color: #fcf9f9;
+      width: 155px;
+      position: fixed;
+      top: 25px;
+      right: calc(min(var(--gallery-width), var(--gallery-max)) - 75px);
+      z-index: 20;
+      border: 2px double var(--dark);
+      border-radius: 40px;
       opacity: 0;
     }
-    .cta {
+
+    .cta-wrapper.fixed.visible {
+      opacity: 1;
+    }
+
+    #ctaPlaceholder {
+      height: 0;
+      transition: height 0.3s ease;
+    }
+
+   .cta {
       text-decoration: none;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: bold;
       font-style: oblique;
       position: relative;
       padding-bottom: 6px;
       color: var(--dark);
-      display: block;
     }
+
     .cta::after {
       content: "";
       position: absolute;
@@ -184,18 +181,18 @@
       bottom: 0;
       height: 3px;
       width: 100%;
-      background-color: var(--dark);
+      background-color: var(--primary);
       animation: ctaPulse 3.6s ease-in-out infinite;
     }
+
     .cta-final {
       background-color: #fcf9f9;
       border: 2px double var(--dark);
       border-radius: 40px;
-      padding: 10px 28px;
-      font-size: 24px;
-      width: 100%;
-      text-align: center;
+      padding: 7px;
+      font-size: 30px;
     }
+
     @keyframes ctaPulse {
       0% { transform: scaleX(0.4); }
       50% { transform: scaleX(0.8); }
@@ -204,377 +201,279 @@
 
     /* ==================== BLOQUES INFERIORES ==================== */
     .block h2 {
-      font-size: 26px;
+      font-size: 30px;
       margin-bottom: 1rem;
     }
-    .logo-h2 {
-      width: 22px;
+
+    .logo-h2{
+      width: 25px;
     }
+
     .block p {
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.6;
       opacity: 0.9;
     }
 
-    /* ==================== GALERÍA BLOQUE 3 ==================== */
-    .galeria-de-trabajos {
+    /* ==================== GALERIA BLOQUE 3 ==================== */
+    .galeria-de-trabajos{
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      margin-top: 20px;
-    }
-    .galeria-2 {
-      background-color: #1f2a44;
-      padding: 2px;
-      border-radius: 12px;
-    }
-    .galeria-2 img {
-      width: 100%;
-      max-width: 260px;
-      border-radius: 8px;
-    }
-
-    /* ==================== FOOTER ==================== */
-    .footer-under {
-      position: relative;
-      background: #1f2a44;
-      color: #f0eeee;
-      z-index: 0;
-      display: flex;
-      flex-direction: column;
-      padding: 40px 5vw 30px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 35px;
-      text-align: center;
-    }
-    .footer-col h3 {
-      color: #f7941d;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 18px;
-      position: relative;
-      padding-bottom: 6px;
-    }
-    .footer-col h3::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 65px;
-      height: 2px;
-      background: #f7941d;
-    }
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .footer-col li {
-      font-size: 15px;
-      margin-bottom: 9px;
-      opacity: 0.9;
-      transition: opacity 0.2s;
-    }
-    .footer-col li:hover {
-      opacity: 1;
-    }
-    .footer-under a {
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer !important;
-    }
-    .footer-email {
-      color: #f7941d;
-      font-weight: 500;
-      display: block;
-      margin: 12px 0 20px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 18px;
-      justify-content: center;
-    }
-    .footer-social .icono {
-      width: 38px;
-      height: 38px;
-      transition: transform 0.2s;
-    }
-    .footer-social .icono:hover {
-      transform: scale(1.15);
-
-    }
-    .footer-bottom {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(240, 238, 238, 0.15);
-      font-size: 13px;
-      margin-top: 20px;
-    }
-    .logo-footer-bottom img {
-      width: 165px;
-      height: auto;
-    }
-    .copyright {
-      text-align: center;
-      line-height: 1.4;
-      opacity: 0.75;
-    }
-    .tagline {
-      text-align: center;
-      font-weight: 600;
-      opacity: 0.9;
-    }
-
-    /* ==================== DESKTOP (min-width 769px) ==================== */
-    @media (min-width: 769px) {
-      .mobile-fixed-container {
-        display: none;
-      }
-      .hero-right {
-        display: block;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: min(var(--gallery-width), var(--gallery-max));
-        height: 100vh;
-        z-index: 10;
-      }
-      .hero-right .carousel {
-        clip-path: ellipse(100% 75% at 100% 50%);
-      }
-      .hero-left {
-        margin-left: 10px;
-        margin-right: 385px;
-        padding-right: 9rem;
-        width: 70vw;
-        min-height: 100vh;
-        background: #f0eeee;
-        position: relative;
-        z-index: 2;
-      }
-      main {
-        padding-bottom: 50vh;
-      }
-      .logo-main {
-        width: 560px;
-      }
-      .subtitle {
-        margin-top: 20px;
-        font-size: 25px;
-      }
-      .highlight {
-        font-size: 30px;
-      }
-      .support-text {
-        font-size: 20px;
-      }
-      .block h2 {
-        font-size: 30px;
-      }
-      .block p {
-        font-size: 20px;    
-      }
-      .cta-wrapper {
-        position: absolute;
-        margin-left: 22vw;
-        margin-bottom: 1.5rem;
-        opacity: 1;
-      }
-      .cta-wrapper.fixed {
-        background-color: #fcf9f9;
-        width: 155px;
-        position: fixed;
-        top: 25px;
-        right: calc(min(var(--gallery-width), var(--gallery-max)) - 75px);
-        z-index: 20;
-        border: 2px double var(--dark);
-        border-radius: 40px;
-        opacity: 0;
-      }
-      .cta-wrapper.fixed.visible,
-      .cta-wrapper.is-visible {
-        opacity: 1;
-      }
-      .cta-final {
-        margin-left: 18vw;
-        width: 35%;
-        
-      }
-      .galeria-de-trabajos {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 15px;
-      }
-      .galeria-2 img {
-        width: 185px;
-      }
-      .footer-under {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100vw;
-        height: 50vh;
-        background: #1f2a44;
-        color: #f0eeee;
-        z-index: 0;
-        padding-top: 25px;
-        padding-left: 15px;
-       
-        padding-bottom: 15px;
-        overflow: hidden;
-        pointer-events: auto;
-      }
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 40px;
-        flex: 1;
-        text-align: left;
-        padding-right: 37%;
-      }
-      .footer-col h3::after {
-        left: 0;
-        transform: none;
-      }
-      .footer-bottom {
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 0;
-        padding-right: 30%;
-        padding-top: 10px;
-        padding-left: 15px;
-        gap: 0;
-      }
+      justify-content: space-between;
+      margin-top: 15px;
       
-      .tagline {
-        text-align: right;
-      }
-      .copyright {
-        margin-left: 25px;
-        
-      }
+    }
+    .galeria-2{
+      margin-top: 12px;
+      background-color: #1f2a44;
+            
     }
 
-    /* ==================== TRANSICIONES CTA ==================== */
-    .cta-wrapper {
-      transition: opacity 0.25s ease, transform 0.35s ease;
+     .galeria-2 img{
+      width: 185px;
     }
-    .cta-wrapper.is-hidden {
-      opacity: 0;
-      transform: translateY(-6px);
-      pointer-events: none;
+
+   
+          /* ==================== CTA FADE CONTROL ==================== */
+.cta-wrapper {
+  transition: opacity 0.25s ease;
+}
+
+.cta-wrapper.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cta-wrapper.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cta-wrapper {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.cta-wrapper.is-hidden {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.cta-wrapper.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+ /* ==================== FOOTER ==================== */
+  
+.footer-under {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 50vh;
+  background: #1f2a44;
+  color: #f0eeee;
+  z-index: 0;                    /* ← importante: por encima del main pero debajo de la galería */
+  display: flex;                 
+  flex-direction: column;
+  padding-top: 25px;
+  padding-left: 15px;
+  padding-right: 40%;            /* mantiene la galería tapando la derecha */
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  flex: 1;
+  pointer-events: auto;
+}
+
+.footer-col h3 {
+  color: #f7941d;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.footer-col h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 65px;
+  height: 2px;
+  background: #f7941d;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col li {
+  font-size: 15px;
+  margin-bottom: 9px;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+.footer-col li:hover { opacity: 1; }
+
+/* TODOS LOS ENLACES DEL FOOTER */
+.footer-under a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer !important;
+}
+
+/* EMAIL */
+.footer-email {
+  color: #f7941d;
+  font-weight: 500;
+  display: block;
+  margin: 12px 0 20px;
+}
+
+/* REDES SOCIALES */
+.footer-social {
+  display: flex;
+  gap: 18px;
+}
+.footer-social .icono {
+  width: 38px;
+  height: 38px;
+  transition: transform 0.2s;
+}
+.footer-social .icono:hover {
+  transform: scale(1.15);
+}
+
+/* BARRA INFERIOR */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 22px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  border-top: 1px solid rgba(240, 238, 238, 0.15);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.logo-footer-bottom img {
+  width: 165px;
+  height: auto;
+  
+}
+
+.copyright {
+  text-align: center;
+  line-height: 1.4;
+  opacity: 0.75;
+  margin-left: 30px;
+  margin-left: 25px;
+  
+}
+
+.tagline {
+  text-align: right;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* ==================== MOBILE ==================== */
+@media (max-width: 768px) {
+  .footer-under {
+    height: auto;
+    position: relative;
+    padding-bottom: 30px;
+    padding-right: 5vw;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    text-align: center;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .tagline { text-align: center; }
+}
+    /* ==================== MOBILE ==================== */
+    @media (max-width: 768px) {
+        .main-continer {
+        
+        justify-items: center;
+        align-content: center;
+       
+      }
+
+
+       .hero-right {
+        position: relative;
+        width: 100%;
+        height: 320px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .carousel {
+        width: 100%;
+        height: 100%;
+        clip-path: circle(65% at 50% 50%);
+      }
+
+      .carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+
+      .hero-left {
+       
+        text-align: center;
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .cta-wrapper.fixed {
+        position: relative;
+        top: auto;
+        right: auto;
+      }
+
     }
-    .cta-wrapper.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
+
+
   </style>
 </head>
+
 <body>
-  <!-- GALERÍA DESKTOP -->
+
+  <!-- GALERÍA -->
   <aside class="hero-right">
     <div class="carousel" id="carousel"></div>
   </aside>
 
-  <!-- CONTENEDOR FIJO MOBILE (galería círculo + logo + CTA) -->
-  <div class="mobile-fixed-container">
-    <div class="hero-right-mobile">
-      <div class="carousel" id="carousel-mobile"></div>
-    </div>
-    <div class="logo-mobile">
-      <img src="assets/img/KadoMod_Yellow_BlueVersion.png" class="logo-main-mobile" alt="KadoMod">
-    </div>
-    <div class="cta-wrapper-mobile">
-      <a href="cotizador.html" class="cta">Cotizar ahora</a>
-    </div>
-  </div>
-
   <main class="main-continer">
-    <div class="hero-left">
-      <!-- BLOQUE 1 -->
-      <section class="block-1">
-        <img src="assets/img/KadoMod_Yellow_BlueVersion.png" class="logo-main" alt="KadoMod">
-        <p class="subtitle">“Cotiza merchandising corporativo en 2 minutos, <br> con precios detallados y respuesta inmediata.”</p>
-        
-        <div class="cta-img">
-          <a href="cotizador.html"><img class="cta-icon" src="assets/img/logo_mod.png" alt=""></a>
-        </div>
-        <div id="ctaPlaceholder"></div>
-        <div class="cta-wrapper" id="ctaWrapper">
-          <a href="cotizador.html" class="cta" id="ctaText">Cotizar ahora</a>
-        </div>
-        
-        <p class="support-text">• Selecciona tus productos • Recibe cotización automática y descuentos por volumen • Valida tu solicitud • Recibe tu merchandising donde gustes.</p>
-        
-        <div class="highlight"><strong>K</strong>ado <strong>M</strong>erch on Demand</div>
-      </section>
-
-      <!-- BLOQUE 2 -->
-      <section class="block">
-        <h2><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span>CÓMO FUNCIONA<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span></h2>
-        <p>
-          <span>🧩-🎨</span>Paso 1 – <strong>Elección y diseño de tus productos</strong><br>
-          Selecciona los artículos que necesitas y las cantidades. Sube tu logo en alta calidad. <br><br>
-          <span>📝-💲</span>Paso 2 – <strong>Obtén tu cotización</strong><br>
-          El sistema calcula precios y descuentos por volumen automáticamente. Y envia la cotización automática a tu correo.<br><br>
-          <span>✅-🏭</span>Paso 3 – <strong>Confirma y produce</strong><br>
-          Una vez confirmado el pago iniciamos la producción del pedido y el visto bueno de tu diseño. <br><br>
-          <span>🚚-🎁</span>Paso 4 – <strong>Recibe y disfruta</strong><br>
-          Elije entre recibir tu merchandising a domicilio o retiralo en taller. <br><br>
-          <strong>Nota. </strong> RECUERDA COMPLETAR TODOS LOS DATOS DEL FORMULARIO PARA IDENTIFICAR Y PERSONALIZAR TU COTIZACIÓN. <br><br>
-          Rápido. Sin intermediarios ni retrasos. Sin esperas ni largas llamadas. Sin interpretaciones o supuestos.
-        </p>
-      </section>
-
-      <!-- BLOQUE 3 -->
-      <section class="block" data-cta="Ver cotización">
-        <h2><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> ¿ Qué podrás cotizar ?<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span></h2>
-        <p>
-          Todos los productos y kits contenidos en el selector de prodcutos. Y si no encuentras alguno en especifico, utiliza el área de observación y deja toda la información del mismo. Te enviaremos por correo todos los detalles y la cotización actualizada.
-        </p>
-        <section class="galeria-de-trabajos">
-          <div class="gal">
-            <a class="ktis-corporativos galeria-2" href="#"><img src="assets/img/Kit Corporativo 3.jpg" alt="Kits Corporativos"></a><br>
-            <span>"Kits Corporativos"</span>
-          </div>
-          <div class="gal">
-            <a class="populares galeria-2" href="#"><img src="assets/img/ChatGPT Image 18 feb 2026, 05_05_12.png" alt="Los más pedidos"></a><br>
-            <span>"Los más pedidos"</span>
-          </div>
-          <div class="gal">
-            <a class="eventos galeria-2" href="#"><img src="assets/img/manteles-sodexo.jpg" alt="Manteles Corporativos"></a><br>
-            <span>"Manteles Corporativos"</span>
-          </div>
-        </section>
-      </section>
-
-      <!-- BLOQUE 4 -->
-      <section class="block">
-        <h2><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> Confianza silenciosa<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span></h2>
-        <p>
-          • Sistema automatizado • Trazabilidad completa • Pedido revisado y verificado antes de fabricación • Comunicación directa por correo y WhatsApp hasta finalizar todo el proceso. <br><br>
-          ¿Listo para cotizar tu merchandising corporativo? <br><br><hr><br><br>
-          <a href="cotizador.html" class=""><img class="cta-icon" src="assets/img/logo_mod_1.png" alt=""></a> <br>
-          <a href="cotizador.html" class="cta cta-final">Iniciar cotización</a>
-        </p>
-      </section>
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer-under">
+ <footer class="footer-under">
     <div class="footer-grid">
-      <div class="footer-col">
+      
+      <!-- COLUMNA 1 -->
+      <div class="footer-col">  
         <h3>¿Qué puedo hacer por ti?</h3>
         <ul>
           <li>Kits Corporativos</li>
@@ -583,19 +482,24 @@
           <li>Productos Bajo Demanda</li>
         </ul>
       </div>
+
+      <!-- COLUMNA 2 -->
       <div class="footer-col">
         <h3>KadoMod</h3>
         <ul>
           <li>Sobre nosotros</li>
           <li>Cómo funciona</li>
           <li>Blog</li>
-          <li><a href="mailto:contacto@kadomod.com" class="footer-email">contacto@kadomod.com</a><li>
+          <li>Contacto</li>
         </ul>
       </div>
+
+      <!-- COLUMNA 3 -->
       <div class="footer-col">
         <h3>¿Trabajamos juntos?</h3>
         <p><strong>¡Cotiza ahora!</strong></p>
-        <a href="mailto:cotizaciones@kadomod.com" class="footer-email">cotizaciones@kadomod.com</a>
+        <a href="mailto:info@kadomod.com" class="footer-email">info@kadomod.com</a>
+        
         <div class="footer-social">
           <a href="https://instagram.com/kadomod.cl" target="_blank">
             <img class="icono" src="assets/img/instagram.png" alt="Instagram">
@@ -605,174 +509,285 @@
           </a>
         </div>
       </div>
+
+      <!-- COLUMNA 4 (quedará parcialmente tapada por la galería – es intencional) -->
       <div class="footer-col">
         <h3>| Tu opinión si importa</h3>
-        <ul class="footer-opinion">
-          <a href="#" target="_blank">
-          <li>Deja un comentario:</li>
-          <li>¿Qué sumarías?</li>
-          <li>¿Cuál es tu producto favorito?</li>
-          <li>Condiciones de servicio</li>
-          </a> 
-        </ul>
+          <ul class="footer-opinion">
+            <a href="#" target="_blank">
+            <li>Deja un comentario:</li>
+            <li>¿Qué sumarías?</li>
+            <li>¿Cuál es tu producto favorito?</li>
+            <li>Condiciones de servicio</li>
+            </a> 
+          </ul>
       </div>
     </div>
+
+    <!-- BARRA INFERIOR (logo + copyright + tagline) -->
     <div class="footer-bottom">
       <a href="#" class="logo-footer-bottom">
         <img src="assets/img/KadoMod_Yellow_WhiteVersion.png" alt="KadoMod">
       </a>
+      
       <p class="copyright">
         © 2026 KadoMod — Merchandising Corporativo - by Lenin Rodriguez.<br>
         Todos los derechos reservados.
       </p>
+      
       <p class="tagline">Merchandising Corporativo On Demand</p>
     </div>
+
   </footer>
 
-  <script>
-    /* ==================== CARRUSEL (CORREGIDO – funciona perfectamente en ambos) ==================== */
-    const carouselData = [
-      { type: "video", src: "assets/video/kado2.mp4" },
-      { type: "image", src: "assets/img/km1.jpeg", duration: 2800 },
-      { type: "image", src: "assets/img/km3.jpeg", duration: 2500 },
-      { type: "video", src: "assets/video/kado1.mp4" },
-      { type: "image", src: "assets/img/km5.png", duration: 2800 },
-      { type: "image", src: "assets/img/km8.jpg", duration: 2500 },
-    ];
+  <!-- CONTENIDO -->
+  <div class="hero-left">
 
-    function initCarousel(carouselId) {
-      const carousel = document.getElementById(carouselId);
-      if (!carousel) return;
+    <!-- BLOQUE 1 -->
+    <section class="block-1">
+      <img src="assets/img/KadoMod_Yellow_BlueVersion.png" class="logo-main" alt="KadoMod">
+      <p class="subtitle">“Cotiza merchandising corporativo en 2 minutos, <br> con precios detallados y respuesta inmediata.”</p>
+      
+        <div class="cta-img">
+          <a href="cotizador.html"><img class="cta-icon" src="assets/img/logo_mod.png" alt=""></a>
+        </div>
+        <div id="ctaPlaceholder"></div>
+        <div class="cta-wrapper" id="ctaWrapper">
+          <a href="cotizador.html" class="cta" id="ctaText">Cotizar ahora</a>
+        </div>
+      
+      <p class="support-text">• Selecciona tus productos • Recibe cotización automática y descuentos por volumen • Valida tu solicitud • Recibe tu merchandising donde gustes.</p>
 
-      carousel.innerHTML = "";
+      
+      <div class="highlight"><strong>K</strong>ado <strong>M</strong>erch on Demand</div>
+      
+    </section>
 
-      carouselData.forEach((item, index) => {
-        let el = item.type === "video" ? document.createElement("video") : document.createElement("img");
-        el.src = item.src;
-        if (item.type === "video") {
-          el.muted = true;
-          el.playsInline = true;
-          el.preload = "auto";
-        }
-        el.classList.add("carousel-item");
-        if (index === 0) el.classList.add("active");
-        carousel.appendChild(el);
-      });
+    <!-- BLOQUE 2 -->
+    <section class="block">
+      <h2><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span>CÓMO FUNCIONA<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span></h2>
+      <p> 
 
-      let currentIndex = 0;
-      let currentTimeout = null;
+        <span>🧩-🎨</span>Paso 1 – <strong>Elección y diseño de tus productos</strong><br>
 
-      function showSlide(index) {
-        const items = carousel.querySelectorAll(".carousel-item");
-        items.forEach(i => {
-          i.classList.remove("active");
-          if (i.tagName === "VIDEO") {
-            i.pause();
-            i.currentTime = 0;
-          }
-        });
-        const current = items[index];
-        current.classList.add("active");
+        Selecciona los artículos que necesitas y las cantidades. Sube  tu logo en alta calidad. <br><br>
 
-        if (current.tagName === "VIDEO") {
-          current.play();
-          current.onended = nextSlide;
-        } else {
-          clearTimeout(currentTimeout);
-          currentTimeout = setTimeout(nextSlide, carouselData[index].duration || 3000);
-        }
+        <span>📝-💲</span>Paso 2 – <strong>Obtén tu cotización</strong><br>    
+
+        El sistema calcula precios y descuentos por volumen automáticamente. Y envia la cotización automática a tu correo.<br><br>
+
+        <span>✅-🏭</span>Paso 3 – <strong>Confirma y produce</strong><br>
+
+        Una vez confirmado el pago iniciamos la producción del pedido y el visto bueno de tu diseño. <br><br>
+
+        <span>🚚-🎁</span>Paso 4 – <strong>Recibe y disfruta</strong><br>
+
+        Elije entre recibir tu merchandising a domicilio o retiralo en taller. <br><br>
+
+        <strong>Nota. </strong> RECUERDA COMPLETAR TODOS LOS DATOS DEL FORMULARIO  PARA IDENTIFICAR Y PERSONALIZAR TU COTIZACIÓN. <br><br>
+
+         <P>Rápido. Sin intermediarios ni retrasos. Sin esperas ni largas llamadas. Sin interpretaciones o supuestos.</P> 
+
+      </p>
+    </section>
+
+    <!-- BLOQUE 3 -->
+    <section class="block" data-cta="Ver cotización">
+      <h2><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> ¿ Qué podrás cotizar ?<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </h2>
+      <p>
+        Todos los productos y kits contenidos en el selector de prodcutos. Y si no encuentras alguno en especifico, utiliza el área de observación y deja toda la información del mismo. Te enviaremos por correo todos los detalles y la cotización actualizada.
+        <section class="galeria-de-trabajos">
+          <div class="gal">
+          <a class="ktis-corporativos galeria-2" href="#"><img src="assets/img/Kit Corporativo 3.jpg" alt="imagen-kits-corporativos"></a>
+          <span>"Kits Corporativos"</span>
+          </div>
+          <div class="gal">
+          <a class="populares galeria-2" href="#"><img src="assets/img/ChatGPT Image 18 feb 2026, 05_05_12.png" alt="imagen-productos-mas-buscados"></a>
+          <span>"Los más pedidos"</span>
+          </div>
+          <div class="gal">
+          <a class="eventos galeria-2" href="#"><img src="assets/img/manteles-sodexo.jpg" alt="imagen-eventos-corporativos"></a>
+          <span>"Manteles Corporativos"</span>
+          </div>
+        </section>
+          
+      </p>
+    </section>
+
+    <!-- BLOQUE 4 -->
+    <section class="block">
+      <h2><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> Confianza silenciosa<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </h2>
+      <p>
+        • Sistema automatizado • Trazabilidad completa • Pedido revisado y verificado antes de fabricación • Comunicación directa por correo y WhatsApp hasta finalizar todo el proceso. <br><br>
+        ¿Listo para cotizar tu merchandising corporativo? <br><br><hr><br><br>
+        <a href="cotizador.html" class=""><img class="cta-icon" src="assets/img/logo_mod_1.png" alt=""></a> <br>
+        <a href="cotizador.html" class="cta cta-final">Iniciar cotización</a>
+      </p>
+    </section>
+
+
+  </div>
+</main>
+
+<script>
+  
+  /* ==================== CARRUSEL ==================== */
+  const carouselData = [
+    { type: "video", src: "assets/video/kado2.mp4" },
+    { type: "image", src: "assets/img/km1.jpeg", duration: 2800 },
+    { type: "image", src: "assets/img/km3.jpeg", duration: 2500 },
+    { type: "video", src: "assets/video/kado1.mp4" },
+    { type: "image", src: "assets/img/km5.png", duration: 2800 },
+    { type: "image", src: "assets/img/km8.jpg", duration: 2500 },
+  ];
+
+  const carousel = document.getElementById("carousel");
+  let currentIndex = 0;
+  let currentTimeout = null;
+
+  carouselData.forEach((item, index) => {
+    let el = item.type === "video" ? document.createElement("video") : document.createElement("img");
+    el.src = item.src;
+    if (item.type === "video") {
+      el.muted = true;
+      el.playsInline = true;
+      el.preload = "auto";
+    }
+    el.classList.add("carousel-item");
+    if (index === 0) el.classList.add("active");
+    carousel.appendChild(el);
+  });
+
+  function showSlide(index) {
+    const items = document.querySelectorAll(".carousel-item");
+    items.forEach(i => {
+      i.classList.remove("active");
+      if (i.tagName === "VIDEO") {
+        i.pause();
+        i.currentTime = 0;
       }
+    });
 
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % carouselData.length;
-        showSlide(currentIndex);
-      }
+    const current = items[index];
+    current.classList.add("active");
 
-      showSlide(0);
-      carousel.addEventListener("click", nextSlide);
+    if (current.tagName === "VIDEO") {
+      current.play();
+      current.onended = nextSlide;
+    } else {
+      currentTimeout = setTimeout(nextSlide, carouselData[index].duration);
+    }
+  }
+
+  function nextSlide() {
+    clearTimeout(currentTimeout);
+    currentIndex = (currentIndex + 1) % carouselData.length;
+    showSlide(currentIndex);
+  }
+
+  showSlide(currentIndex);
+
+  carousel.addEventListener("click", nextSlide);
+
+/* ==================== CTA INTELIGENTE CON FADE (ESTABLE) ==================== */
+const FOOTER_SAFE_ZONE = 250; // zona segura antes del footer
+const REAPPEAR_OFFSET = 300;
+
+const ctaWrapper = document.getElementById("ctaWrapper");
+const ctaText = document.getElementById("ctaText");
+const ctaPlaceholder = document.getElementById("ctaPlaceholder");
+
+const initialTop = ctaWrapper.offsetTop;
+const ctaHeight = ctaWrapper.offsetHeight;
+
+let isFixed = false;
+let isFading = false;
+let atEnd = false;
+
+/* ==================== FADE CONTROLADO ==================== */
+function fadeChange(newText, makeFixed) {
+  if (isFading) return;
+  isFading = true;
+
+  ctaWrapper.classList.add("is-hidden");
+
+  setTimeout(() => {
+    if (newText) ctaText.textContent = newText;
+
+    if (makeFixed) {
+      ctaPlaceholder.style.height = `${ctaHeight}px`;
+      ctaWrapper.classList.add("fixed");
+    } else {
+      ctaWrapper.classList.remove("fixed");
+      ctaPlaceholder.style.height = "0px";
     }
 
-    // Inicializar ambos carruseles
-    initCarousel("carousel");
-    initCarousel("carousel-mobile");
+    ctaWrapper.classList.remove("is-hidden");
+    ctaWrapper.classList.add("is-visible");
 
-    /* ==================== CTA INTELIGENTE (SOLO DESKTOP) ==================== */
-    if (window.innerWidth > 768) {
-      const FOOTER_SAFE_ZONE = 250;
-      const REAPPEAR_OFFSET = 300;
-      const ctaWrapper = document.getElementById("ctaWrapper");
-      const ctaText = document.getElementById("ctaText");
-      const ctaPlaceholder = document.getElementById("ctaPlaceholder");
-      const initialTop = ctaWrapper.offsetTop;
-      const ctaHeight = ctaWrapper.offsetHeight;
-      let isFixed = false;
-      let isFading = false;
-      let atEnd = false;
+    setTimeout(() => {
+      isFading = false;
+    }, 350);
+  }, 220);
+}
 
-      function fadeChange(newText, makeFixed) {
-        if (isFading) return;
-        isFading = true;
-        ctaWrapper.classList.add("is-hidden");
-        setTimeout(() => {
-          if (newText) ctaText.textContent = newText;
-          if (makeFixed) {
-            ctaPlaceholder.style.height = `${ctaHeight}px`;
-            ctaWrapper.classList.add("fixed");
-          } else {
-            ctaWrapper.classList.remove("fixed");
-            ctaPlaceholder.style.height = "0px";
-          }
-          ctaWrapper.classList.remove("is-hidden");
-          ctaWrapper.classList.add("is-visible");
-          setTimeout(() => { isFading = false; }, 350);
-        }, 220);
+/* ==================== SCROLL PRINCIPAL  ==================== */
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  const nearFooter = scrollY >= maxScroll - FOOTER_SAFE_ZONE;
+
+  /* === ENTRAMOS EN ZONA FOOTER (ANTES DEL FINAL REAL) === */
+  if (nearFooter && isFixed && !atEnd) {
+    atEnd = true;
+    isFixed = false;
+    fadeChange("Cotizar ahora", false);
+    return;
+  }
+
+  /* === SALIMOS DE ZONA FOOTER AL SUBIR === */
+  if (
+    atEnd &&
+    scrollY < maxScroll - FOOTER_SAFE_ZONE - REAPPEAR_OFFSET
+  ) {
+    atEnd = false;
+    isFixed = true;
+    fadeChange(null, true);
+    return;
+  }
+
+  /* === FIJAR CTA NORMAL === */
+  if (!atEnd && scrollY > initialTop && !isFixed) {
+    isFixed = true;
+    fadeChange(null, true);
+  }
+
+  /* === CTA VUELVE A POSICIÓN ORIGINAL === */
+  if (!atEnd && scrollY <= initialTop && isFixed) {
+    isFixed = false;
+    fadeChange("Cotizar ahora", false);
+  }
+});
+
+/* ==================== CAMBIO DE TEXTO SEGÚN BLOQUE ==================== */
+const blocks = document.querySelectorAll("[data-cta]");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && isFixed && !isFading && !atEnd) {
+        const newText = entry.target.getAttribute("data-cta");
+        if (newText && ctaText.textContent !== newText) {
+          fadeChange(newText, true);
+        }
       }
+    });
+  },
+  { threshold: 0.50 }
+);
 
-      window.addEventListener("scroll", () => {
-        const scrollY = window.scrollY;
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        const nearFooter = scrollY >= maxScroll - FOOTER_SAFE_ZONE;
+blocks.forEach((block) => observer.observe(block));
+</script>
 
-        if (nearFooter && isFixed && !atEnd) {
-          atEnd = true;
-          isFixed = false;
-          fadeChange("Cotizar ahora", false);
-          return;
-        }
-        if (atEnd && scrollY < maxScroll - FOOTER_SAFE_ZONE - REAPPEAR_OFFSET) {
-          atEnd = false;
-          isFixed = true;
-          fadeChange(null, true);
-          return;
-        }
-        if (!atEnd && scrollY > initialTop && !isFixed) {
-          isFixed = true;
-          fadeChange(null, true);
-        }
-        if (!atEnd && scrollY <= initialTop && isFixed) {
-          isFixed = false;
-          fadeChange("Cotizar ahora", false);
-        }
-      });
-
-      const blocks = document.querySelectorAll("[data-cta]");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && isFixed && !isFading && !atEnd) {
-              const newText = entry.target.getAttribute("data-cta");
-              if (newText && ctaText.textContent !== newText) {
-                fadeChange(newText, true);
-              }
-            }
-          });
-        },
-        { threshold: 0.50 }
-      );
-      blocks.forEach((block) => observer.observe(block));
-    }
-  </script>
 </body>
 </html>
-
-
