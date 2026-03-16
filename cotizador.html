@@ -1920,7 +1920,7 @@ una vez que se llenen los campos bligatorios del formulario "Datos de Cotizació
       runDrawerHint(HINT_COTIZACION);
       // COMUNICACION CON n8n
     function sendToN8N(cotizacionId, productsMessage, obsText) {
-    const webhookUrl = "https://ledrom.app.n8n.cloud/webhook/kadomod-quotation-v2";
+    const webhookUrl = "https://n8n-kadomod.onrender.com/webhook/kadomod-quotation-v2";
             // recoger todos los campos del formulasrio "datos de cotización"
     const form = document.querySelector(".cotizacion-form");
     const formData = new FormData(form);
