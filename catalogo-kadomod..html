@@ -1,16 +1,347 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Interactivo 2026 - KadoMod</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-</head>
-<body>
-  
-  <iframe src="https://online.fliphtml5.com/rjlak/CAT_KADOMOD-V5WN/" width="100%" height="700" frameborder="0" allowfullscreen scrolling="no"></iframe>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo Interactivo 2026 - KadoMod</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <style>
+    .kadomo-button-white * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    }
+    :root {
+      --primary: #f7941d;
+      --dark: #1f2a44;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0eeee;
+      color: var(--dark);
+      opacity: 0;
+      animation: pageFadeIn 0.4s ease forwards;
+    }
+    @keyframes pageFadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .main-header {
+      margin-top: 0;
+      background-color: #001f3f;
+      display: inline-flex;
+      position: fixed;
+      justify-content: center;
+      width: 100%;
+      height: 50px;
+      box-sizing: border-box;
+    }
+    .kadomo-button-white {
+      align-content: center;
+      background-color: #f0eeee;
+      width: 130px;
+      border-radius: 40px;
+    }
+    .kadomo-button-white img {
+      justify-content: center;
+      text-align: center;
+      margin-left: 10%;
+      width: 80%;
+    }
+    .page-content {
+      background-color: #f0eeee;
+      position: relative;
+      z-index: 5;
+      min-height: 100vh;
+      padding-bottom: 30px;
+      margin-bottom: 56vh;
+    }
+
+    /* ==================== FOOTER ==================== */
+    .footer-under {
+      position: relative;
+      background: #1f2a44;
+      color: #f0eeee;
+      z-index: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 5px 10px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 35px;
+      text-align: center;
+    }
+    .footer-col h3 {
+      color: #f7941d;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      position: relative;
+      padding-bottom: 6px;
+    }
+    .footer-col h3::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 65px;
+      height: 2px;
+      background: #f7941d;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-col li {
+      font-size: 15px;
+      margin-bottom: 9px;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+    .footer-col li:hover {
+      opacity: 1;
+    }
+    .footer-under a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer !important;
+    }
+    .footer-email {
+      color: #f7941d;
+      font-weight: 500;
+      display: block;
+      margin: 12px 0 20px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+    }
+    .footer-social .icono {
+      width: 38px;
+      height: 38px;
+      transition: transform 0.2s;
+    }
+    .footer-social .icono:hover {
+      transform: scale(1.15);
+    }
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(240, 238, 238, 0.15);
+      font-size: 13px;
+      margin-top: 20px;
+    }
+    .logo-footer-bottom img {
+      width: 165px;
+      height: auto;
+    }
+    .copyright {
+      text-align: center;
+      line-height: 1.4;
+      opacity: 0.75;
+    }
+    .tagline {
+      text-align: center;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* ==================== DESKTOP (min-width 769px) ==================== */
+    @media (min-width: 769px) {
+      .footer-under {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 50vh;
+        background: #1f2a44;
+        color: #f0eeee;
+        z-index: 0;
+        padding-top: 25px;
+        padding-left: 15px;
+
+        padding-bottom: 15px;
+        overflow: hidden;
+        pointer-events: auto;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 40px;
+        flex: 1;
+        text-align: left;
+        padding-right: 37%;
+      }
+      .footer-col h3::after {
+        left: 0;
+        transform: none;
+      }
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 0;
+        padding-right: 30%;
+        padding-top: 10px;
+        padding-left: 15px;
+        gap: 0;
+      }
+      .tagline {
+        text-align: right;
+      }
+      .copyright {
+        margin-left: 25px;
+      }
+    }
+  </style>
+  <body>
+    <main class="page-content">
+      <header class="main-header">
+        <div class="kadomo-button-white">
+          <a
+            href="Index.html"
+            class="kadomo-button-white"
+            aria-label="Volver a inicio"
+          >
+            <img
+              src="assets/img/KadoMod_Yellow_BlueVersion.png"
+              alt="Logo corporativo KadoMod aplicado a merchandising - Volver a inicio"
+            />
+          </a>
+        </div>
+      </header>
+      <iframe
+        src="https://online.fliphtml5.com/rjlak/CAT_KADOMOD-V5WN/"
+        width="100%"
+        height="700"
+        style="border: 0"
+        allowfullscreen
+        scrolling="no"
+      ></iframe>
+
+      <!-- CONTENIDO EXTRA -->
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus ante
+        dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
+        sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper
+        porta.
+      </p>
+
+      <br />
+
+      <p>
+        Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti
+        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        Curabitur sodales ligula in libero.
+      </p>
+
+      <p>
+        Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean
+        quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis
+        tristique sem.
+      </p>
+
+      <br />
+
+      <p>
+        Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis
+        vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula
+        lacinia aliquet.
+      </p>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-under">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>¿Qué puedo hacer por ti?</h3>
+          <ul>
+            <li>Kits Corporativos</li>
+            <li>Merchandising Personalizado</li>
+            <li>Manteles para Eventos</li>
+            <li>Productos Bajo Demanda</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>KadoMod</h3>
+          <ul>
+            <li>
+              <strong
+                ><a href="catalogo-kadomod..html" target="_blank"
+                  >NUESTRO CATÁLOGO</a
+                ></strong
+              >
+            </li>
+            <li><a href="#como-funciona">¿Cómo funciona?</a></li>
+            <li>Blog</li>
+            <li>
+              <a href="mailto:contacto@kadomod.com" class="footer-email"
+                >contacto@kadomod.com</a
+              >
+            </li>
+            <li></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>¿Trabajamos juntos?</h3>
+          <p><strong>¡Cotiza ahora!</strong></p>
+          <a href="mailto:cotizaciones@kadomod.com" class="footer-email"
+            >cotizaciones@kadomod.com</a
+          >
+          <div class="footer-social">
+            <a href="https://instagram.com/kadomod.cl" target="_blank">
+              <img
+                class="icono"
+                src="assets/img/instagram.png"
+                alt="Instagram"
+              />
+            </a>
+            <a href="https://linkedin.com/company/kadomod" target="_blank">
+              <img class="icono" src="assets/img/linkedin.png" alt="LinkedIn" />
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>| Tu opinión si importa</h3>
+          <ul class="footer-opinion">
+            <a href="#" target="_blank">
+              <li>Deja un comentario:</li>
+              <li>¿Qué sumarías?</li>
+              <li>¿Cuál es tu producto favorito?</li>
+              <li>Condiciones de servicio</li>
+            </a>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="#" class="logo-footer-bottom">
+          <img src="assets/img/KadoMod_Yellow_WhiteVersion.png" alt="KadoMod" />
+        </a>
+        <p class="copyright">
+          © 2026 KadoMod — Merchandising Corporativo - by Lenin Rodriguez.<br />
+          Todos los derechos reservados.
+        </p>
+        <p class="tagline">Merchandising Corporativo On Demand</p>
+      </div>
+    </footer>
+  </body>
 </html>
