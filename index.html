@@ -31,7 +31,19 @@
       to { opacity: 1; }
     }
 
-    /* ==================== CARRUSEL BASE (CORREGIDO – ahora funciona en desktop Y mobile) ==================== */
+    /* ==================== BARRA ANUNCIANTE SUPERIOR ==================== */
+
+    .anunciante {
+      position: fixed;
+      z-index: 50;
+      background-color: var(--dark);
+      width: 100%;
+      color: #f0eeee;
+      font-size: 16px; 
+      text-align: center;
+    }
+
+    /* ==================== CARRUSEL BASE (funciona en desktop Y mobile) ==================== */
     .carousel {
       position: relative;
       width: 100%;
@@ -198,10 +210,18 @@
     .logo-h2 {
       width: 22px;
     }
+
+
+
     .block-3-4{
+     
       margin-top: 2.2rem;
     }  
+     
+
+
     .block h2 .highlight {
+      
       background-color: #fcfcf9;
       color: var(--dark);
       padding: 0 28px;
@@ -472,10 +492,14 @@
     }
     html {
   scroll-behavior: smooth;
-    }
+}
   </style>
 </head>
 <body>
+  <div>
+    <p class="anunciante"> PRUEBA YA NUESTRO SISTEMA DE COTIZACIÓN AUTOMATIZADO Y ACELERA TU SOLICITUD ! </p>
+
+  </div>
   <!-- GALERÍA DESKTOP -->
   <aside class="hero-right">
     <div class="carousel" id="carousel"></div>
@@ -499,7 +523,7 @@
       <!-- BLOQUE 1 -->
       <section class="block-1">
         <img src="assets/img/KadoMod_Yellow_BlueVersion.png" class="logo-main" alt="KadoMod">
-             <p class="subtitle">“Cotiza merchandising corporativo via Online en 2 minutos, <br> con precios detallados y respuesta inmediata.”</p>
+             <p class="subtitle">“Cotiza en línea merchandising corporativo personalizado: precios detallados y respuesta inmediata en solo 2 minutos.”</p>
 
         <div class="cta-img">
           <a href="cotizador.html"><img class="cta-icon" src="assets/img/logo_mod.png" alt=""></a>
@@ -510,30 +534,13 @@
         </div>
       </section>
       <!-- BLOQUE 2 -->
+       
       <section class="block">
-        <h2 id="como-funciona"><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span>CÓMO FUNCIONA<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span> <br> <span class="highlight">Kado Merch on Demand</span></h2>
+        <h2 id="como-funciona"><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span>¿ QUÉ PUEDES ACELERAR Y COTIZAR ?<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span> <br> <span class="highlight">Kado Merch on Demand</span></h2>
 
         <p>
-          <span>🧩-🎨</span>Paso 1 – <strong>Elección y diseño de tus productos</strong><br>
-          Selecciona los artículos que necesitas y las cantidades. Sube tu logo en alta calidad. <br><br>
-          <span>📝-💲</span>Paso 2 – <strong>Obtén tu cotización</strong><br>
-          El sistema calcula precios y descuentos por volumen automáticamente. Y envia la cotización de manera instantanea a tu correo.<br><br>
-          <span>✅-🏭</span>Paso 3 – <strong>Confirma y produce</strong><br>
-          Transfieres en monto y una vez confirmado el pago iniciamos con la optimización y el visto bueno de tu diseño. Así comenzamos la producción del pedido .  <br><br>
-          <span>🚚-🎁</span>Paso 4 – <strong>Recibe y disfruta</strong><br>
-          Elije entre recibir tu merchandising a domicilio o retiralo en taller. <br><br>
-          <strong>Nota. </strong> RECUERDA COMPLETAR TODOS LOS DATOS DEL FORMULARIO PARA IDENTIFICAR Y PERSONALIZAR TU COTIZACIÓN. <br><br>
-          Rápido. Sin intermediarios ni retrasos. Sin esperas ni largas llamadas • Selecciona tus productos • Recibe cotización automática y descuentos por volumen • Valida tu solicitud • Recibe tu merchandising donde gustes.
-        </p>
-      </section>
-
-      <!-- BLOQUE 3 -->
-      <section class="block" data-cta="Ver cotización">
-        <h2 class="block-3-4"><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> ¿ Qué podrás cotizar ?<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span></h2>
-        <p>
-        • Todos los productos y kits contenidos en el "Selector de Producto". • También puedes enviarnos un correo si necesitas algun otro en especifico.<strong> <a href="catalogo-kadomod..html" target="_blank"> Nuestro Catálogo.</a> </strong>, te mostrará algunos más solicitados • Y si aun no encuentras lo que quieres, puedes escribirnos tu solicitud especial déjandonos todos los detalles en el área de observación • Te haremnos llegar una cotización actualizada.
-        </p>
-        <section class="galeria-de-trabajos">
+          • Nuestro selector automático te ofrece el TOP-10 de los productos y kits corporativos más solicitados y emblemáticos. • Si deseas incluir algún otro artículo, selecciona la opción final <strong>"Otros productos"</strong> y detalla toda la información que gustes en la caja de comentarios adicionales. • Ponemos a tu disposición nuestro <strong> <a href="catalogo-kadomod..html" target="_blank">CATÁLOGO</a> </strong> con una amplia y diversa variedad de elementos y regalos corporativos adaptados a distintos tipos de eventos, rubros, estilos y presupuestos.
+          <section class="galeria-de-trabajos">
           <div class="gal">
             <a class="ktis-corporativos galeria-2" href="#"><img src="assets/img/Kit Corporativo 3.jpg" alt="Kits Corporativos"></a><br>
             <span>"Kits Corporativos"</span>
@@ -549,12 +556,30 @@
         </section>
       </section>
 
+      <!-- BLOQUE 3 -->
+      <section class="block" data-cta="Ver cotización">
+        <h2 class="block-3-4"><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt="">¿ CÓMO FUNCIONA ? <span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span></h2>
+        <p>
+          <span>🧩-🎨</span>Paso 1 – <strong>Elección y diseño de tus productos</strong><br>
+          Selecciona los artículos que necesitas y las cantidades. Sube tu logo en alta calidad. <br><br>
+          <span>📝-💲</span>Paso 2 – <strong>Obtén tu cotización</strong><br>
+          El sistema calcula precios y descuentos por volumen automáticamente. Y envia la cotización de manera instantanea a tu correo.<br><br>
+          <span>✅-🏭</span>Paso 3 – <strong>Confirma y produce</strong><br>
+          Transfieres en monto y una vez confirmado el pago iniciamos con la optimización y el visto bueno de tu diseño. Así comenzamos la producción del pedido .  <br><br>
+          <span>🚚-🎁</span>Paso 4 – <strong>Recibe y disfruta</strong><br>
+          Elije entre recibir tu merchandising a domicilio o retiralo en taller. <br><br>
+          <strong>Nota. </strong> RECUERDA COMPLETAR TODOS LOS DATOS DEL FORMULARIO PARA IDENTIFICAR Y PERSONALIZAR TU COTIZACIÓN. <br><br>
+          Rápido. Sin intermediarios ni retrasos. Sin esperas ni largas llamadas • Selecciona tus productos • Recibe cotización automática y descuentos por volumen • Valida tu solicitud • Recibe tu merchandising donde gustes.
+        </p>
+      
+      </section>
+
       <!-- BLOQUE 4 -->
       <section class="block">
-        <h2 class="block-3-4"><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> Confianza silenciosa<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span></h2>
+        <h2  class="block-3-4"><span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> Confianza silenciosa<span> <img class="logo-h2" src="assets/img/logo_mod_2.png" alt=""> </span></h2>
         <p>
           • Sistema automatizado • Trazabilidad completa • Pedido revisado y verificado antes de fabricación • Comunicación directa por correo y WhatsApp hasta finalizar todo el proceso. <br><br>
-          ¿Listo para cotizar tu merchandising corporativo? <br><br><hr>
+          ¿Listo para cotizar tu Merchandising Corporativo? <br><br><hr>
           <a href="cotizador.html" class=""><img class="cta-icon" src="assets/img/logo_mod_1.png" alt=""></a> <br>
           <a href="cotizador.html" class="cta cta-final">Iniciar cotización</a>
         </p>
