@@ -318,6 +318,465 @@
         font-size: 22px;
       }
     }
+
+    /* ========== MODAL DE PRODUCTO ========== */
+.product-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.product-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  width: 92%;
+  max-width: 920px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  transform: scale(0.92);
+  transition: transform 0.3s ease;
+}
+
+.product-modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  line-height: 1;
+  color: #64748b;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #1a2744;
+}
+
+.modal-body {
+  display: flex;
+  gap: 36px;
+  padding: 36px;
+}
+
+/* Columna izquierda - Imágenes */
+.modal-images {
+  flex: 0 0 42%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.main-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f1f5f9;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.thumbnails {
+  display: flex;
+  gap: 10px;
+}
+
+.thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: #f1f5f9;
+  transition: border-color 0.2s, opacity 0.2s;
+  opacity: 0.7;
+}
+
+.thumb:hover,
+.thumb.active {
+  border-color: #e67e22;
+  opacity: 1;
+}
+
+/* Columna derecha - Info */
+.modal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a2744;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.modal-code {
+  font-size: 14px;
+  color: #e67e22;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.modal-description {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: 28px;
+  flex-grow: 1;
+}
+
+/* Selector de cantidad */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.quantity-selector label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a2744;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  background: #f8fafc;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #1a2744;
+  transition: background 0.2s;
+}
+
+.qty-btn:hover {
+  background: #e2e8f0;
+}
+
+#qtyInput {
+  width: 56px;
+  height: 40px;
+  border: none;
+  border-left: 1px solid #cbd5e1;
+  border-right: 1px solid #cbd5e1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a2744;
+  outline: none;
+}
+
+/* Botón ADD */
+.btn-add {
+  background: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.15s;
+  width: 100%;
+  max-width: 280px;
+}
+
+.btn-add:hover {
+  background: #d35400;
+}
+
+.btn-add:active {
+  transform: scale(0.98);
+}
+
+/* Responsive del modal */
+@media (max-width: 768px) {
+  .modal-body {
+    flex-direction: column;
+    padding: 24px 20px;
+    gap: 24px;
+  }
+
+  .modal-images {
+    flex: none;
+  }
+
+  .modal-title {
+    font-size: 22px;
+  }
+
+  .btn-add {
+    max-width: 100%;
+  }
+}
+
+/* ========== LISTA DE COTIZACIÓN ========== */
+.quote-list {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  z-index: 1500;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* Estado plegado */
+.quote-list.collapsed .quote-body {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.quote-list.collapsed .quote-toggle {
+  transform: rotate(180deg);
+}
+
+.quote-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #1a2744;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.quote-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.quote-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  padding: 4px;
+}
+
+.quote-body {
+  max-height: 340px;
+  overflow-y: auto;
+  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+  padding: 12px 0;
+}
+
+.quote-items {
+  list-style: none;
+  margin: 0;
+  padding: 0 14px;
+}
+
+.quote-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 13px;
+}
+
+.quote-items li:last-child {
+  border-bottom: none;
+}
+
+.quote-item-info {
+  flex: 1;
+}
+
+.quote-item-name {
+  font-weight: 600;
+  color: #1a2744;
+  margin-bottom: 2px;
+}
+
+.quote-item-code {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.quote-item-qty {
+  font-weight: 700;
+  color: #e67e22;
+  white-space: nowrap;
+}
+
+.quote-empty {
+  text-align: center;
+  padding: 20px 16px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* ========== PRODUCTO YA AGREGADO ========== */
+.product-bar.selected {
+  background-color: #1a2744;   /* azul de la marca */
+  position: relative;
+}
+
+.product-bar.selected .name,
+.product-bar.selected .price {
+  opacity: 0.9;
+}
+
+.product-bar.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 700;
+  color: #4ade80;              /* check verde */
+}
+
+/* ========== SELECTOR DE COLOR ========== */
+.color-selector {
+  margin-bottom: 22px;
+}
+
+.color-selector label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a2744;
+  margin-bottom: 10px;
+}
+
+.color-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.color-option {
+  padding: 8px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.color-option:hover {
+  border-color: #e67e22;
+  color: #1a2744;
+}
+
+.color-option.selected {
+  border-color: #e67e22;
+  background: #e67e22;
+  color: white;
+}
+
+/* ========== CANTIDAD EDITABLE EN LA LISTA ========== */
+.quote-item-qty-input {
+  width: 52px;
+  height: 28px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e67e22;
+  outline: none;
+}
+
+.quote-item-qty-input:focus {
+  border-color: #e67e22;
+}
+
+.quote-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quote-item-remove {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.quote-item-remove:hover {
+  background: #dc2626;
+  color: white;
+}
+
   </style>
 </head>
 <body>
@@ -340,11 +799,11 @@
 
       <!-- Fila 1 -->
       <div class="products-grid">
-        <div class="product-card">
+        <div class="product-card" data-id="prod-001">
           <div class="product-image"></div>
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Bolígrafo Metálico</span>
+            <span class="price">BOL-MET-001</span>
           </div>
         </div>
         <div class="product-card">
@@ -851,6 +1310,435 @@
       </div>
     </div>
   </footer>
+
+  <!-- ========== LISTA DE COTIZACIÓN ========== -->
+<div class="quote-list" id="quoteList">
+  <div class="quote-header" id="quoteHeader">
+    <span class="quote-title">Cotización <span id="quoteCount">(0)</span></span>
+    <button class="quote-toggle" id="quoteToggle">▲</button>
+  </div>
+  <div class="quote-body" id="quoteBody">
+    <ul class="quote-items" id="quoteItems">
+      <!-- Los productos se insertan aquí dinámicamente -->
+    </ul>
+    <div class="quote-empty" id="quoteEmpty">Aún no has agregado productos</div>
+  </div>
+</div>
+
+<!-- ========== MODAL DE PRODUCTO ========== -->
+<div class="product-modal" id="productModal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">&times;</button>
+
+    <div class="modal-body">
+      <!-- Izquierda: Imágenes -->
+      <div class="modal-images">
+        <div class="main-image-wrapper">
+          <img src="" alt="" class="main-image" id="modalMainImage">
+        </div>
+        <div class="thumbnails">
+          <img src="" alt="" class="thumb active" data-index="0">
+          <img src="" alt="" class="thumb" data-index="1">
+          <img src="" alt="" class="thumb" data-index="2">
+        </div>
+      </div>
+
+      <!-- Derecha: Información -->
+      <div class="modal-info">
+        <h2 class="modal-title" id="modalTitle">Nombre del producto</h2>
+        <p class="modal-code" id="modalCode">Código: XXX-000</p>
+        <p class="modal-description" id="modalDescription">
+          Descripción detallada del producto...
+        </p>
+
+        <!-- Selector de color (se muestra solo si el producto tiene colores) -->
+        <div class="color-selector" id="colorSelector" style="display: none;">
+          <label>Color:</label>
+          <div class="color-options" id="colorOptions">
+            <!-- Se llenan dinámicamente -->
+          </div>
+        </div>
+
+        <div class="quantity-selector">
+          <label>Cantidad:</label>
+          <div class="qty-controls">
+            <button type="button" class="qty-btn" id="qtyMinus">−</button>
+            <input type="number" id="qtyInput" value="1" min="1" max="999">
+            <button type="button" class="qty-btn" id="qtyPlus">+</button>
+          </div>
+        </div>
+
+        <button class="btn-add" id="btnAdd">ADD</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ============================================
+  //  BASE DE DATOS DE PRODUCTOS
+  //  - Si el producto TIENE colores → agrega el array "colors"
+  //  - Si NO tiene colores → omite la propiedad "colors"
+  // ============================================
+  const productsData = {
+    "prod-001": {
+      name: "Bolígrafo Metálico Premium",
+      code: "BOL-MET-001",
+      description: "Bolígrafo de aluminio de alta calidad con grabado láser incluido. Tinta azul de larga duración.",
+      images: [
+        "img/productos/boligrafo-1.jpg",
+        "img/productos/boligrafo-2.jpg",
+        "img/productos/boligrafo-3.jpg"
+      ],
+      colors: ["Plata", "Negro", "Azul"]
+    },
+    "prod-002": {
+      name: "Mug Cerámico 11oz",
+      code: "MUG-CER-011",
+      description: "Taza de cerámica de 11 onzas, apta para sublimación. Apta para microondas y lavavajillas.",
+      images: [
+        "img/productos/mug-1.jpg",
+        "img/productos/mug-2.jpg",
+        "img/productos/mug-3.jpg"
+      ],
+      colors: ["Blanco", "Negro", "Azul", "Rojo"]
+    },
+    "prod-003": {
+      name: "Libreta Ejecutiva A5",
+      code: "LIB-A5-001",
+      description: "Libreta de tapa dura con 80 hojas rayadas. Ideal para regalo corporativo.",
+      images: [
+        "img/productos/libreta-1.jpg",
+        "img/productos/libreta-2.jpg",
+        "img/productos/libreta-3.jpg"
+      ]
+      // Sin colores
+    }
+  };
+
+  // ============================================
+  //  ESTADO
+  // ============================================
+  let quoteItems = [];
+  let collapseTimer = null;
+  let currentProductId = null;
+  let selectedColor = null;
+
+  // ============================================
+  //  ELEMENTOS DEL DOM
+  // ============================================
+  const modal         = document.getElementById('productModal');
+  const modalClose    = document.getElementById('modalClose');
+  const modalOverlay  = modal.querySelector('.modal-overlay');
+  const mainImage     = document.getElementById('modalMainImage');
+  const thumbs        = modal.querySelectorAll('.thumb');
+  const modalTitle    = document.getElementById('modalTitle');
+  const modalCode     = document.getElementById('modalCode');
+  const modalDesc     = document.getElementById('modalDescription');
+  const qtyInput      = document.getElementById('qtyInput');
+  const qtyMinus      = document.getElementById('qtyMinus');
+  const qtyPlus       = document.getElementById('qtyPlus');
+  const btnAdd        = document.getElementById('btnAdd');
+
+  const colorSelector = document.getElementById('colorSelector');
+  const colorOptions  = document.getElementById('colorOptions');
+
+  const quoteList     = document.getElementById('quoteList');
+  const quoteHeader   = document.getElementById('quoteHeader');
+  const quoteItemsEl  = document.getElementById('quoteItems');
+  const quoteEmpty    = document.getElementById('quoteEmpty');
+  const quoteCount    = document.getElementById('quoteCount');
+
+  // ============================================
+  //  UTILIDAD
+  // ============================================
+  function getItemKey(id, color) {
+    return color ? `${id}__${color}` : id;
+  }
+
+  // ============================================
+  //  ABRIR / CERRAR MODAL
+  // ============================================
+  function openModal(productId) {
+    const product = productsData[productId];
+    if (!product) {
+      console.warn('Producto no encontrado:', productId);
+      return;
+    }
+
+    currentProductId = productId;
+    selectedColor = null;
+
+    modalTitle.textContent = product.name;
+    modalCode.textContent  = `Código: ${product.code}`;
+    modalDesc.textContent  = product.description;
+
+    mainImage.src = product.images[0] || '';
+    mainImage.alt = product.name;
+
+    thumbs.forEach((thumb, i) => {
+      thumb.src = product.images[i] || product.images[0] || '';
+      thumb.classList.toggle('active', i === 0);
+    });
+
+    renderColorOptions(product);
+
+    qtyInput.value = 1;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    currentProductId = null;
+    selectedColor = null;
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // ============================================
+  //  SELECTOR DE COLOR
+  // ============================================
+  function renderColorOptions(product) {
+    colorOptions.innerHTML = '';
+
+    if (!product.colors || product.colors.length === 0) {
+      colorSelector.style.display = 'none';
+      selectedColor = null;
+      return;
+    }
+
+    colorSelector.style.display = 'block';
+
+    product.colors.forEach((color, index) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'color-option';
+      btn.textContent = color;
+
+      if (index === 0) {
+        btn.classList.add('selected');
+        selectedColor = color;
+      }
+
+      btn.addEventListener('click', () => {
+        colorOptions.querySelectorAll('.color-option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedColor = color;
+      });
+
+      colorOptions.appendChild(btn);
+    });
+  }
+
+  // ============================================
+  //  CARRUSEL DE MINIATURAS
+  // ============================================
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const product = productsData[currentProductId];
+      if (!product) return;
+      mainImage.src = product.images[thumb.dataset.index] || product.images[0];
+      thumbs.forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    });
+  });
+
+  // ============================================
+  //  SELECTOR DE CANTIDAD (modal)
+  // ============================================
+  qtyMinus.addEventListener('click', () => {
+    let val = parseInt(qtyInput.value) || 1;
+    if (val > 1) qtyInput.value = val - 1;
+  });
+
+  qtyPlus.addEventListener('click', () => {
+    let val = parseInt(qtyInput.value) || 1;
+    if (val < 999) qtyInput.value = val + 1;
+  });
+
+  // ============================================
+  //  LISTA DE COTIZACIÓN
+  // ============================================
+  function updateQuoteList() {
+    quoteItemsEl.innerHTML = '';
+
+    if (quoteItems.length === 0) {
+      quoteEmpty.style.display = 'block';
+      quoteCount.textContent = '(0)';
+      return;
+    }
+
+    quoteEmpty.style.display = 'none';
+    quoteCount.textContent = `(${quoteItems.length})`;
+
+    quoteItems.forEach((item) => {
+      const li = document.createElement('li');
+      const key = getItemKey(item.id, item.color);
+      const colorText = item.color ? ` · ${item.color}` : '';
+
+      li.innerHTML = `
+        <div class="quote-item-info">
+          <div class="quote-item-name">${item.name}${colorText}</div>
+          <div class="quote-item-code">${item.code}</div>
+        </div>
+        <div class="quote-item-actions">
+          <input type="number"
+                 class="quote-item-qty-input"
+                 value="${item.quantity}"
+                 min="1"
+                 max="999"
+                 data-key="${key}">
+          <button type="button" class="quote-item-remove" data-key="${key}" title="Eliminar">✕</button>
+        </div>
+      `;
+      quoteItemsEl.appendChild(li);
+    });
+
+    // Eventos de cantidad
+    document.querySelectorAll('.quote-item-qty-input').forEach(input => {
+      input.addEventListener('change', handleQuantityChange);
+    });
+
+    // Eventos de eliminar
+    document.querySelectorAll('.quote-item-remove').forEach(btn => {
+      btn.addEventListener('click', handleRemoveItem);
+    });
+  }
+
+  function handleQuantityChange(e) {
+    const key = e.target.dataset.key;
+    let value = parseInt(e.target.value);
+
+    if (isNaN(value) || value < 1) value = 1;
+    if (value > 999) value = 999;
+
+    e.target.value = value;
+
+    const item = quoteItems.find(item => getItemKey(item.id, item.color) === key);
+    if (item) {
+      item.quantity = value;
+    }
+  }
+
+  function handleRemoveItem(e) {
+    const key = e.currentTarget.dataset.key;
+    const index = quoteItems.findIndex(item => getItemKey(item.id, item.color) === key);
+
+    if (index === -1) return;
+
+    const removed = quoteItems.splice(index, 1)[0];
+    updateProductCardState(removed.id);
+    updateQuoteList();
+  }
+
+  function showQuoteListTemporarily() {
+    quoteList.classList.remove('collapsed');
+
+    if (collapseTimer) clearTimeout(collapseTimer);
+
+    collapseTimer = setTimeout(() => {
+      quoteList.classList.add('collapsed');
+    }, 4000);
+  }
+
+  function updateProductCardState(productId) {
+    const stillInList = quoteItems.some(item => item.id === productId);
+    const card = document.querySelector(`.product-card[data-id="${productId}"]`);
+    if (!card) return;
+
+    const bar = card.querySelector('.product-bar');
+    if (!bar) return;
+
+    if (stillInList) {
+      bar.classList.add('selected');
+    } else {
+      bar.classList.remove('selected');
+    }
+  }
+
+  // ============================================
+  //  BOTÓN ADD
+  // ============================================
+  btnAdd.addEventListener('click', () => {
+    const product = productsData[currentProductId];
+    const quantity = parseInt(qtyInput.value) || 1;
+    if (!product) return;
+
+    if (product.colors && product.colors.length > 0 && !selectedColor) {
+      alert('Por favor selecciona un color');
+      return;
+    }
+
+    const color = selectedColor || null;
+    const key = getItemKey(currentProductId, color);
+
+    const existing = quoteItems.find(item => getItemKey(item.id, item.color) === key);
+
+    if (existing) {
+      existing.quantity += quantity;
+    } else {
+      quoteItems.push({
+        id: currentProductId,
+        name: product.name,
+        code: product.code,
+        color: color,
+        quantity: quantity
+      });
+    }
+
+    updateQuoteList();
+    updateProductCardState(currentProductId);
+    showQuoteListTemporarily();
+
+    // Feedback del botón
+    btnAdd.textContent = '✓ AGREGADO';
+    btnAdd.style.background = '#16a34a';
+
+    setTimeout(() => {
+      btnAdd.textContent = 'ADD';
+      btnAdd.style.background = '';
+      closeModal();
+    }, 800);
+  });
+
+  // ============================================
+  //  TOGGLE DE LA LISTA
+  // ============================================
+  quoteHeader.addEventListener('click', () => {
+    quoteList.classList.toggle('collapsed');
+    if (collapseTimer) {
+      clearTimeout(collapseTimer);
+      collapseTimer = null;
+    }
+  });
+
+  // ============================================
+  //  CLICK EN TARJETAS
+  // ============================================
+  document.querySelectorAll('.product-card').forEach((card, index) => {
+    if (!card.dataset.id) {
+      card.dataset.id = `prod-${String(index + 1).padStart(3, '0')}`;
+    }
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => openModal(card.dataset.id));
+  });
+
+  // ============================================
+  //  INICIAR
+  // ============================================
+  quoteList.classList.add('collapsed');
+  updateQuoteList();
+</script>
 
 </body>
 </html>
