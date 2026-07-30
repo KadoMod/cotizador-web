@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KadoMod - Artículos de Oficina</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f5f5f5;
+      color: #1a1a2e;
+      /* Evita scroll horizontal */
+      overflow-x: hidden;
+    }
+
+    /* ========== HEADER FIJO ========== */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: #1a2744;
+      color: white;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 17px;
+      font-weight: 500;
+      height: 45px;
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-1 {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .logo-2 {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+
+    /* ========== ZONA DE PRODUCTOS (SCROLLABLE) ========== */
+    .products-area {
+      /* Espacio superior = altura del header */
+      padding-top: 30px;
+      /* Espacio inferior = altura del catálogo + footer */
+      padding-bottom: 320px;
+      min-height: 100vh;
+
+      /* Fondo patrón siempre visible */
+      background-image: url('assets/img/logo_opac.png');
+      background-repeat: repeat;
+      background-size: 70px;
+      background-color: #f8f8f8;
+      background-attachment: fixed; /* el patrón no se mueve al hacer scroll */
+    }
+
+    .category-block {
+      padding: 40px 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a2744;
+      letter-spacing: 1px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    .products-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 160px;
+    }
+
+    .product-image {
+      width: 160px;
+      height: 160px;
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      border-radius: 4px;
+      object-fit: cover;
+      /* Cuando pongas la imagen real, usa <img class="product-image" src="..."> */
+    }
+
+    .product-bar {
+      width: 100%;
+      min-height: 42px;
+      background-color: #e67e22;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      margin-top: 10px;
+      border-radius: 7px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 8px;
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .product-bar .name {
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .product-bar .price {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    /* ========== CATÁLOGO FIJO ========== */
+    .catalog-section {
+  position: fixed;
+  bottom: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 94%;
+  max-width: 980px;
+  z-index: 900;
+  padding: 20px 28px 24px;
+  border-radius: 14px;
+
+  /* ===== GLASSMORPHISM AVANZADO ===== */
+ background: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 100%);
+ 
+ backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+
+  /* Borde vidrio */
+  border: 1px solid rgba(255, 255, 255, 0.55);
+
+  /* Sombra suave + profundidad */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+    .catalog-title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #e67e22;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .catalog-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .catalog-item {
+      flex: 1;
+      height: 90px;
+      background-color: #1a2744;
+      border-radius: 4px;
+    }
+
+    /* ========== FOOTER FIJO ========== */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: #1a2744;
+      color: white;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      height: 110px;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-3 {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 300;
+      color: #a0aec0;
+    }
+
+    .footer-center {
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.45;
+      color: #cbd5e0;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .footer-email {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .footer-email img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    .footer-email a {
+      color: #cbd5e0;
+      text-decoration: none;
+    }
+
+    .footer-email a:hover {
+      color: #e67e22;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .icon-instagram,
+    .icon-whatsapp,
+    .icon-linkedin {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .catalog-section {
+        bottom: 130px;
+        padding: 16px 18px 18px;
+      }
+      .catalog-item {
+        height: 70px;
+      }
+      .footer {
+        height: auto;
+        padding: 16px 20px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+      .footer-right {
+        align-items: center;
+      }
+      .products-area {
+        padding-bottom: 360px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-card, .product-image {
+        width: 140px;
+      }
+      .product-image {
+        height: 140px;
+      }
+      .category-block {
+        padding: 30px 16px 10px;
+      }
+      .section-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== BARRA SUPERIOR FIJA ========== -->
+  <header class="top-bar">
+    <div class="top-bar-left">
+      <img src="assets/img/logo_mod_1.png" alt="Logo KadoMod" class="logo-1">
+    </div>
+    <p>Encuentra aquí todos los productos y kit para tu evento.</p>
+    <img src="assets/img/icono_home_bicolor.png" alt="Inicio" class="logo-2">
+  </header>
+
+  <!-- ========== ZONA DE PRODUCTOS (SCROLLABLE) ========== -->
+  <main class="products-area">
+
+    <!-- ========== CATEGORÍA 1 ========== -->
+    <div class="category-block">
+      <h2 class="section-title">Artículos de Oficina</h2>
+
+      <!-- Fila 1 -->
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== CATEGORÍA 2 ========== -->
+    <div class="category-block">
+      <h2 class="section-title">Mugs y Botellas</h2>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== CATEGORÍA 3 ========== -->
+    <div class="category-block">
+      <h2 class="section-title">Textil y Vestuario</h2>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== CATEGORÍA 4 ========== -->
+    <div class="category-block">
+      <h2 class="section-title">Tecnología y USB</h2>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== CATEGORÍA 5 ========== -->
+    <div class="category-block">
+      <h2 class="section-title">Kits y Sets Corporativos</h2>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-bar">
+            <span class="name">Nombre producto</span>
+            <span class="price">$0.000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========== CATÁLOGO FIJO ========== -->
+  <section class="catalog-section">
+    <h2 class="catalog-title">Catálogo de Merchandising 2026</h2>
+    <div class="catalog-grid">
+      <div class="catalog-item"></div>
+      <div class="catalog-item"></div>
+      <div class="catalog-item"></div>
+      <div class="catalog-item"></div>
+      <div class="catalog-item"></div>
+      <div class="catalog-item"></div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER FIJO ========== -->
+  <footer class="footer">
+    <div class="footer-left">
+      <img src="assets/img/KadoMod_Yellow_WhiteVersion.png" alt="KadoMod" class="logo-3">
+      <span class="footer-tagline">Merchandising Corporativo On Demand</span>
+    </div>
+
+    <div class="footer-center">
+      © 2026 KadoMod — Merchandising Corporativo - by Lenin Rodriguez.<br>
+      Todos los derechos reservados.<br>
+      <strong>telf.+569 41411387</strong>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-email">
+        <img src="assets/img/icono_email.png" alt="Email">
+        <a href="mailto:cotizaciones@kadomod.com">cotizaciones@kadomod.com</a>
+      </div>
+      <div class="social-icons">
+        <img src="assets/img/instagram.png" alt="Instagram" class="icon-instagram">
+        <img src="assets/img/WhatsApp_icon.png" alt="WhatsApp" class="icon-whatsapp">
+        <img src="assets/img/linkedin.png" alt="LinkedIn" class="icon-linkedin">
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
