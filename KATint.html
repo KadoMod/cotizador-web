@@ -777,6 +777,33 @@
   color: white;
 }
 
+    .catalog-item {
+  flex: 1;
+  height: 90px;
+  background-color: #1a2744;
+  border-radius: 4px;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.catalog-item:hover {
+  background-color: #e67e22;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Scroll suave en toda la página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Compensar la barra superior fija al hacer scroll */
+.category-block {
+  scroll-margin-top: 35px;
+}
+    
   </style>
 </head>
 <body>
@@ -794,7 +821,7 @@
   <main class="products-area">
 
     <!-- ========== CATEGORÍA 1 ========== -->
-    <div class="category-block">
+    <div class="category-block" id="categoria-oficina">
       <h2 class="section-title">Artículos de Oficina</h2>
 
       <!-- Fila 1 -->
@@ -891,7 +918,7 @@
     </div>
 
     <!-- ========== CATEGORÍA 2 ========== -->
-    <div class="category-block">
+    <div class="category-block" id="categoria-mugs">
       <h2 class="section-title">Mugs y Botellas</h2>
 
       <div class="products-grid">
@@ -986,7 +1013,7 @@
     </div>
 
     <!-- ========== CATEGORÍA 3 ========== -->
-    <div class="category-block">
+    <div class="category-block" id="categoria-textil">
       <h2 class="section-title">Textil y Vestuario</h2>
 
       <div class="products-grid">
@@ -1081,7 +1108,7 @@
     </div>
 
     <!-- ========== CATEGORÍA 4 ========== -->
-    <div class="category-block">
+    <div class="category-block" id="categoria-tecnologia">
       <h2 class="section-title">Tecnología y USB</h2>
 
       <div class="products-grid">
@@ -1176,7 +1203,7 @@
     </div>
 
     <!-- ========== CATEGORÍA 5 ========== -->
-    <div class="category-block">
+    <div class="category-block" id="categoria-kits">
       <h2 class="section-title">Kits y Sets Corporativos</h2>
 
       <div class="products-grid">
@@ -1276,12 +1303,12 @@
   <section class="catalog-section">
     <h2 class="catalog-title">Catálogo de Merchandising 2026</h2>
     <div class="catalog-grid">
-      <div class="catalog-item"></div>
-      <div class="catalog-item"></div>
-      <div class="catalog-item"></div>
-      <div class="catalog-item"></div>
-      <div class="catalog-item"></div>
-      <div class="catalog-item"></div>
+      <a href="#categoria-oficina" class="catalog-item" title="Artículos de Oficina"></a>
+      <a href="#categoria-mugs" class="catalog-item" title="Mugs y Botellas"></a>
+      <a href="#categoria-textil" class="catalog-item" title="Textil y Vestuario"></a>
+      <a href="#categoria-tecnologia" class="catalog-item" title="Tecnología y USB"></a>
+      <a href="#categoria-kits" class="catalog-item" title="Kits y Sets Corporativos"></a>
+      <a href="#categoria-oficina" class="catalog-item" title="Otra categoría"></a>
     </div>
   </section>
 
