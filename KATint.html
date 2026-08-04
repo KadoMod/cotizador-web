@@ -777,7 +777,7 @@
   color: white;
 }
 
-    .catalog-item {
+.catalog-item {
   flex: 1;
   height: 90px;
   background-color: #1a2744;
@@ -803,7 +803,7 @@ html {
 .category-block {
   scroll-margin-top: 35px;
 }
-    
+
   </style>
 </head>
 <body>
@@ -822,26 +822,26 @@ html {
 
     <!-- ========== CATEGORÍA 1 ========== -->
     <div class="category-block" id="categoria-oficina">
-      <h2 class="section-title">Artículos de Oficina</h2>
+      <h2 class="section-title">Artículos Destacados</h2>
 
       <!-- Fila 1 -->
       <div class="products-grid">
         <div class="product-card" data-id="prod-001">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/set_wine&cheese_B89.jpg" alt="SET_WINE & CHESE" class="product-image">
           <div class="product-bar">
-            <span class="name">Bolígrafo Metálico</span>
-            <span class="price">BOL-MET-001</span>
+            <span class="name">SET_WINE & CHESE</span>
+            <span class="price">B89</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/set_cóctel_cobre_M66.jpg" alt="SET_COCTELERA_COBRE" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">SET_COCTELERA_COBRE</span>
+            <span class="price">M66</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <div class="product-image"></div>  <!-- CAMBIAR PARA AGREGAR IMAGEN ASI:    <img src="" alt="" class="product-image"> -->
           <div class="product-bar">
             <span class="name">Nombre producto</span>
             <span class="price">$0.000</span>
@@ -1364,10 +1364,8 @@ html {
         <div class="main-image-wrapper">
           <img src="" alt="" class="main-image" id="modalMainImage">
         </div>
-        <div class="thumbnails">
-          <img src="" alt="" class="thumb active" data-index="0">
-          <img src="" alt="" class="thumb" data-index="1">
-          <img src="" alt="" class="thumb" data-index="2">
+        <div class="thumbnails" id="modalThumbnails">
+  <!-- Las miniaturas se generan automáticamente según cada producto -->
         </div>
       </div>
 
@@ -1413,23 +1411,23 @@ html {
       name: "Bolígrafo Metálico Premium",
       code: "BOL-MET-001",
       description: "Bolígrafo de aluminio de alta calidad con grabado láser incluido. Tinta azul de larga duración.",
-      images: [
-        "img/productos/boligrafo-1.jpg",
+      images: [   
+        "img/productos/libreta-1.jpg",
         "img/productos/boligrafo-2.jpg",
         "img/productos/boligrafo-3.jpg"
       ],
       colors: ["Plata", "Negro", "Azul"]
     },
     "prod-002": {
-      name: "Mug Cerámico 11oz",
-      code: "MUG-CER-011",
-      description: "Taza de cerámica de 11 onzas, apta para sublimación. Apta para microondas y lavavajillas.",
+      name: "SET_COCTELERA_COBRE",
+      code: "M66",
+      description: "Fino regalo set de cóctel 5-en-1 de Acero inoxidale 304 SS, en acabado color cobre, incluye: coctelera 700ml con tapa 22cm, vaso dosificador doble (jugger) 8.3cm, tenazas para hielo 16cm, cuchara-tenedor revolvedor 23cm, colador/batidor 19cm. Producto BPA FREE, para el contacto con líquidos y alimentos. Capacidad coctelera 700ml. Presentación en caja de regalo de cartón laminado negro.",
       images: [
-        "img/productos/mug-1.jpg",
-        "img/productos/mug-2.jpg",
-        "img/productos/mug-3.jpg"
+        "assets/img/catalogo_interactivo/set_cóctel_cobre_M66.jpg",
+        "assets/img/catalogo_interactivo/set_cóctel_cobre2_M66.jpg",
+        "assets/img/catalogo_interactivo/set_cóctel_cobre3_M66.jpg",
+        "assets/img/catalogo_interactivo/set_cóctel_cobre4_M66.jpg"
       ],
-      colors: ["Blanco", "Negro", "Azul", "Rojo"]
     },
     "prod-003": {
       name: "Libreta Ejecutiva A5",
@@ -1437,8 +1435,7 @@ html {
       description: "Libreta de tapa dura con 80 hojas rayadas. Ideal para regalo corporativo.",
       images: [
         "img/productos/libreta-1.jpg",
-        "img/productos/libreta-2.jpg",
-        "img/productos/libreta-3.jpg"
+        "img/productos/libreta-2.jpg"
       ]
       // Sin colores
     }
@@ -1459,7 +1456,7 @@ html {
   const modalClose    = document.getElementById('modalClose');
   const modalOverlay  = modal.querySelector('.modal-overlay');
   const mainImage     = document.getElementById('modalMainImage');
-  const thumbs        = modal.querySelectorAll('.thumb');
+  const thumbsContainer = document.getElementById('modalThumbnails');
   const modalTitle    = document.getElementById('modalTitle');
   const modalCode     = document.getElementById('modalCode');
   const modalDesc     = document.getElementById('modalDescription');
@@ -1488,33 +1485,50 @@ html {
   //  ABRIR / CERRAR MODAL
   // ============================================
   function openModal(productId) {
-    const product = productsData[productId];
-    if (!product) {
-      console.warn('Producto no encontrado:', productId);
-      return;
-    }
+  const product = productsData[productId];
+  if (!product) {
+    console.warn('Producto no encontrado:', productId);
+    return;
+  }
 
-    currentProductId = productId;
-    selectedColor = null;
+  currentProductId = productId;
+  selectedColor = null;
 
-    modalTitle.textContent = product.name;
-    modalCode.textContent  = `Código: ${product.code}`;
-    modalDesc.textContent  = product.description;
+  modalTitle.textContent = product.name;
+  modalCode.textContent  = `Código: ${product.code}`;
+  modalDesc.textContent  = product.description;
 
-    mainImage.src = product.images[0] || '';
-    mainImage.alt = product.name;
+  // Imagen principal
+  const images = product.images || [];
+  mainImage.src = images[0] || '';
+  mainImage.alt = product.name;
 
-    thumbs.forEach((thumb, i) => {
-      thumb.src = product.images[i] || product.images[0] || '';
-      thumb.classList.toggle('active', i === 0);
+  // ===== MINIATURAS DINÁMICAS =====
+  thumbsContainer.innerHTML = '';   // limpia las anteriores
+
+  images.forEach((src, index) => {
+    const thumb = document.createElement('img');
+    thumb.src = src;
+    thumb.alt = `${product.name} - imagen ${index + 1}`;
+    thumb.className = 'thumb' + (index === 0 ? ' active' : '');
+    thumb.dataset.index = index;
+
+    thumb.addEventListener('click', () => {
+      mainImage.src = images[index];
+      thumbsContainer.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
     });
 
-    renderColorOptions(product);
+    thumbsContainer.appendChild(thumb);
+  });
 
-    qtyInput.value = 1;
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  // Colores
+  renderColorOptions(product);
+
+  qtyInput.value = 1;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
 
   function closeModal() {
     modal.classList.remove('active');
@@ -1566,19 +1580,6 @@ html {
       colorOptions.appendChild(btn);
     });
   }
-
-  // ============================================
-  //  CARRUSEL DE MINIATURAS
-  // ============================================
-  thumbs.forEach(thumb => {
-    thumb.addEventListener('click', () => {
-      const product = productsData[currentProductId];
-      if (!product) return;
-      mainImage.src = product.images[thumb.dataset.index] || product.images[0];
-      thumbs.forEach(t => t.classList.remove('active'));
-      thumb.classList.add('active');
-    });
-  });
 
   // ============================================
   //  SELECTOR DE CANTIDAD (modal)
