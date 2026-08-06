@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KadoMod - Artículos de Oficina</title>
+  <title>KadoMod - Catálogo Selector</title>
   <style>
     * {
       margin: 0;
@@ -186,13 +186,77 @@
       gap: 12px;
     }
 
-    .catalog-item {
-      flex: 1;
-      height: 90px;
-      background-color: #1a2744;
-      border-radius: 4px;
-    }
+.catalog-item {
+  flex: 1;
+  height: 90px;
+  border-radius: 6px;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
+/* Imagen de fondo de cada cuadro */
+.catalog-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.25s ease;
+}
+
+/* Capa naranja (oculta por defecto) */
+.catalog-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(230, 126, 34, 0.75);   /* naranja semitransparente */
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 1;
+}
+
+/* Texto siempre visible */
+.catalog-item::after {
+  content: attr(data-title);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-shadow:  rgba(230, 126, 34, 0.75);
+  line-height: 1.3;
+  z-index: 2;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: color 0.25s ease;
+}
+
+/* ===== HOVER ===== */
+.catalog-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.catalog-item:hover::before {
+  opacity: 1;                 /* aparece el naranja */
+}
+
+.catalog-item:hover img {
+  opacity: 0.85;              /* la imagen baja un poco de intensidad */
+}
+
+.catalog-item:hover::after {
+  color: white;            
+  text-shadow: none;
+  font-size: 15px;
+}
     /* ========== FOOTER FIJO ========== */
     .footer {
       position: fixed;
@@ -820,8 +884,8 @@ html {
   <!-- ========== ZONA DE PRODUCTOS (SCROLLABLE) ========== -->
   <main class="products-area">
 
-    <!-- ========== CATEGORÍA 1 ========== -->
-    <div class="category-block" id="categoria-oficina">
+    <!-- ========== CATEGORÍA 0 Destacados ========== -->
+    <div class="category-block" id="categoria-Espeiales">
       <h2 class="section-title">Artículos Destacados</h2>
 
       <!-- Fila 1 -->
@@ -841,31 +905,31 @@ html {
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>  <!-- CAMBIAR PARA AGREGAR IMAGEN ASI:    <img src="" alt="" class="product-image"> -->
+          <img src="assets/img/catalogo_interactivo/set_regalo_termo+mug_S48.jpg" alt="SET_TERMO Y MUG" class="product-image">  <!-- CAMBIAR PARA AGREGAR IMAGEN ASI:    <img src="" alt="" class="product-image"> -->
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">SET DE REGALO_ TERMO Y MUG</span>
+            <span class="price">S48</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/termo_smart_M39.jpg" alt="TERMO SMART" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">TERMO SMART</span>
+            <span class="price">M39</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/set_ejecutivo_escritorio_N82.jpg" alt="SET_EJECUTIVO_ESCRITORIO" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">SET_EJECUTIVO_ESCRITORIO</span>
+            <span class="price">N82</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/set_cobre_moscow_M48.jpg" alt="SET_TAZAS DE COBRE_MOSCOW" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">SET_TAZAS DE COBRE_MOSCOW</span>
+            <span class="price">M48</span>
           </div>
         </div>
       </div>
@@ -873,53 +937,288 @@ html {
       <!-- Fila 2 -->
       <div class="products-grid">
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Mate_M72.jpg" alt="Vaso Térmico MATE 300ml Y Bombilla" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Vaso Térmico MATE 300ml Y Bombilla</span>
+            <span class="price">M72</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/tazon_enlozado_M46.jpg" alt="TAZÓN ENLOZADO" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">TAZÓN ENLOZADO</span>
+            <span class="price">M46</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/tazon_metalico_M70.jpg" alt="TAZÓN METÁLICO O ENCOBRIZADO" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">TAZÓN METÁLICO O ENCOBRIZADO</span>
+            <span class="price">M70</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/coctelera_metalica_M67.jpg" alt="COCTELERA METALICA SILVER O COBRE" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">COCTELER AMETALICA SILVER O COBRE</span>
+            <span class="price">M67</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Botellón Térmico _HYDRA_ 1.2 L_M24.jpg" alt="BOTELLON TÉRMICO HYDRA_1.2 LT" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">BOTELLON TÉRMICO HYDRA_1.2 LT</span>
+            <span class="price">M24</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/descorchador_electrico_W24.jpg" alt="DESCORCHADOR ELÉCTRICO" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">DESCORCHADOR ELÉCTRICO</span>
+            <span class="price">W24</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ========== CATEGORÍA 2 ========== -->
+    <!-- ========== CATEGORÍA 1 Oficina ========== -->
+    <div class="category-block" id="categoria-oficina">
+      <h2 class="section-title">Artículos de Oficina</h2>
+      <!-- Fila 1 -->
+      <div class="products-grid">
+        <div class="product-card" data-id="prod-001">
+          <img src="assets/img/catalogo_interactivo/set_ejecutivo_escritorio0_N82.jpg" alt="SET_EJECUTIVO_ESCRITORIO" class="product-image">
+          <div class="product-bar">
+            <span class="name">SET EJECUTIVO ESCRITORIO</span>
+            <span class="price">N82</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/cuaderno ROMA_ecocuero_tam A5_N100.png" alt="CUADERNO_ROMA" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO ROMA_ECOCUERO</span>
+            <span class="price">N100</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/cuaderno_delux_ecocuero_azul_N97.jpg" alt="CUADERNO_DELUX_ECOCUERO" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO DELUX_ECOCUERO</span>
+            <span class="price">N96 Y N97</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/cuaderno_eco_colors_15x21_n23.jpg" alt="CUADERNO_ECOCOLORS" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO ECOCOLORS</span>
+            <span class="price">N23</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/cuaderno_tapa_dura_colors_con_lapiz_ 13 x 18 _N26.jpg" alt="CUADERNO_TAPA_DURA" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO TAPA DURA</span>
+            <span class="price">N26</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/cuaderno_coorskine_colors_tam_A5_14 x 21_N46.jpg" alt="CUADERNO_COLORSKINE" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO COLORSKINE</span>
+            <span class="price">N46</span>
+          </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/libreta_tel_color_medA5_N74.jpg" alt="CUADERNO_TELA" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO TELA COLORS</span>
+            <span class="price">N74</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/libreta_whiteskine_tamA5_N48.jpg" alt="CUADERNO_WHITESKINE" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO WHITESKINE</span>
+            <span class="price">N48</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/ecolibreta_con_colors_tam9x13x06_N6.jpg" alt="EOLIBRETA_CON_LAPIZ" class="product-image">
+          <div class="product-bar">
+            <span class="name">ECOLIBRETA CON LAPIZ</span>
+            <span class="price">N6</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/Cuaderno Ecológico Compost_N25.jpg" alt="CUADERNO_ECOLÓGICO_COMPOST" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO ECOLÓGICO COMPOST</span>
+            <span class="price">N25</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/SET DE ESCRITOTIO_PLANNER_ALTUS_N28.jpg" alt="SET DE ESCRITOTIO_PLANNER_ALTUS_N28" class="product-image">
+          <div class="product-bar">
+            <span class="name">SET ALTUS_ PLANNER DE ESCRITORIO</span>
+            <span class="price">N28</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/LIBRETA ECOLOGICA_COLORES_N31.jpg" alt="LIBRETA ECOLÓGICA_COLORES" class="product-image">
+          <div class="product-bar">
+            <span class="name">LIBRETA ECOLÓGICA_COLORES</span>
+            <span class="price">N31</span>
+          </div>
+        </div>
+      </div>
+
+       <!-- Fila 3 -->
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/CUADERNO A5_OLD_N90.jpg" alt="CUADERNO A5_OLD" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO A5_OLD</span>
+            <span class="price">N90</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/CUADERNO DELUX _TERMO_CIERRE IMAN_N93.jpg" alt="CUADERNO DELUX TERMO-PU_CON CIERRE IMANTADO" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO DELUX CON CIERRE IMANTADO</span>
+            <span class="price">N93</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/AGENDA TRAVEL JOURNAL_N99.jpg" alt="AGENDA TRAVEL JOURNAL" class="product-image">
+          <div class="product-bar">
+            <span class="name">AGENDA TRAVEL JOURNAL</span>
+            <span class="price">N99</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/DELUX CARPETA WINDSOR_N50.jpg" alt="CARPETA DELUX WINDSOR" class="product-image">
+          <div class="product-bar">
+            <span class="name">CARPETA DELUX WINDSOR</span>
+            <span class="price">N50</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/CUADERNO COBRE1 TAPA DURA_N58.jpg" alt="SET DE ESCRITOTIO_PLANNER_ALTUS_N28" class="product-image">
+          <div class="product-bar">
+            <span class="name">SET ALTUS_ PLANNER DE ESCRITORIO</span>
+            <span class="price">N28</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/LIBRETA ECOLOGICA_COLORES_N31.jpg" alt="CUADERNO ENCOBRIZADO TAPA DURA" class="product-image">
+          <div class="product-bar">
+            <span class="name">CUADERNO ENCOBRIZADO TAPA DURA</span>
+            <span class="price">N58</span>
+          </div>
+        </div>
+      </div>
+
+       <!-- Fila 4 -->
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/SET OFICINA ECOLÓGICO_N0.jpg" alt="SET ECOLÓGICO DE OFICINA" class="product-image">
+          <div class="product-bar">
+            <span class="name">SET ECOLÓGICO DE OFICINA</span>
+            <span class="price">N0</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/DELUX CUADERNO ECOCUERO IMANTADO_N98.jpg" alt="DELUX CUADERNO ECOCUERO IMANTADO" class="product-image">
+          <div class="product-bar">
+            <span class="name">DELUX CUADERNO ECOCUERO IMANTADO</span>
+            <span class="price">N98</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/lanard_simple_liso_20mm_A34.jpg" alt="LANYARD LISO SIMPLE 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD LISO SIMPLE 20MM</span>
+            <span class="price">A34</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/lanyard_20mm_liso_A30.jpg" alt="LANYARD PREMIUM LISO 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD LISO PORTA CREDENCIAL 20MM</span>
+            <span class="price">A30</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/lanard_simple_text_20mm_A33.jpg" alt="LANYARD SIMPLE TEXTURADO 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD SIMPLE TEXTURADO 20MM</span>
+            <span class="price">A33</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/lanyard_20mm_texturado_A4.jpg" alt="LANYARD PREMIUM TEXTRURADO 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD TEXTRURADO PORTA CREDNECIAL 20MM</span>
+            <span class="price">A4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+       <!-- Fila 5 -->
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/lanyard_break_away_20mm_A35.jpg" alt="LANYARD DE SEGURIDAD_BREAK AWAY 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD DE SEGURIDAD_BREAK AWAY 20MM</span>
+            <span class="price">A35</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/" alt="DELUX CUADERNO ECOCUERO IMANTADO" class="product-image">
+          <div class="product-bar">
+            <span class="name">DELUX CUADERNO ECOCUERO IMANTADO</span>
+            <span class="price">N98</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/" alt="LANYARD LISO SIMPLE 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD LISO SIMPLE 20MM</span>
+            <span class="price">A34</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/" alt="LANYARD PREMIUM LISO 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD LISO PORTA CREDENCIAL 20MM</span>
+            <span class="price">A30</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/" alt="LANYARD SIMPLE TEXTURADO 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD SIMPLE TEXTURADO 20MM</span>
+            <span class="price">A33</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/" alt="LANYARD PREMIUM TEXTRURADO 20MM" class="product-image">
+          <div class="product-bar">
+            <span class="name">LANYARD TEXTRURADO PORTA CREDNECIAL 20MM</span>
+            <span class="price">A4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========== CATEGORÍA 2 Bebidas ========== -->
     <div class="category-block" id="categoria-mugs">
-      <h2 class="section-title">Mugs y Botellas</h2>
+      <h2 class="section-title">Articulos para Bebidas</h2>
 
       <div class="products-grid">
         <div class="product-card">
@@ -1012,7 +1311,7 @@ html {
       </div>
     </div>
 
-    <!-- ========== CATEGORÍA 3 ========== -->
+    <!-- ========== CATEGORÍA 3 Textiles y Vestuario ========== -->
     <div class="category-block" id="categoria-textil">
       <h2 class="section-title">Textil y Vestuario</h2>
 
@@ -1107,9 +1406,9 @@ html {
       </div>
     </div>
 
-    <!-- ========== CATEGORÍA 4 ========== -->
+    <!-- ========== CATEGORÍA 4 Tecnología y Variedad ========== -->
     <div class="category-block" id="categoria-tecnologia">
-      <h2 class="section-title">Tecnología y USB</h2>
+      <h2 class="section-title">Tecnología y Variedad</h2>
 
       <div class="products-grid">
         <div class="product-card">
@@ -1202,96 +1501,141 @@ html {
       </div>
     </div>
 
-    <!-- ========== CATEGORÍA 5 ========== -->
+    <!-- ========== CATEGORÍA 5 Kits y Sets Corporativos ========== -->
     <div class="category-block" id="categoria-kits">
       <h2 class="section-title">Kits y Sets Corporativos</h2>
 
       <div class="products-grid">
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/S47.jpg" alt="SET DE REGALO EPIC" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">SET DE REGALO EPIC</span>
+            <span class="price">S47</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/N82.jpg" alt="SET EJECUTIVO DE ESCRITORIO" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">SET EJECUTIVO DE ESCRITORIO</span>
+            <span class="price">N82</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/S48.jpg" alt="Set de Regalo Termo + Mug" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Set de Regalo Termo + Mug</span>
+            <span class="price">S48</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/S42.jpg" alt="Set de Regalo "UMPIRE"." class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Set de Regalo "UMPIRE".</span>
+            <span class="price">S42</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/S40.jpg" alt="LANYARD SIMPLE TEXTURADO 20MM" class="product-image">
           <div class="product-bar">
             <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="price">S40</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/S45.jpg" alt="Set de Regalo MINE negro con detalles encobrizados." class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Set de Regalo "MINE" Cobre.</span>
+            <span class="price">S45</span>
           </div>
         </div>
       </div>
 
       <div class="products-grid">
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/SET10.jpg" alt="Set PARATY: Libreta de Notas, Bolígrafo y Llavero" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Set PARATY: Libreta, Bolígrafo y Llavero</span>
+            <span class="price">SET10</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+         <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/W15.jpg" alt="Set de Vino de PU Negro" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Set de Vino de PU Negro</span>
+            <span class="price">W15</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/B71.jpg" alt="Set de Vino de Bamboo" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Set de Vino de Bamboo</span>
+            <span class="price">B71</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/B89.jpg" alt="Set Wine & Cheese" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Set Wine & Cheese</span>
+            <span class="price">B89</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/M66.jpg" alt="Set de Cóctel metálico Encobrizado" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Set de Cóctel metálico Encobrizado</span>
+            <span class="price">M66</span>
           </div>
         </div>
         <div class="product-card">
-          <div class="product-image"></div>
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/H28.jpg" alt="Deluxe BBQ Set Metálico de 24 piezas" class="product-image">
           <div class="product-bar">
-            <span class="name">Nombre producto</span>
-            <span class="price">$0.000</span>
+            <span class="name">Deluxe BBQ Set Metálico de 24 piezas</span>
+            <span class="price">H28</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/W9.jpg" alt="Set de Vino en Caja de Madera" class="product-image">
+          <div class="product-bar">
+            <span class="name">Set de Vino en Caja de Madera</span>
+            <span class="price">W9</span>
+          </div>
+        </div>
+        <div class="product-card">
+         <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/H17.jpg" alt="Set de BBQ con 10 Herramientas" class="product-image">
+          <div class="product-bar">
+            <span class="name">Set de BBQ con 10 Herramientas</span>
+            <span class="price">H17</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/H40.jpg" alt="Set Bolso - Cooler - Parrilla" class="product-image">
+          <div class="product-bar">
+            <span class="name">Set Bolso - Cooler - Parrilla</span>
+            <span class="price">H40</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/H41.jpg" alt="Set Bolso - Cooler - Parrilla - Herram." class="product-image">
+          <div class="product-bar">
+            <span class="name">Set Bolso - Cooler - Parrilla - Herram.</span>
+            <span class="price">H41</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/SET_TERMO Y 2TAZONES_ M89.jpg" alt="SET_TERMO Y 2TAZONES_GLASCOW" class="product-image">
+          <div class="product-bar">
+            <span class="name">SET_TERMO Y 2TAZONES_GLASCOW</span>
+            <span class="price">M89</span>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="assets/img/catalogo_interactivo/Set y kits Corporativos/H28.jpg" alt="Deluxe BBQ Set Metálico de 24 piezas" class="product-image">
+          <div class="product-bar">
+            <span class="name">Deluxe BBQ Set Metálico de 24 piezas</span>
+            <span class="price">S46</span>
           </div>
         </div>
       </div>
@@ -1303,12 +1647,25 @@ html {
   <section class="catalog-section">
     <h2 class="catalog-title">Catálogo de Merchandising 2026</h2>
     <div class="catalog-grid">
-      <a href="#categoria-oficina" class="catalog-item" title="Artículos de Oficina"></a>
-      <a href="#categoria-mugs" class="catalog-item" title="Mugs y Botellas"></a>
-      <a href="#categoria-textil" class="catalog-item" title="Textil y Vestuario"></a>
-      <a href="#categoria-tecnologia" class="catalog-item" title="Tecnología y USB"></a>
-      <a href="#categoria-kits" class="catalog-item" title="Kits y Sets Corporativos"></a>
-      <a href="#categoria-oficina" class="catalog-item" title="Otra categoría"></a>
+      <a href="#categoria-Espeiales" class="catalog-item" data-title="Destacados">
+        <img src="assets/img/catalogo_interactivo/" alt="" class="catalog-item">
+      </a>
+      <a href="#categoria-oficina" class="catalog-item" data-title="Artículos de Oficina">
+        <img src="assets/img/catalogo_interactivo/image (2).jpg" alt="" class="catalog-item">
+      </a>
+      <a href="#categoria-mugs" class="catalog-item" data-title="Mugs y Botellas">
+        <img src="assets/img/catalogo_interactivo/image (6).jpg" alt="" class="catalog-item">
+      </a>
+      <a href="#categoria-textil" class="catalog-item" data-title="Textil y Vestuario">
+        <img src="assets/img/catalogo_interactivo/3MXa5.jpg" alt="" class="catalog-item">
+      </a>
+      <a href="#categoria-tecnologia" class="catalog-item" data-title="Tecnología y USB">
+        <img src="assets/img/catalogo_interactivo/" alt="" class="catalog-item">
+      </a>
+      <a href="#categoria-kits" class="catalog-item" data-title="Kits y Sets Corporativos">
+        <img src="assets/img/catalogo_interactivo/publicidad.jpg" alt="" class="catalog-item">
+      </a>
+      
     </div>
   </section>
 
